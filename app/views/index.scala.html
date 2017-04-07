@@ -2,6 +2,771 @@
 
 @wrapper("Welcome to Play", assetsFinder) {
 
-    @welcome(message, style = "scala")
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel title</h6>
+                </div>
+
+                <div class="panel-body">
+                    Basic panel example without heading elements
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel title <small>With inline subtitle</small></h6>
+                </div>
+
+                <div class="panel-body">
+                    Basic panel with inline heading subtitle
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel title <small class="display-block">With block subtitle</small></h6>
+                </div>
+
+                <div class="panel-body">
+                    Basic panel with block heading subtitle
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel controls</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Basic panel with panel controls
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel controls <small>and inline subtitle</small></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Panel with inline heading subtitle and panel controls
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Panel controls <small class="display-block">and block subtitle</small></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Panel with block heading subtitle and panel controls
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /panel heading options -->
+
+
+        <!-- Panel titles -->
+    <h6 class="content-group text-semibold">
+        Panel title options
+        <small class="display-block">Panel heading font options for titles</small>
+    </h6>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Regular <span class="text-semibold">Semibold</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing regular text with semibold
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-semibold">Semibold</span> Regular</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing semibold text with regular
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Regular <span class="text-thin">Thin</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing regular text with thin
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-thin">Thin</span> Regular</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing thin text with regular
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Regular <span class="text-bold">Bold</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing regular text with bold
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-bold">Bold</span> Regular</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing bold text with regular
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-semibold text-uppercase">Uppercase</span> Regular</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing semibold uppercase text with regular
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Regular <span class="text-semibold text-italic">Italic</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing regular text with italic
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-thin">Thin</span> <span class="text-semibold text-uppercase">Uppercase</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing thin text with semibold uppercase
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Regular <small>Small tag</small></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Regular text with subtitle
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title"><span class="text-semibold text-uppercase">Uppercase</span> <small>Small tag</small></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Semibold uppercase text with subtitle
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-muted">Muted</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with muted color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-primary">Primary</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with primary color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-danger">Danger</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with danger color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-success">Success</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with success color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-warning">Warning</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with warning color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default <span class="text-info">Info</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default color with info color
+                </div>
+            </div>
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Word <span class="text-highlight bg-primary">Highlighted</span></h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Mixing default text with highlighted text
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /panel titles -->
+
+
+        <!-- Basic panel styles -->
+    <h6 class="content-group text-semibold">
+        Basic panel styles
+        <small class="display-block">Available panel styles and colors</small>
+    </h6>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Flat panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Flat panel using <code>.panel-flat</code> class
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-white">
+                <div class="panel-heading">
+                    <h6 class="panel-title">White panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    White panel using <code>.panel-white</code> class
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Default panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Default panel using <code>.panel-default</code> class
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Success panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Success panel using <code>.panel-success</code> class
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Primary panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Primary panel using <code>.panel-primary</code> class
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Warning panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Warning panel using <code>.panel-warning</code> class
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Danger panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Danger panel using <code>.panel-danger</code> class
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Info panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Info panel using <code>.panel-info</code> class
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /basic panel styles -->
+
+
+        <!-- Bordered panels title -->
+    <h6 class="content-group text-semibold">
+        Bordered panels
+        <small class="display-block">Available panel styles and colors</small>
+    </h6>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default border-grey">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Custom panel border</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Custom panel border color using <code>.border-*</code> class
+                </div>
+            </div>
+
+            <div class="panel panel-primary panel-bordered">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Primary panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Primary bordered panel using <code>.panel-bordered</code> class
+                </div>
+            </div>
+
+            <div class="panel panel-danger panel-bordered">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Danger panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Danger bordered panel using <code>.panel-bordered</code> class
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success panel-bordered">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Success panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Success bordered panel using <code>.panel-bordered</code> class
+                </div>
+            </div>
+
+            <div class="panel panel-warning panel-bordered">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Warning panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Warning bordered panel using <code>.panel-bordered</code> class
+                </div>
+            </div>
+
+            <div class="panel panel-info panel-bordered">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Info panel</h6>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    Info bordered panel using <code>.panel-bordered</code> class
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /bordered panels -->
+
+
+        <!-- Panel borders -->
+    <h6 class="content-group text-semibold">
+        Panel borders
+        <small class="display-block">Custom 4 side borders for content panels</small>
+    </h6>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-flat border-top-success">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Top custom border</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with top <code>success</code> border
+                </div>
+            </div>
+
+            <div class="panel panel-flat border-left-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Left custom border</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with left <code>danger</code> border
+                </div>
+            </div>
+
+            <div class="panel panel-flat border-top-info border-bottom-info">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Top and bottom borders</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with top and bottom <code>info</code> borders
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-flat border-bottom-success">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Bottom custom border</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with bottom <code>success</code> border
+                </div>
+            </div>
+
+            <div class="panel panel-flat border-right-danger">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Right custom border</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with right <code>danger</code> border
+                </div>
+            </div>
+
+            <div class="panel panel-flat border-left-info border-right-info">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Left and right borders</h6>
+                </div>
+
+                <div class="panel-body">
+                    Panel with left and right <code>info</code> borders
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 }

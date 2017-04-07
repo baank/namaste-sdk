@@ -1,8 +1,8 @@
 package controllers
 
-import javax.inject._
-import play.api._
-import play.api.mvc._
+import javax.inject.{Inject, Singleton}
+
+import play.api.mvc.{AbstractController, ControllerComponents}
 
 @Singleton
 class HomeController @Inject() (components: ControllerComponents, assetsFinder: AssetsFinder) extends AbstractController(components) {

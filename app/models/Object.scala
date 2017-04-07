@@ -4,7 +4,7 @@ import java.util.{Date, UUID}
 
 object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
-abstract class AtlasObject (createdBy: String) {
+abstract class Object (createdBy: String) {
 
   // Unique id for this entity
   val guid = UUID.randomUUID()

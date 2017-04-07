@@ -2,7 +2,7 @@ package models
 
 import scala.collection.mutable
 
-class EntityType(var name: String, createdBy: String) extends AtlasObject(createdBy) {
+class EntityType(var name: String, createdBy: String) extends Object(createdBy) {
 
   // Icon file name
   var icon = "Default.png"

@@ -9,10 +9,9 @@ import play.filters.hosts.AllowedHostsFilter
 @Singleton
 class Filters @Inject() (env: Environment,
                          csrfFilter: CSRFFilter,
-                         allowedHostsFilter:
-                         AllowedHostsFilter,
+                         allowedHostsFilter: AllowedHostsFilter,
                          securityHeadersFilter: SecurityHeadersFilter) extends DefaultHttpFilters(
   csrfFilter,
-  allowedHostsFilter,
-  securityHeadersFilter
+  allowedHostsFilter
+  /*,securityHeadersFilter*/
 )
