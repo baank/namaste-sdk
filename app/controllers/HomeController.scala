@@ -8,6 +8,6 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 class HomeController @Inject() (components: ControllerComponents, assetsFinder: AssetsFinder) extends AbstractController(components) {
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready.", assetsFinder))
+    Ok(views.html.Index("Your new application is ready.", assetsFinder))
   }
 }

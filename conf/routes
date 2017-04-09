@@ -1,5 +1,6 @@
 
 GET     /                           controllers.HomeController.index
+GET     /:entityId                  controllers.EntityController.index
 
 # Admin
 GET     /admin/about                controllers.admin.AboutController.index

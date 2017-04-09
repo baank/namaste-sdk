@@ -1,6 +1,6 @@
 import com.google.inject.AbstractModule
-import services.atlas.AtlasUserService
-import services.UserService
+import services.atlas.{AtlasEntityService, AtlasUserService}
+import services.{EntityService, UserService}
 import services.plugin.{OSGIService, PluginService}
 
 class Module extends AbstractModule {
@@ -9,6 +9,8 @@ class Module extends AbstractModule {
 
     bind(classOf[PluginService]).to(classOf[OSGIService]).asEagerSingleton()
 
+
+    bind(classOf[EntityService]).to(classOf[AtlasEntityService])
     bind(classOf[UserService]).to(classOf[AtlasUserService])
 
   }

@@ -4,9 +4,9 @@ import java.util.{Date, UUID}
 
 object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
-abstract class Object (createdBy: String) {
+abstract class Object (createdBy: Option[User]) {
 
-  // Unique id for this entity
+  // Unique id for this ViewEntity
   val guid = UUID.randomUUID()
 
   // Status
@@ -24,4 +24,6 @@ abstract class Object (createdBy: String) {
   // Version
   var version = 0L
 
+  // Icon
+  var icon = "Default.png"
 }

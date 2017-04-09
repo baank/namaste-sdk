@@ -2,7 +2,7 @@ package models
 
 import scala.collection.mutable
 
-class Group(var name: String, createdBy: String) extends Object(createdBy) {
+case class Group(var name: String, createdBy: Option[User]) extends Object(createdBy) {
 
   var users = mutable.Set[User]()
 

@@ -1,13 +1,8 @@
 package models
 
-import java.util.{Date, UUID}
-
 import scala.collection.mutable
 
-class Entity(var name: String, entityType: EntityType, createdBy: String) extends Object(createdBy) {
-
-  // Icon
-  var icon = "Default.png"
+case class Entity(var name: String, entityType: EntityType, createdBy: Option[User]) extends Object(createdBy) {
 
   // Panel Values
   var panelValues = mutable.Map[Panel, Map[String, AnyRef]]()
