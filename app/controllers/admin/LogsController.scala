@@ -9,10 +9,10 @@ import play.api.mvc._
 import scala.io.Source
 
 @Singleton
-class LogsController @Inject() (app: Application, components: ControllerComponents) extends AbstractController(components){
+class LogsController @Inject() (env: Environment, components: ControllerComponents) extends AbstractController(components){
 
   def index = Action {
-    val logPath = app.path + "/logs/application.log"
+    val logPath = env.rootPath + "/logs/application.log"
     Ok(Source.fromFile(new File(logPath)).mkString)
   }
 }

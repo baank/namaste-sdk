@@ -7,8 +7,8 @@ import com.codahale.metrics.health.HealthCheck.Result
 import com.codahale.metrics.health._
 import play.api.libs.ws.{WSClient, WSResponse}
 
-import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 
 @Singleton

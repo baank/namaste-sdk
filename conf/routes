@@ -1,6 +1,7 @@
 
-GET     /                           controllers.HomeController.index
-GET     /:entityId                  controllers.EntityController.index
+# GET     /                           controllers.PageController.home
+# GET     /:pageType                  controllers.PageController.list(pageType)
+GET     /:pageType/:pageId          controllers.PageController.page(pageType, pageId)
 
 # Admin
 GET     /admin/about                controllers.admin.AboutController.index
@@ -10,7 +11,6 @@ GET     /admin/jvm                  controllers.admin.JVMController.index
 GET     /admin/logs                 controllers.admin.LogsController.index
 GET     /admin/metrics              controllers.admin.MetricsController.metrics
 GET     /admin/readme               controllers.admin.ReadmeController.index
-GET     /admin/routes               controllers.admin.RoutesController.index
 
 # Static Assets
 GET     /assets/*file               controllers.Assets.at(file)

@@ -2,18 +2,18 @@ package services.mock
 
 import javax.inject.{Inject, Singleton}
 
-import models.{Group, User}
+import models.User
 import services.UserService
 
 import scala.collection.mutable
 
 @Singleton
-class MockUserService @Inject()() extends UserService {
+class MockUserService @Inject()(mockData: MockData) extends UserService {
 
   val users = mutable.ListBuffer[User]()
 
-  users += MockData.adminUser
-  users ++= MockData.generalUsers
+  users += mockData.adminUser
+  users ++= mockData.generalUsers
 
   def list(): List[User] = {
     users.result()

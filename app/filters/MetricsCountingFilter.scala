@@ -6,8 +6,8 @@ import akka.stream.Materializer
 import play.api.mvc._
 import services.MetricsService
 
-import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class MetricsCountingFilter @Inject() (metricsService: MetricsService, implicit override val mat: Materializer, exec: ExecutionContext) extends Filter {

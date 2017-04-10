@@ -15,8 +15,8 @@
  */
 package utils.osgi
 
-import org.osgi.framework.{BundleContext, ServiceReference}
 import org.osgi.framework.Constants._
+import org.osgi.framework.{BundleContext, ServiceReference}
 import org.osgi.util.tracker.ServiceTracker
 import play.api.Logger
 

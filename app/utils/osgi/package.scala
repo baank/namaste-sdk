@@ -15,14 +15,10 @@
  */
 package utils
 
-import java.util
 import java.util.Dictionary
 
 import org.osgi.framework.{BundleContext, ServiceReference}
 import play.api.Logger
-
-import scala.collection.Iterator
-import scala.collection.convert.Wrappers.{IteratorWrapper, JEnumerationWrapper}
 
 /**
  * Some implicit conversions and other stuff essential for the ScalaModules DSL.

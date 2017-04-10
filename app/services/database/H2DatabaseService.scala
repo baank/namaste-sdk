@@ -1,8 +1,7 @@
 package services
 
 import java.sql.ResultSet
-import javax.inject.Inject
-import javax.inject.Singleton
+import javax.inject.{Inject, Singleton}
 
 import play.api.Logger
 import play.api.db.Database

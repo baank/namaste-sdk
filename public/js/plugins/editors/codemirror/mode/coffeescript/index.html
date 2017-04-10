@@ -199,7 +199,7 @@ _.reject = (obj, iterator, context) ->
 # Determine whether all of the elements match a truth test. Delegate to
 # JavaScript 1.6's **every**, if it is present.
 _.every = (obj, iterator, context) ->
-  iterator ||= _.identity
+  iterator ||= _.idpage
   return obj.every iterator, context if nativeEvery and obj.every is nativeEvery
   result = true
   _.each obj, (value, index, list) ->
@@ -210,7 +210,7 @@ _.every = (obj, iterator, context) ->
 # Determine if at least one element in the object matches a truth test. Use
 # JavaScript 1.6's **some**, if it exists.
 _.some = (obj, iterator, context) ->
-  iterator ||= _.identity
+  iterator ||= _.idpage
   return obj.some iterator, context if nativeSome and obj.some is nativeSome
   result = false
   _.each obj, (value, index, list) ->
@@ -270,7 +270,7 @@ _.sortBy = (obj, iterator, context) ->
 # Use a comparator function to figure out at what index an object should
 # be inserted so as to maintain order. Uses binary search.
 _.sortedIndex = (array, obj, iterator) ->
-  iterator ||= _.identity
+  iterator ||= _.idpage
   low = 0
   high = array.length
   while low < high
@@ -429,7 +429,7 @@ _.delay = (func, wait) ->
 # Memoize an expensive function by storing its results.
 _.memoize = (func, hasher) ->
   memo = {}
-  hasher or= _.identity
+  hasher or= _.idpage
   ->
     key = hasher.apply this, arguments
     return memo[key] if key of memo
@@ -471,7 +471,7 @@ _.keys = nativeKeys or (obj) ->
 
 # Retrieve the values of an object's properties.
 _.values = (obj) ->
-  _.map obj, _.identity
+  _.map obj, _.idpage
 
 
 # Return a sorted list of the function names available in Underscore.
@@ -503,7 +503,7 @@ _.tap = (obj, interceptor) ->
 
 # Perform a deep comparison to check if two objects are equal.
 _.isEqual = (a, b) ->
-  # Check object identity.
+  # Check object idpage.
   return true if a is b
   # Different types?
   atype = typeof(a); btype = typeof(b)
@@ -603,8 +603,8 @@ _.noConflict = ->
   this
 
 
-# Keep the identity function around for default iterators.
-_.identity = (value) -> value
+# Keep the idpage function around for default iterators.
+_.idpage = (value) -> value
 
 
 # Run a function `n` times.

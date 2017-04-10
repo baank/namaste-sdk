@@ -2,7 +2,7 @@ package services.atlas
 
 import java.util.UUID
 
-import models.Entity
+import models.Page
 
 class AtlasService {
 
@@ -38,49 +38,49 @@ class AtlasService {
 
   }
 
-  def lineageInputGraph(entityId: UUID) = {
+  def lineageInputGraph(pageId: UUID) = {
 
   }
 
-  def lineageOutputGraph(entityId: UUID) = {
+  def lineageOutputGraph(pageId: UUID) = {
 
   }
 
-  def lineageSchema(entityId: UUID) = {
+  def lineageSchema(pageId: UUID) = {
 
   }
 
-  // Entity
+  // Page
 
-  def entity(entityId: Option[UUID]): Unit = {
-
-  }
-
-  def createEntity(entity: Entity): Unit = {
+  def page(pageId: Option[UUID]): Unit = {
 
   }
 
-  def updateEntity(entity: Entity): Unit = {
+  def createPage(page: Page): Unit = {
 
   }
 
-  def deleteEntity(entity: Entity) = {
+  def updatePage(page: Page): Unit = {
 
   }
 
-  def entityAudit(entityId: UUID): Unit = {
+  def deletePage(page: Page) = {
 
   }
 
-  def entityTraitDefinitions(guid: String, traitName: Option[String]): Unit = {
+  def pageAudit(pageId: UUID): Unit = {
 
   }
 
-  def entityTraits(guid: Option[UUID], traitName: Option[String]): Unit = {
+  def pageTraitDefinitions(guid: String, traitName: Option[String]): Unit = {
 
   }
 
-  def entityQualifiedName(entityType: String, property: String, value: String): Unit = {
+  def pageTraits(guid: Option[UUID], traitName: Option[String]): Unit = {
+
+  }
+
+  def pageQualifiedName(pageType: String, property: String, value: String): Unit = {
 
   }
 
@@ -102,21 +102,21 @@ class AtlasService {
 
   }
 
-  // Entity Types
+  // Page Types
 
-  def createEntityType() = {
-
-  }
-
-  def updateEntityType() = {
+  def createPageType() = {
 
   }
 
-  def entityTypes(typeCategory: Option[String], superType: Option[String], notSuperType: Option[String]): Unit = {
+  def updatePageType() = {
 
   }
 
-  def entityTypes(typeName: String) = {
+  def pageTypes(typeCategory: Option[String], superType: Option[String], notSuperType: Option[String]): Unit = {
+
+  }
+
+  def pageTypes(typeName: String) = {
 
   }
 }

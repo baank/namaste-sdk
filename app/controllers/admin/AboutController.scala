@@ -1,15 +1,15 @@
 package controllers.admin
 
-import play.api.{Application}
-import play.api.libs.json._
-import play.api.mvc._
 import javax.inject.{Inject, Singleton}
 
+import play.api.Configuration
+import play.api.libs.json._
+import play.api.mvc._
+
 @Singleton
-class AboutController @Inject() (components: ControllerComponents, app: Application) extends AbstractController(components) {
+class AboutController @Inject() (conf: Configuration, components: ControllerComponents) extends AbstractController(components) {
 
   def index = Action {
-    val conf = app.configuration
     val map = Map(
       "name" -> conf.get[String]("application.name"),
       "version" -> conf.get[String]("application.version"),

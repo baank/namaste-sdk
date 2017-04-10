@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "io.dropwizard.metrics" % "metrics-logback" % "3.2.2",
   "nl.grons" %% "metrics-scala" % "3.5.6",
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.7",
-  "org.pegdown" % "pegdown" % "1.6.0",
+  "com.vladsch.flexmark" % "flexmark-all" % "0.18.5",
   "com.h2database" % "h2" % "1.4.194",
   "org.osgi" % "org.osgi.core" % "6.0.0" % "provided",
   "org.osgi" % "org.osgi.compendium" % "5.0.0",

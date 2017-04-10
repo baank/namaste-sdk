@@ -3,14 +3,12 @@ package controllers.admin
 import java.lang.management.ManagementFactory
 import javax.inject.{Inject, Singleton}
 
+import play.api.libs.json.Json
 import play.api.mvc._
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.util.matching.Regex
-import javax.inject.Singleton
-
-import play.api.libs.json.Json
 
 
 @Singleton

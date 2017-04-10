@@ -1,81 +1,24 @@
 package services.mock
 
-import models.{EntityType, Group, Panel, User}
+import javax.inject.{Inject, Singleton}
 
-import scala.collection.mutable
+import models._
 
-object MockData {
+import scala.collection.{SortedMap, mutable}
 
-
-  // Entity Type
-
-  def getTableType = {
-    val tableType = new EntityType("Table", Some(adminUser))
-    tableType.rows = 2
-    tableType.cols = 2
-    tableType.panels += ((0,0) -> recentlyUpdatedPanel)
-    tableType.panels += ((0,1) -> recentlyUpdatedPanel)
-    tableType.panels += ((1,0) -> recentlyUpdatedPanel)
-    tableType.panels += ((1,1) -> recentlyUpdatedPanel)
-    tableType
-  }
-
-
-  // Panels
-
-  def recentlyUpdatedPanel = {
-    val recentlyUpdatedPanel = new Panel("Recently Updated", Some(adminUser))
-    recentlyUpdatedPanel.options += ("maxResults" -> 10, "restriction" -> "Current Type")
-    recentlyUpdatedPanel
-  }
-
-  def relatedPanel = {
-    val relatedPanel = new Panel("Related", Some(adminUser))
-    relatedPanel.options += ("maxResults" -> 5, "restriction" -> "All Types")
-    relatedPanel
-  }
-
-  def mostPopularPanel = {
-    var mostPopularPanel = new Panel("Most Popular", Some(adminUser))
-    mostPopularPanel.options += ("maxResults" -> 30, "restriction" -> "All Types")
-    mostPopularPanel
-  }
-
-  def photoPanel = {
-    var photoPanel = new Panel("Photo", Some(adminUser))
-    photoPanel
-  }
-
-  def formPanel = {
-    var formPanel = new Panel("Form", Some(adminUser))
-    formPanel.options += ("schema" -> mutable.SortedMap(
-      ("Title" -> "Text Field", "Description" -> "Rich Text Field")
-    ))
-    formPanel
-  }
-
-  def userPanel = {
-    var userPanel = new Panel("User", Some(adminUser))
-    userPanel.options += ("user" -> "Any")
-    userPanel
-  }
-
-  def userListPanel = {
-    var userListPanel = new Panel("User List", Some(adminUser))
-    userListPanel.options += ("style" -> "Grid")
-    userListPanel
-  }
+@Singleton
+class MockData @Inject()() {
 
   // Users
 
-  def adminUser = {
+  var adminUser = {
     val adminUser = new User("Rachel", "Smith", "rachel.smith@gmail.com", None)
     val adminGroup = new Group("Administrators", None)
     adminUser.addToGroups(adminGroup)
     adminUser
   }
 
-  def generalUsers = {
+  var generalUsers = {
     val userGroup = new Group("Users", Some(adminUser))
     val dataStewardsGroup = new Group("Data Stewards", Some(adminUser))
 
@@ -93,8 +36,80 @@ object MockData {
     users.result()
   }
 
+  //
 
+  // Panels
 
+  var recentlyUpdatedPanel = {
+    val recentlyUpdatedPanel = new Panel("Recently Updated", Some(adminUser))
+    recentlyUpdatedPanel.options += ("maxResults" -> 10, "restriction" -> "Current Type")
+    recentlyUpdatedPanel
+  }
 
+  var relatedPanel = {
+    val relatedPanel = new Panel("Related", Some(adminUser))
+    relatedPanel.options += ("maxResults" -> 5, "restriction" -> "All Types")
+    relatedPanel
+  }
 
+  var mostPopularPanel = {
+    var mostPopularPanel = new Panel("Most Popular", Some(adminUser))
+    mostPopularPanel.options += ("maxResults" -> 30, "restriction" -> "All Types")
+    mostPopularPanel
+  }
+
+  var photoPanel = {
+    var photoPanel = new Panel("Photo", Some(adminUser))
+    photoPanel
+  }
+
+  var formPanel = {
+    var formPanel = new Panel("Governance", Some(adminUser))
+    formPanel.options += ("schema" -> mutable.SortedMap(
+      ("Approver" -> "User", "Steward" -> "User")
+    ))
+    formPanel
+  }
+
+  var userPanel = {
+    var userPanel = new Panel("User", Some(adminUser))
+    userPanel.options += ("user" -> "Any")
+    userPanel
+  }
+
+  var userListPanel = {
+    var userListPanel = new Panel("User List", Some(adminUser))
+    userListPanel.options += ("style" -> "Grid")
+    userListPanel
+  }
+
+  // Page Type
+
+  var tablePageType = {
+    val tableType = new PageType("Table", Some(adminUser))
+    tableType.detailColumnWidths = SortedMap(
+      (0 -> Seq(1)),
+      (1 -> Seq(4, 8)),
+      (2 -> Seq(4, 4, 4))
+    )
+
+    tableType.detailPanels = SortedMap(
+      ((0,0) -> Seq(photoPanel)),
+      ((1,0) -> Seq(recentlyUpdatedPanel, formPanel1)),
+      ((1,1) -> Seq(formPanel2, userPanel)),
+      ((2,0) -> Seq(mostPopularPanel, userListPanel)),
+      ((2,1) -> Seq(relatedPanel)),
+      ((2,2) -> Seq(formPanel3)))
+    )
+
+    tableType
+  }
+
+  // Page
+
+  var customerTablePage = {
+    val customerTablePage = new Page("Customer Table", tablePageType, Some(adminUser))
+    customerTablePage.panelValues += (formPanel -> Map("Title" -> "Test Title"))
+    customerTablePage
+  }
 }

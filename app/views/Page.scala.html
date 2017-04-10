@@ -1,0 +1,21 @@
+@(columnWidths: List[Int], panels: Map[Int, List[Panel]], panelValues: Map[Panel, Map[String, AnyRef]], title: String, assetsFinder: AssetsFinder)
+
+@wrapper(title, assetsFinder) {
+    <div class="row">
+        @for((columnWidth, column) <- columnWidths.zipWithIndex) {
+            <div class="col-md-@columnWidth">
+                @for(panel <- panels(column)) {
+                  <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">@panel.name</h6>
+                    </div>
+
+                    <div class="panel-body">
+                      Basic panel example without heading elements
+                    </div>
+                </div>
+                }
+          </div>
+      }
+      </div>
+}

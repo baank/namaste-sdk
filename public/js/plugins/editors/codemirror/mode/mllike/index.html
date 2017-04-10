@@ -119,7 +119,7 @@ let () =
   let angle t = 10. *. t *. t in
   let render () =
     GlClear.clear [ `color ];
-    GlMat.load_identity ();
+    GlMat.load_idpage ();
     GlMat.rotate ~angle: (angle (Sys.time ())) ~z:1. ();
     GlDraw.begins `triangles;
     List.iter GlDraw.vertex2 [-1., -1.; 0., 1.; 1., -1.];

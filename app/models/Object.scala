@@ -6,7 +6,7 @@ object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
 abstract class Object (createdBy: Option[User]) {
 
-  // Unique id for this ViewEntity
+  // Unique id for this ViewPage
   val guid = UUID.randomUUID()
 
   // Status

@@ -1,16 +1,15 @@
 package controllers.admin
 
 import java.io.{ByteArrayOutputStream, PrintStream}
-
-import play.api.mvc.{AbstractController, Action, Controller, ControllerComponents}
-import services.MetricsService
 import javax.inject.{Inject, Singleton}
 
 import com.codahale.metrics.ConsoleReporter
 import com.codahale.metrics.health.HealthCheck
 import play.api.Logger
+import play.api.mvc.{AbstractController, ControllerComponents}
+import services.MetricsService
 
-import collection.JavaConverters._
+import scala.collection.JavaConverters._
 
 
 @Singleton
