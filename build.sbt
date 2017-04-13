@@ -1,6 +1,6 @@
 organization := "com.naden.namaste"
 
-name := "namaste-panel-api"
+name := "namaste-panel-sdk"
 
 version := "1.0-SNAPSHOT"
 
