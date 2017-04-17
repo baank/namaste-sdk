@@ -1,4 +1,4 @@
-package com.naden.namaste
+package com.naden.namaste.types
 
 trait PanelType {
 
