@@ -1,13 +1,13 @@
-package main.scala.com.naden.namaste.plugin
+package com.naden.namaste.plugin
 
-import com.naden.namaste.plugin.types.{PanelPluginType, _}
+import com.naden.namaste.plugin.component.{PanelType, _}
 import com.naden.namaste.types._
 
 trait NamastePlugin {
 
-  def panelTypes(): Option[Set[PanelPluginType]]
+  def panelTypes(): Option[Set[PanelType]]
 
-  def pageTypeCreators(): Option[Set[PagePluginTypeCreator]]
+  def pageTypeCreators(): Option[Set[PageTypeCreator]]
 
   def pageImporters(): Option[Set[PageImporter]]
 
