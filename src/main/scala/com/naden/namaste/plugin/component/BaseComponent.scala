@@ -1,6 +1,6 @@
 package com.naden.namaste.plugin.component
 
-import com.naden.namaste.models.Property
+import com.naden.namaste.models.Parameter
 
 trait BaseComponent {
 
@@ -10,7 +10,7 @@ trait BaseComponent {
 
   def description(): String
 
-  def configurationProperties: Seq[Property[AnyRef]]
+  def configurationProperties: Seq[Parameter[AnyRef]]
 
 
   // Lifecycle
@@ -19,6 +19,6 @@ trait BaseComponent {
 
   def onShutdown(): Boolean
 
-  def onConfigure(propertyValues: Map[Property[AnyRef], AnyRef])
+  def onConfigure(propertyValues: Map[Parameter[AnyRef], AnyRef])
 
 }

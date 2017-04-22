@@ -2,7 +2,7 @@ package com.naden.namaste.models
 
 import scala.collection.SortedMap
 
-case class PageType(var name: String, createdBy: Option[User]) extends Object(createdBy) {
+case class PageType(var name: String, var description: String, var tags: Set[String], createdBy: Option[User]) extends Object(createdBy) {
 
   // Column widths
   var listColumnWidths: SortedMap[Int, Seq[Int]] = SortedMap()

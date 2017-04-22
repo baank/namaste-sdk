@@ -2,6 +2,8 @@ package com.naden.namaste.plugin.util
 
 trait ProgressObserver {
 
-  def update(progress: Option[Int], message: Option[String]): Unit
+  def updatePercentage(percentage: Int): Unit
+
+  def updateStatus(message: String): Unit
 
 }

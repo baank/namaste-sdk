@@ -1,7 +1,6 @@
 package com.naden.namaste.plugin
 
 import com.naden.namaste.plugin.component.{PanelType, _}
-import com.naden.namaste.types._
 
 trait NamastePlugin {
 
@@ -20,5 +19,7 @@ trait NamastePlugin {
   def eventHandlers(): Option[Set[EventHandler]]
 
   def themes(): Option[Set[Theme]]
+
+  def tasks(): Option[Set[Task]]
 
 }

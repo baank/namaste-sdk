@@ -1,6 +1,6 @@
 package com.naden.namaste.models
 
-case class Property[T](
+case class Parameter[T](
   var key: String,
   var displayName: String,
   var displayDescription: String,
