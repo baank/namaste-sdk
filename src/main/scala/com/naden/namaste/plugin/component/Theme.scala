@@ -1,5 +1,5 @@
 package com.naden.namaste.plugin.component
 
-trait Theme extends BaseComponent {
+trait Theme extends Component {
 
 }

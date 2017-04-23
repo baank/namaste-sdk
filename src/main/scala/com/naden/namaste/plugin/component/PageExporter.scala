@@ -5,8 +5,8 @@ import com.naden.namaste.plugin.util.ProgressObserver
 
 import scala.concurrent.Future
 
-trait PageExporter extends BaseComponent {
+trait PageExporter extends Component {
 
-  def export(pages: List[Page], progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
+  def exportPages(pages: List[Page], progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
 
 }

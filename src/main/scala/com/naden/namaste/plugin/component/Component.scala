@@ -2,7 +2,7 @@ package com.naden.namaste.plugin.component
 
 import com.naden.namaste.models.Parameter
 
-trait BaseComponent {
+trait Component {
 
   // Metadata
 
@@ -10,7 +10,9 @@ trait BaseComponent {
 
   def description(): String
 
-  def configurationProperties: Seq[Parameter[AnyRef]]
+  def instanceParameters(): Seq[Parameter[AnyRef]]
+
+  def globalParameters(): Seq[Parameter[AnyRef]]
 
 
   // Lifecycle
@@ -19,6 +21,6 @@ trait BaseComponent {
 
   def onShutdown(): Boolean
 
-  def onConfigure(propertyValues: Map[Parameter[AnyRef], AnyRef])
+  def onConfigured(instance: ComponentInstance)
 
 }

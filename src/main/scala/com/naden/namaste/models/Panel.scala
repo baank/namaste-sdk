@@ -6,6 +6,6 @@ import scala.collection.mutable
 
 case class Panel(var name: String, createdBy: Option[User], panelType: PanelType) extends Object(createdBy: Option[User]) {
 
-  val propertyValues = mutable.Map[Parameter[Any], Any]()
+  val parameterValues = mutable.Map[Parameter[Any], Any]()
 
 }

@@ -1,5 +1,5 @@
 package com.naden.namaste.plugin.component
 
-trait StorageService extends Component {
+trait ParameterValidator extends Component {
 
 }

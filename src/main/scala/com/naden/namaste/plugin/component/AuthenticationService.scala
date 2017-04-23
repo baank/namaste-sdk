@@ -1,6 +1,6 @@
 package com.naden.namaste.plugin.component
 
-trait AuthenticationService extends BaseComponent {
+trait AuthenticationService extends Component {
 
   def authenticate(username: String, password: String): Boolean
 

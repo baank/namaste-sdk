@@ -1,10 +1,13 @@
 package com.naden.namaste.plugin
 
-import com.naden.namaste.plugin.component.{PanelType, _}
+import com.naden.namaste.models.PageType
+import com.naden.namaste.plugin.component._
 
 trait NamastePlugin {
 
   def panelTypes(): Option[Set[PanelType]]
+
+  def pageTypes(): Option[Set[PageType]]
 
   def pageTypeCreators(): Option[Set[PageTypeCreator]]
 
@@ -22,4 +25,5 @@ trait NamastePlugin {
 
   def tasks(): Option[Set[Task]]
 
+  def parameterValidators(): Option[Set[ParameterValidator]]
 }
