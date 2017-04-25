@@ -17,9 +17,9 @@ trait Component {
 
   // Lifecycle
 
-  def onStartup(): Boolean
+  def onStartup(): Unit
 
-  def onShutdown(): Boolean
+  def onShutdown(): Unit
 
   def onConfigured(instance: ComponentInstance)
 
