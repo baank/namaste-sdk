@@ -4,7 +4,7 @@ import com.naden.namaste.plugin.component.PanelType
 
 import scala.collection.SortedMap
 
-case class PageType(var name: String, createdBy: Option[User]) extends Object(createdBy) {
+case class PageType(name: String, createdBy: Option[User]) extends Object(createdBy) {
 
   // Column widths
   var listColumnWidths: SortedMap[Int, Seq[Int]] = SortedMap()

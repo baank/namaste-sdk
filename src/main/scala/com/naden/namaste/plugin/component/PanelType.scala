@@ -1,18 +1,19 @@
 package com.naden.namaste.plugin.component
 
-import com.naden.namaste.models.Parameter
+import com.naden.namaste.plugin.rendering.VelocityRenderer
 
 trait PanelType extends Component {
 
   // Render
-  def render(properyValues: Map[Parameter[Any], Any]): String
+  def render(parameterValues: Map[String, _]): String = {
+    VelocityRenderer.VM(getClass().getName + ".vm", parameterValues)
+  }
 
   // Injected into page
-  def scripts(): Option[Seq[String]]
+  def scripts(): Seq[String]
+  def stylesheets(): Seq[String]
 
-  def stylesheets(): Option[Seq[String]]
-
-  //
+  // Whether the page is editable or not
   def userEditable(): Boolean
 
 }

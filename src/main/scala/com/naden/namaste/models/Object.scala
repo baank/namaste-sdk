@@ -6,24 +6,13 @@ object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
 abstract class Object (createdBy: Option[User]) {
 
-  // Unique id for this ViewPage
   val guid = UUID.randomUUID()
-
-  // Status
-  var status = Status.ACTIVE
-
-  // Create Time
   val createTime = new Date()
 
-  // Update Time
+  var status = Status.ACTIVE
   var updateTime = createTime
-
-  // Updated By
   var updatedBy = createdBy
-
-  // Version
   var version = 0L
-
-  // Icon
   var icon = "Default.png"
+
 }

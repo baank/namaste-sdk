@@ -7,26 +7,25 @@ import scala.collection.mutable.{ListBuffer => MutableList}
 
 abstract class Plugin extends BundleActivator {
 
-  def shortName: String
-  def longName: String
+  def title: String
   def description: String
   def version: String
 
-  def panelTypes(): Set[PanelType]
-  def pageTypeCreators(): Set[PageTypeCreator]
-  def pageImporters(): Set[PageImporter]
-  def pageExporters(): Set[PageExporter]
-  def storageServices(): Set[StorageService]
-  def authenticationServices(): Set[AuthenticationService]
-  def eventHandlers(): Set[EventHandler]
-  def themes(): Set[Theme]
-  def tasks(): Set[Task]
-  def parameterValidators(): Set[ParameterValidator]
+  def panelTypes(): Set[PanelType] = Set.empty
+  def pageTypeCreators(): Set[PageTypeCreator] = Set.empty
+  def pageImporters(): Set[PageImporter] = Set.empty
+  def pageExporters(): Set[PageExporter] = Set.empty
+  def storageServices(): Set[StorageService] = Set.empty
+  def authenticationServices(): Set[AuthenticationService] = Set.empty
+  def eventHandlers(): Set[EventHandler] = Set.empty
+  def themes(): Set[Theme] = Set.empty
+  def tasks(): Set[Task] = Set.empty
+  def parameterValidators(): Set[ParameterValidator] = Set.empty
 
   private val serviceRegistrations = MutableList[(_ <: Component, ServiceRegistration[_])]()
 
   final override def start(context: BundleContext) = {
-    println(s"""Starting plugin: $shortName""")
+    println(s"""Starting plugin: $title""")
 
     if (panelTypes != null) panelTypes.foreach { panelType => serviceRegistrations += panelType -> context.registerService(classOf[PanelType], panelType, null) ; panelType.onStartup() }
     if (pageTypeCreators != null) pageTypeCreators.foreach { pageTypeCreator => serviceRegistrations += pageTypeCreator -> context.registerService(classOf[PageTypeCreator], pageTypeCreator, null) ; pageTypeCreator.onStartup() }
@@ -41,7 +40,7 @@ abstract class Plugin extends BundleActivator {
   }
 
   final override def stop(context: BundleContext) = {
-    println(s"""Stopping plugin: $shortName""")
+    println(s"""Stopping plugin: $title""")
     serviceRegistrations.foreach { service => service._2.unregister() ; service._1.onShutdown() }
   }
 }
