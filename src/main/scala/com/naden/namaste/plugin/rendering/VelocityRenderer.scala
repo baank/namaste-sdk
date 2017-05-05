@@ -27,14 +27,12 @@ object VelocityRenderer {
     engine
   }
 
-  override val enabled: Boolean = true
-
   def VM(templatePath: String, attributes: Map[String, Any] = Map.empty, charset: String = "utf-8"): String = {
     val context = new VelocityContext
     attributes.foreach { case (key, value) => context.put(key, value) }
 
     val writer = new StringWriter
-    plugin.engine.mergeTemplate(templatePath, charset, context, writer)
+    engine.mergeTemplate(templatePath, charset, context, writer)
     writer.toString
   }
 }

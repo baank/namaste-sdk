@@ -4,11 +4,8 @@ import com.naden.namaste.plugin.component.ParameterValidator
 
 case class Parameter[T](
   key: String,
-  displayName: String,
-  displayDescription: String,
-  group: String,
-  valueType: Class[T],
-  validators: Set[ParameterValidator],
-  defaultValue: T,
-  possibleValues: Seq[(String, String)]
+  defaultValue: Option[T] = None,
+  group: Option[String] = None,
+  options: Seq[String] = Seq.empty[String],
+  validators: Set[ParameterValidator] = Set.empty[ParameterValidator]
 )

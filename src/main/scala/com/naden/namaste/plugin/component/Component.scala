@@ -5,10 +5,10 @@ import com.naden.namaste.models.Parameter
 trait Component {
 
   // Metadata
-  def name(): String
-  def description(): String
-  def instanceParameters(): Seq[Parameter[_]]
-  def globalParameters(): Seq[Parameter[_]]
+  val name: String
+  val description: String
+  val instanceParameters: Seq[Parameter[_]]
+  val globalParameters: Seq[Parameter[_]]
 
   // Lifecycle
   def onStartup(): Unit

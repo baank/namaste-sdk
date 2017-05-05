@@ -7,6 +7,6 @@ trait PageImporter extends Component {
 
   def importPages(pages: List[Page], progressObserver: ProgressObserver)
 
-  def requiredPageTypes(): List[PageType]
+  val requiredPageTypes: List[PageType]
 
 }
