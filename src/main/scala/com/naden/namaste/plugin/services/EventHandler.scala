@@ -1,9 +1,10 @@
-package com.naden.namaste.plugin.component
+package com.naden.namaste.plugin.services
 
 import com.naden.namaste.models.Event
+import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.util.ProgressObserver
 
-trait EventHandler extends Component {
+trait EventHandler extends Service {
 
   def handleEvent(event: Event, progressObserver: ProgressObserver)
 

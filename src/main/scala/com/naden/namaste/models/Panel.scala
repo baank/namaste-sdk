@@ -1,11 +1,7 @@
 package com.naden.namaste.models
 
-import com.naden.namaste.plugin.component.PanelType
-
-import scala.collection.mutable
-
-case class Panel(name: String, createdBy: Option[User], panelType: PanelType) extends Object(createdBy: Option[User]) {
-
-  val parameterValues = mutable.Map[String, Any]()
-
-}
+class Panel(name: String,
+            description: Option[String],
+            panelType: PanelType,
+            createdBy: Option[User])
+    extends Object(createdBy) {}

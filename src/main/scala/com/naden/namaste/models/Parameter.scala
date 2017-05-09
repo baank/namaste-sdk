@@ -1,8 +1,6 @@
 package com.naden.namaste.models
 
-import com.naden.namaste.plugin.component.ParameterValidator
-
-case class Parameter[T](
+class Parameter[T](
   key: String,
   defaultValue: Option[T] = None,
   group: Option[String] = None,

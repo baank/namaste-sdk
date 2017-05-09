@@ -4,15 +4,13 @@ import java.util.{Date, UUID}
 
 object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
-abstract class Object (createdBy: Option[User]) {
+abstract class Object(createdBy: Option[User],
+                      guid: UUID = UUID.randomUUID(),
+                      createTime: Date = new Date()) {
 
-  val guid = UUID.randomUUID()
-  val createTime = new Date()
-
-  var status = Status.ACTIVE
-  var updateTime = createTime
-  var updatedBy = createdBy
-  var version = 0L
-  var icon = "Default.png"
-
+  val status = Status.ACTIVE
+  val updateTime = createTime
+  val updatedBy = createdBy
+  val version = 0L
+  val icon = "Default.png"
 }

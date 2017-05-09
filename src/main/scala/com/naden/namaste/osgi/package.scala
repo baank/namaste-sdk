@@ -16,6 +16,7 @@
 package com.naden.namaste
 
 import java.util.Dictionary
+
 import org.osgi.framework.{BundleContext, ServiceReference}
 
 

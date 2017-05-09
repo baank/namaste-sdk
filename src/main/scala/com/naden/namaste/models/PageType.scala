@@ -1,20 +1,18 @@
 package com.naden.namaste.models
 
-import com.naden.namaste.plugin.component.PanelType
+import scala.collection.mutable.{Set => MutableSet, SortedMap => MutableMap}
 
-import scala.collection.SortedMap
-
-case class PageType(name: String, createdBy: Option[User]) extends Object(createdBy) {
+class PageType(name: String, description: String, createdBy: Option[User])
+    extends Object(createdBy) {
 
   // Column widths
-  var listColumnWidths: SortedMap[Int, Seq[Int]] = SortedMap()
-  var detailColumnWidths: SortedMap[Int, Seq[Int]] = SortedMap()
+  val listColumnWidths: MutableMap[Int, Seq[Int]] = MutableMap.empty
+  val detailColumnWidths: MutableMap[Int, Seq[Int]] = MutableMap.empty
 
   // Grid of panels organised by (row, column, position)
-  var listPanels: SortedMap[(Int, Int), Seq[Panel]] = SortedMap()
-  var detailPanels: SortedMap[(Int, Int), Seq[Panel]] = SortedMap()
+  val listPanels: MutableMap[(Int, Int), Seq[PanelType]] = MutableMap.empty
+  val detailPanels: MutableMap[(Int, Int), Seq[PanelType]] = MutableMap.empty
 
   // Panel types that are linked to this page type
-  var linkedPanelTypes: Set[PanelType] = Set()
-
+  val linkedPanelTypes: MutableSet[PanelType] = MutableSet.empty
 }
