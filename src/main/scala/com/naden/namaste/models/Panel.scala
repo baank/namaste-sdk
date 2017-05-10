@@ -1,7 +1,8 @@
 package com.naden.namaste.models
 
-class Panel(name: String,
-            description: Option[String],
-            panelType: PanelType,
-            createdBy: Option[User])
+case class Panel(name: String,
+                 description: Option[String],
+                 panelType: PanelType,
+                 createdBy: Option[User],
+                 parameterValues: Map[String, _])
     extends Object(createdBy) {}

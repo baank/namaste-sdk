@@ -5,9 +5,10 @@ import java.util.{Date, UUID}
 object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
 abstract class Object(createdBy: Option[User],
-                      guid: UUID = UUID.randomUUID(),
-                      createTime: Date = new Date()) {
+                      createTime: Date = new Date(),
+                      newGuid: UUID = UUID.randomUUID()) {
 
+  val guid: UUID = newGuid
   val status = Status.ACTIVE
   val updateTime = createTime
   val updatedBy = createdBy
