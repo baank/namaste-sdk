@@ -1,14 +1,12 @@
 package com.naden.namaste.models
 
-import scala.collection.mutable.{Set => MutableSet, SortedMap => MutableMap}
-
 case class PageType(
     name: String,
     description: String,
-    createdBy: Option[User],
-    listColumnWidths: MutableMap[Int, Seq[Int]] = MutableMap.empty,
-    detailColumnWidths: MutableMap[Int, Seq[Int]],
-    listPanels: MutableMap[(Int, Int), Seq[PanelSlot]] = MutableMap.empty,
-    detailPanels: MutableMap[(Int, Int), Seq[PanelSlot]] = MutableMap.empty,
-    linkedPanelTypes: MutableSet[PanelType] = MutableSet.empty)
+    createdBy: User,
+    listColumnWidths: Map[Int, Seq[Int]] = Map.empty,
+    detailColumnWidths: Map[Int, Seq[Int]] = Map.empty,
+    listPanels: Map[(Int, Int), Seq[PanelSlot]] = Map.empty,
+    detailPanels: Map[(Int, Int), Seq[PanelSlot]] = Map.empty,
+    linkedPanelTypes: Set[PanelType] = Set.empty)
     extends Object(createdBy)

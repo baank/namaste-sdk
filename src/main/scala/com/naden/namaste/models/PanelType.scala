@@ -5,7 +5,7 @@ case class PanelType(name: String,
                      scripts: Seq[String],
                      stylesheets: Seq[String],
                      userEditable: Boolean,
-                     createdBy: Option[User])
+                     createdBy: User)
     extends Object(createdBy) {
 
   object Colours extends Enumeration {

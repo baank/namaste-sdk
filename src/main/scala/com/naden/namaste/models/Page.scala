@@ -8,5 +8,5 @@ case class Page(name: String,
                 pageType: PageType,
                 panels: Map[PanelSlot, Panel],
                 linkId: String = RandomUtils.id(),
-                createdBy: Option[User])
+                createdBy: User)
     extends Object(createdBy)
