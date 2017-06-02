@@ -1,11 +1,11 @@
 package com.naden.namaste.models
 
+import java.util.Locale
+
 import com.naden.namaste.plugin.Service
 
-import scala.collection.mutable
-
-case class ServiceInstance[T <: Service](name: String,
+case class ServiceInstance[T <: Service](names: Map[Locale, String],
                                          createdBy: User,
                                          service: T,
-                                         parameterValues: Map[String, _])
+                                         parameterValues: Map[Parameter[_], _])
     extends Object(createdBy)

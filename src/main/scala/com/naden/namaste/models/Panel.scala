@@ -1,8 +1,12 @@
 package com.naden.namaste.models
 
-case class Panel(name: String,
-                 description: Option[String],
-                 panelType: PanelType,
+import java.util.Locale
+
+import com.naden.namaste.plugin.PanelType
+
+case class Panel(names: Map[Locale, String],
+                 descriptions: Map[Locale, String],
                  createdBy: User,
-                 parameterValues: Map[String, _])
+                 panelType: PanelType,
+                 parameterValues: Map[Parameter[_], _])
     extends Object(createdBy) {}

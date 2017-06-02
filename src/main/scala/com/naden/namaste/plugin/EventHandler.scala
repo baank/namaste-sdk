@@ -1,7 +1,6 @@
-package com.naden.namaste.plugin.services
+package com.naden.namaste.plugin
 
 import com.naden.namaste.models.Event
-import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.util.ProgressObserver
 
 trait EventHandler extends Service {

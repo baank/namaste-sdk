@@ -1,4 +1,5 @@
 package com.naden.namaste.models
 
-case class PanelSlot(panelType: PanelType, createdBy: User)
-    extends Object(createdBy) {}
+import com.naden.namaste.plugin.PanelType
+
+case class PanelSlot(createdBy: User, panelType: PanelType) extends Object(createdBy) {}

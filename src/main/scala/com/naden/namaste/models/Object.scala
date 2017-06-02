@@ -6,15 +6,15 @@ object Status extends Enumeration { val ACTIVE, DELETED = Value }
 
 abstract class Object(createdBy: User) {
 
-  lazy val guid: UUID = UUID.randomUUID()
-  lazy val createTime: Date = new Date()
-  lazy val status = Status.ACTIVE
-  lazy val updateTime = createTime
-  lazy val updatedBy = createdBy
-  lazy val version = 0L
-  lazy val icon = "Default.png"
+  val guid: UUID = UUID.randomUUID()
+  val createTime: Date = new Date()
+  val status = Status.ACTIVE
+  val updateTime: Date = createTime
+  val updatedBy: User = createdBy
+  val version = 0L
+  val icon = "Default.png"
 
-  override def equals(o: Any) = o match {
+  override def equals(o: Any): Boolean = o match {
     case that: Object => that.guid.equals(this.guid)
     case _ => false
   }
