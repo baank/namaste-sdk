@@ -1,6 +1,6 @@
 package com.naden.namaste.plugin
 
-import com.naden.namaste.models.{PanelSlot, Parameter}
+import com.naden.namaste.models.PanelSlot
 import com.naden.namaste.plugin.util.Localized
 
 trait PageType extends Localized {

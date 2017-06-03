@@ -1,6 +1,5 @@
 package com.naden.namaste.plugin
 
-import com.naden.namaste.models.Parameter
 import com.naden.namaste.plugin.Border.Border
 import com.naden.namaste.plugin.BorderSize.BorderSize
 import com.naden.namaste.plugin.Colour.Colour

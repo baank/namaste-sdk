@@ -7,9 +7,7 @@ import org.osgi.framework.{BundleActivator, BundleContext, ServiceRegistration}
 
 import scala.collection.mutable.{ListBuffer => MutableList}
 
-abstract class Plugin extends BundleActivator with Localized {
-
-  implicit val locale = Locale.ENGLISH
+abstract class Plugin(implicit locale: Locale) extends BundleActivator with Localized {
 
   def version: (Int, Int, Int)
 
