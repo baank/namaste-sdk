@@ -2,9 +2,9 @@ package com.naden.namaste.plugin
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.util.Localized
+import com.naden.namaste.plugin.util.LocalizationUtils.str
 
-trait ParameterValidator extends Localized {
+trait ParameterValidator {
   def invalid(item: Any): Option[String]
 }
 
