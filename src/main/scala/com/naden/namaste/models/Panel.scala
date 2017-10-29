@@ -2,7 +2,8 @@ package com.naden.namaste.models
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.{PanelType, Parameter}
+import com.naden.namaste.plugin.parameters.Parameter
+import com.naden.namaste.plugin.services.PanelType
 
 case class Panel(names: Map[Locale, String],
                  descriptions: Map[Locale, String],

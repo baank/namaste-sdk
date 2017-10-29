@@ -1,7 +1,6 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.parameters
 
 import java.util.Locale
-
 import com.naden.namaste.plugin.util.LocalizationUtils.str
 
 trait ParameterValidator {

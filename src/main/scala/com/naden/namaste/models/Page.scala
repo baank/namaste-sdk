@@ -2,7 +2,8 @@ package com.naden.namaste.models
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.{PageType, Parameter}
+import com.naden.namaste.plugin.parameters.Parameter
+import com.naden.namaste.plugin.services.PageType
 import com.naden.namaste.plugin.util.RandomUtils
 
 case class Page(names: Map[Locale, String],

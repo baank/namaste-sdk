@@ -1,12 +1,12 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.services
 
-import com.naden.namaste.plugin.Border.Border
-import com.naden.namaste.plugin.BorderSize.BorderSize
-import com.naden.namaste.plugin.Colour.Colour
-import com.naden.namaste.plugin.FontSize.FontSize
-import com.naden.namaste.plugin.util.Localized
+import com.naden.namaste.plugin.Service
+import com.naden.namaste.plugin.services.Border.Border
+import com.naden.namaste.plugin.services.BorderSize.BorderSize
+import com.naden.namaste.plugin.services.Colour.Colour
+import com.naden.namaste.plugin.services.FontSize.FontSize
 
-trait PanelType extends Localized {
+trait PanelType extends Service {
 
   def scripts: Seq[String] = Seq.empty[String]
   def stylesheets: Seq[String] = Seq.empty[String]
@@ -17,12 +17,10 @@ trait PanelType extends Localized {
   def refresh(): Unit = ()
 
   // Appearance
-  def titleSize: FontSize
+  def titleSize: FontSize = FontSize.Default
   def panelColour: Colour = Colour.Default
   def borders: Set[(Border, BorderSize, Colour)] = Set.empty[(Border, BorderSize, Colour)]
 
-  // Parameters
-  def parameters: Seq[Parameter[_]]
 }
 
 object Border extends Enumeration {

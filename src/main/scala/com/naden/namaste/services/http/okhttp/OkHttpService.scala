@@ -1,14 +1,16 @@
 package com.naden.namaste.services.http.okhttp
 
+import java.io.InputStream
 import java.net.{InetSocketAddress, Proxy}
+import java.util
 import java.util.concurrent.TimeUnit
 import javax.inject.{Inject, Singleton}
 
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import com.naden.namaste.plugin.Parameter
 import com.naden.namaste.services.http.{AuthType, HttpProxy, HttpService}
+import okhttp3._
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.{Credentials, RequestBody, _}
+import okhttp3.logging.HttpLoggingInterceptor.{Level, Logger}
 import okio.{BufferedSink, Okio}
 
 import scala.collection.JavaConverters._
@@ -16,82 +18,155 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
-class OkHttpService @Inject()(implicit val proxy: HttpProxy)
-    extends HttpService {
+class OkHttpService @Inject ()(proxy: HttpProxy) extends HttpService {
 
   private val objectMapper: ObjectMapper = new ObjectMapper
   private val httpClient: OkHttpClient = newClient()
 
-  def instanceParameters: Seq[Parameter[_]] = Seq.empty
-  def globalParameters: Seq[Parameter[_]] = Seq.empty
-  def onStartup(): Unit = ()
-  def onShutdown(): Unit = ()
-  def onConfigured(parameters: Map[Parameter[_], _]): Unit = ()
+  def asyncGet(url: String,
+               params: Map[String, String],
+               headers: Map[String, String]): Future[String] = Future {
+    get(url, params, headers)
+  }
 
   def get(url: String,
           params: Map[String, String],
-          headers: Map[String, String]): Future[String] =
-    Future {
-      val request =
-        requestBuilder(url, params, headers, json = false).get().build()
-      httpClient.newCall(request).execute().body().string()
-    }
+          headers: Map[String, String]): String = {
+    val request =
+      requestBuilder(url, params, headers, json = false).get().build()
+    val response = httpClient.newCall(request).execute()
+    response.body().string()
+  }
+
+  def asyncGetAsBytes(url: String,
+                      params: Map[String, String],
+                      headers: Map[String, String]): Future[Array[Byte]] = Future {
+    getAsBytes(url, params, headers)
+  }
+
+  def getAsBytes(url: String,
+                 params: Map[String, String],
+                 headers: Map[String, String]): Array[Byte] = {
+    val request =
+      requestBuilder(url, params, headers, json = false).get().build()
+    val response = httpClient.newCall(request).execute()
+    response.body().bytes()
+  }
+
+  def asyncGetAsJson(url: String,
+                     params: Map[String, String],
+                     headers: Map[String, String]): Future[JsonNode] =
+    asyncGet(url, params, headers).transform(objectMapper.readTree, throw _)
 
   def getAsJson(url: String,
                 params: Map[String, String],
-                headers: Map[String, String]): Future[JsonNode] =
-    get(url, params, headers).transform(_.map(objectMapper.readTree))
+                headers: Map[String, String]): JsonNode =
+    objectMapper.readTree(get(url, params, headers))
 
-  def post(url: String,
-           params: Map[String, String],
-           body: String,
-           mimeType: String,
-           headers: Map[String, String]): Future[String] =
-    Future {
-      val requestBody =
-        RequestBody.create(MediaType.parse(mimeType + "; charset=utf-8"), body)
-      val request = requestBuilder(url, params, headers, json = false)
-        .get()
-        .post(requestBody)
-        .build()
-      httpClient.newCall(request).execute.body().toString
-    }
 
-  def postAsJson(url: String,
-                 params: Map[String, String],
-                 body: String,
-                 mimeType: String,
-                 headers: Map[String, String]): Future[JsonNode] = {
-    post(url, params, body, mimeType, headers).transform(
-      _.map(objectMapper.readTree))
+  def asyncPost(url: String,
+                body: String,
+                mimeType: String,
+                params: Map[String, String],
+                headers: Map[String, String]): Future[String] = Future {
+    post(url, body, mimeType, params, headers)
   }
 
   def post(url: String,
+           body: String,
+           mimeType: String,
            params: Map[String, String],
-           body: Map[String, String],
-           headers: Map[String, String]): Future[String] = Future {
+           headers: Map[String, String]): String = {
+    val requestBody =
+      RequestBody.create(MediaType.parse(mimeType + "; charset=utf-8"), body)
+    val request = requestBuilder(url, params, headers, json = false)
+      .post(requestBody)
+      .build()
+    val response = httpClient.newCall(request).execute
+    response.body().string()
+  }
+
+  def asyncPostAsJson(url: String,
+                      body: String,
+                      params: Map[String, String],
+                      headers: Map[String, String]): Future[JsonNode] = {
+    asyncPost(url, body, "application/json", params, headers).transform(objectMapper.readTree, throw _)
+  }
+
+  def postAsJson(url: String,
+                 body: String,
+                 params: Map[String, String],
+                 headers: Map[String, String]): JsonNode =
+    objectMapper.readTree(post(url, body, "application/json", params, headers))
+
+  def asyncPostForm(url: String,
+                    formBody: Map[String, String],
+                    params: Map[String, String],
+                    headers: Map[String, String]): Future[String] = Future {
+    postForm(url, formBody, params, headers)
+  }
+
+  def postForm(url: String,
+               formBody: Map[String, String],
+               params: Map[String, String],
+               headers: Map[String, String]): String = {
 
     val formBodyBuilder = new FormBody.Builder()
-    body.foreach { case (k, v) => formBodyBuilder.add(k, v) }
+    formBody.foreach { case (k, v) => formBodyBuilder.add(k, v) }
     val request = requestBuilder(url, params, headers, json = false)
-      .get()
       .post(formBodyBuilder.build())
       .build()
     httpClient.newCall(request).execute.body().toString
   }
 
-  def postAsJson(url: String,
-                 params: Map[String, String],
-                 body: Map[String, String],
-                 headers: Map[String, String]): Future[JsonNode] =
-    post(url, params, body, headers).transform(_.map(objectMapper.readTree))
+  def asyncPostFormAsJson(url: String,
+                          body: Map[String, String],
+                          params: Map[String, String],
+                          headers: Map[String, String]): Future[JsonNode] =
+    asyncPostForm(url, params, body, headers).transform(objectMapper.readTree, throw _)
+
+  def postFormAsJson(url: String,
+                     body: Map[String, String],
+                     params: Map[String, String],
+                     headers: Map[String, String]): JsonNode =
+    objectMapper.readTree(postForm(url, params, body, headers))
+
+  def asyncBinaryPost(url: String,
+                      resourcePath: String,
+                      mimeType: String,
+                      fileName: String,
+                      params: Map[String, String],
+                      headers: Map[String, String]): Future[String] = Future {
+    binaryPost(url, resourcePath, mimeType, fileName, params, headers)
+  }
 
   def binaryPost(url: String,
-                 params: Map[String, String],
                  resourcePath: String,
-                 headers: Map[String, String]): Future[String] = Future {
+                 mimeType: String,
+                 fileName: String,
+                 params: Map[String, String],
+                 headers: Map[String, String]): String = {
     val inputStream =
       classOf[HttpService].getClassLoader.getResourceAsStream(resourcePath)
+    streamPost(url, inputStream, mimeType, fileName, params, headers)
+  }
+
+  def asyncStreamPost(url: String,
+                      inputStream: InputStream,
+                      mimeType: String,
+                      fileName: String,
+                      params: Map[String, String],
+                      headers: Map[String, String]): Future[String] = Future {
+    streamPost(url, inputStream, mimeType, fileName, params, headers)
+  }
+
+  def streamPost(url: String,
+                 inputStream: InputStream,
+                 mimeType: String,
+                 fileName: String,
+                 params: Map[String, String],
+                 headers: Map[String, String]): String = {
+
     val requestBody = new RequestBody {
 
       override def writeTo(sink: BufferedSink): Unit = {
@@ -101,39 +176,62 @@ class OkHttpService @Inject()(implicit val proxy: HttpProxy)
       }
 
       override def contentLength(): Long = inputStream.available()
-
-      override def contentType(): MediaType =
-        MediaType.parse("application/binary")
+      override def contentType(): MediaType = MediaType.parse(mimeType)
     }
+
     val request = requestBuilder(url, params, headers, json = false)
-      .get()
       .post(requestBody)
       .build()
-    httpClient.newCall(request).execute.body().toString
+    httpClient.newCall(request).execute.body().string()
+  }
+
+  def asyncPut(url: String,
+               body: String,
+               mimeType: String,
+               params: Map[String, String],
+               headers: Map[String, String]): Future[String] = Future {
+    put(url, body, mimeType, params, headers)
   }
 
   def put(url: String,
-          params: Map[String, String],
           body: String,
           mimeType: String,
-          headers: Map[String, String]): Future[String] = Future {
-
+          params: Map[String, String],
+          headers: Map[String, String]): String = {
     val requestBody =
       RequestBody.create(MediaType.parse(mimeType + "; charset=utf-8"), body)
     val request = requestBuilder(url, params, headers, json = false)
-      .get()
       .put(requestBody)
       .build()
-    httpClient.newCall(request).execute.body().toString
+    httpClient.newCall(request).execute.body().string()
+  }
+
+  def asyncPutAsJson(url: String,
+                     body: String,
+                     params: Map[String, String],
+                     headers: Map[String, String]): Future[JsonNode] = Future {
+    putAsJson(url, body, params, headers)
   }
 
   def putAsJson(url: String,
-                params: Map[String, String],
                 body: String,
-                mimeType: String,
-                headers: Map[String, String]): Future[JsonNode] = {
-    put(url, params, body, mimeType, headers).transform(
-      _.map(objectMapper.readTree))
+                params: Map[String, String],
+                headers: Map[String, String]): JsonNode = {
+    objectMapper.readTree(put(url, body, "application/json", params, headers))
+  }
+
+  def asyncDelete(url: String,
+                  params: Map[String, String],
+                  headers: Map[String, String]): Future[String] = Future {
+    delete(url, params, headers)
+  }
+
+  def delete(url: String,
+             params: Map[String, String],
+             headers: Map[String, String]): String = {
+    val request =
+      requestBuilder(url, params, headers, json = false).delete().build()
+    httpClient.newCall(request).execute().body().string()
   }
 
   private def newClient() = {
@@ -141,7 +239,6 @@ class OkHttpService @Inject()(implicit val proxy: HttpProxy)
     val ntlmMsg1 = engine.generateType1Msg(null, null)
 
     val basicProxyAuthenticator = new Authenticator() {
-
       def authenticate(route: Route, response: Response): Request = {
         val credential = Credentials.basic(proxy.username, proxy.password)
         response.request.newBuilder
@@ -151,7 +248,6 @@ class OkHttpService @Inject()(implicit val proxy: HttpProxy)
     }
 
     val ntlmProxyAuthenticator = new Authenticator() {
-
       def authenticate(route: Route, response: Response): Request = {
         val WWWAuthenticate = response.headers.values("WWW-Authenticate")
         if (WWWAuthenticate.contains("NTLM"))
@@ -170,32 +266,54 @@ class OkHttpService @Inject()(implicit val proxy: HttpProxy)
       }
     }
 
+    val loggingInterceptor = new HttpLoggingInterceptor(new Logger() {
+      @Override def log(message: String): Unit = {
+        //play.api.Logger.debug(message)
+      }
+    })
+    loggingInterceptor.setLevel(Level.HEADERS)
+
     new OkHttpClient.Builder()
       .connectTimeout(60, TimeUnit.SECONDS)
       .writeTimeout(60, TimeUnit.SECONDS)
       .readTimeout(60, TimeUnit.SECONDS)
-      .addInterceptor(new HttpLoggingInterceptor())
-      .proxy(proxy.authenticationType match {
+      .addInterceptor(loggingInterceptor)
+      .proxy(proxy.authenticationType() match {
         case AuthType.None => Proxy.NO_PROXY
         case _ =>
           new Proxy(Proxy.Type.HTTP,
-                    new InetSocketAddress(proxy.host, proxy.port))
+            new InetSocketAddress(proxy.host, proxy.port))
       })
       .proxyAuthenticator(proxy.authenticationType match {
         case AuthType.None => Authenticator.NONE
         case AuthType.Basic => basicProxyAuthenticator
         case AuthType.NTLM => ntlmProxyAuthenticator
       })
+      .cookieJar(new CookieJar() {
+
+        private val cookies = new util.ArrayList[Cookie]()
+
+        override def saveFromResponse(url: HttpUrl, cookies: util.List[Cookie]) = {
+          this.cookies.clear()
+          this.cookies.addAll(cookies)
+        }
+
+        override def loadForRequest(url: HttpUrl) = {
+          this.cookies
+        }
+      })
       .build
   }
+
+
 
   private def requestBuilder(url: String,
                              params: Map[String, String],
                              headers: Map[String, String],
                              json: Boolean) = {
-    val urlBuilder = new HttpUrl.Builder()
-    params.foreach { case (k, v) => urlBuilder.addQueryParameter(k, v) }
-    urlBuilder.build()
+    //    val urlBuilder = new HttpUrl.Builder().
+    //    params.foreach { case (k, v) => urlBuilder.addQueryParameter(k, v) }
+    //    urlBuilder.build()
 
     val requestBuilder =
       new Request.Builder()

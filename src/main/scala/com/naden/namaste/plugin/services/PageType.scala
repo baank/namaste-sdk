@@ -1,9 +1,9 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.services
 
 import com.naden.namaste.models.PanelSlot
-import com.naden.namaste.plugin.util.Localized
+import com.naden.namaste.plugin.Service
 
-trait PageType extends Localized {
+trait PageType extends Service {
 
   // Seq
   def listColumnWidths: Map[Int, Seq[Int]]
@@ -15,6 +15,4 @@ trait PageType extends Localized {
 
   def linkedPanelTypes: Set[PanelType] = Set.empty
 
-  // Parameters
-  def parameters: Seq[Parameter[_]]
 }

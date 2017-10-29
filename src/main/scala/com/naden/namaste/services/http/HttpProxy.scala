@@ -7,9 +7,13 @@ object AuthType extends Enumeration {
   val None, Basic, NTLM = Value
 }
 
-case class HttpProxy(host: String,
-                     port: Int,
-                     authenticationType: AuthType,
-                     domain: String,
-                     username: String,
-                     password: String)
+trait HttpProxy {
+
+  def host(): String
+  def port(): Int
+  def authenticationType(): AuthType
+  def domain(): String
+  def username(): String
+  def password(): String
+
+}

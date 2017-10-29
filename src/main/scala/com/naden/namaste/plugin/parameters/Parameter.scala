@@ -1,8 +1,8 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.parameters
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.DateTimeStyle.DateTimeStyle
+import com.naden.namaste.plugin.parameters.DateTimeStyle.DateTimeStyle
 import com.naden.namaste.plugin.util.LocalizationUtils.str
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
@@ -23,36 +23,35 @@ abstract class LocalizedParameter[T](key: String)(implicit locale: Locale) exten
 }
 
 case class StringParameter(key: String,
-                           default: Option[String],
-                           optionKeys: Seq[String],
-                           stringValidators: Seq[ParameterValidator])(implicit locale: Locale)
+                           default: Option[String] = None,
+                           optionKeys: Seq[String] = Seq(),
+                           stringValidators: Seq[ParameterValidator] = Seq())(implicit locale: Locale)
     extends LocalizedParameter[String](key) {
   def options = optionKeys.map(o => (str(locale, s"$key.parameter.$o"), o))
   def validators = stringValidators
 }
 
-case class BooleanParameter(key: String, booleanDefault: Boolean)(implicit locale: Locale)
+case class BooleanParameter(key: String, default: Option[Boolean] = None)(implicit locale: Locale)
     extends LocalizedParameter[Boolean](key) {
   def options = Seq.empty
-  def default = Option(booleanDefault)
   def validators = Seq.empty[ParameterValidator]
 }
 
 case class NumberParameter[A](
     key: String,
-    default: Option[A],
-    numberOptions: Seq[A],
-    numberValidators: Seq[ParameterValidator])(implicit num: Numeric[A], locale: Locale)
+    default: Option[A] = None,
+    numberOptions: Seq[A] = Seq(),
+    numberValidators: Seq[ParameterValidator] = Seq())(implicit num: Numeric[A], locale: Locale)
     extends LocalizedParameter[A](key) {
   def options = numberOptions.map(n => (n.toString, n))
   def validators = numberValidators
 }
 
 case class DateTimeParameter(key: String,
-                             default: Option[DateTime],
-                             dateOptions: Seq[DateTime],
-                             dateStyle: DateTimeStyle,
-                             timeStyle: DateTimeStyle,
+                             default: Option[DateTime] = None,
+                             dateOptions: Seq[DateTime] = Seq(),
+                             dateStyle: DateTimeStyle = DateTimeStyle.Short,
+                             timeStyle: DateTimeStyle = DateTimeStyle.Short,
                              dateValidators: Seq[ParameterValidator])(implicit locale: Locale)
     extends LocalizedParameter[DateTime](key) {
   private val dateFormat = DateTimeFormat.forStyle(dateStyle.toString + timeStyle.toString)

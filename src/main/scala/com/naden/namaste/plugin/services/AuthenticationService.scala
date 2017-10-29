@@ -1,4 +1,6 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.services
+
+import com.naden.namaste.plugin.Service
 
 trait AuthenticationService extends Service {
 

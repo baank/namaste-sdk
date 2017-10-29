@@ -1,6 +1,7 @@
-package com.naden.namaste.plugin
+package com.naden.namaste.plugin.services
 
 import com.naden.namaste.models.Page
+import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.util.ProgressObserver
 
 import scala.concurrent.Future

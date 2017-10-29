@@ -1,51 +1,49 @@
 package com.naden.namaste.plugin
 
-import java.util.Locale
-
-import com.naden.namaste.plugin.util.Localized
+import com.naden.namaste.plugin.parameters.ParameterValidator
+import com.naden.namaste.plugin.services._
 import org.osgi.framework.{BundleActivator, BundleContext, ServiceRegistration}
 
 import scala.collection.mutable.{ListBuffer => MutableList}
 
-abstract class Plugin(implicit locale: Locale) extends BundleActivator with Localized {
+abstract class Plugin extends BundleActivator {
 
   def version: (Int, Int, Int)
 
-  def panelTypes: Set[PanelType] = Set.empty
-  def pageTypes: Set[PageType] = Set.empty
-  def pageImporters: Set[PageImporter] = Set.empty
-  def pageExporters: Set[PageExporter] = Set.empty
-  def storageServices: Set[StorageService] = Set.empty
-  def authenticationServices: Set[AuthenticationService] = Set.empty
-  def eventHandlers: Set[EventHandler] = Set.empty
-  def themes: Set[Theme] = Set.empty
-  def tasks: Set[Task] = Set.empty
-  def parameterValidators: Set[ParameterValidator] = Set.empty
+  def panelTypes: Set[Class[_ <: PanelType]]
+  def pageTypes: Set[Class[_ <: PageType]]
+  def pageImporters: Set[Class[_ <: PageImporter]]
+  def pageExporters: Set[Class[_ <: PageExporter]]
+  def storageServices: Set[Class[_ <: StorageService]]
+  def authenticationServices: Set[Class[_ <: AuthenticationService]]
+  def eventHandlers: Set[Class[_ <: EventHandler]]
+  def themes: Set[Class[_ <: Theme]]
+  def tasks: Set[Class[_ <: Task]]
+  def parameterValidators: Set[Class[_ <: ParameterValidator]]
 
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
 
   final override def start(context: BundleContext): Unit = {
-    println(s"""Starting plugin services: $name""")
+    println(s"Starting plugin services: ${this.getClass.getSimpleName}")
 
-    register(context, classOf[PanelType], panelTypes)
-    register(context, classOf[PageType], pageTypes, lifecycle = false)
-    register(context, classOf[PageImporter], pageImporters)
-    register(context, classOf[PageExporter], pageExporters)
-    register(context, classOf[StorageService], storageServices)
-    register(context, classOf[AuthenticationService], authenticationServices)
-    register(context, classOf[EventHandler], eventHandlers)
-    register(context, classOf[Theme], themes, lifecycle = false)
-    register(context, classOf[Task], tasks, lifecycle = false)
+    register[PanelType](context, classOf[PanelType], panelTypes)
+    register[PageType](context, classOf[PageType], pageTypes)
+    register[PageImporter](context, classOf[PageImporter], pageImporters)
+    register[PageExporter](context, classOf[PageExporter], pageExporters)
+    register[StorageService](context, classOf[StorageService], storageServices)
+    register[AuthenticationService](context, classOf[AuthenticationService], authenticationServices)
+    register[EventHandler](context, classOf[EventHandler], eventHandlers)
+    register[Theme](context, classOf[Theme], themes)
+    register[Task](context, classOf[Task], tasks)
   }
 
   private def register[T](context: BundleContext,
                           cls: Class[T],
-                          services: Set[T],
-                          lifecycle: Boolean = true) = {
+                          services: Set[Class[_ <: T]]): Unit = {
     try {
       services.foreach { service =>
-        serviceRegistrations += service -> context.registerService(cls, service, null)
-        if (lifecycle) service.asInstanceOf[Service].onStartup();
+        serviceRegistrations += service -> context.registerService(cls, service.newInstance(), null)
+        service.asInstanceOf[Service].onStartup();
       }
     } catch {
       case e: Exception =>
@@ -54,7 +52,7 @@ abstract class Plugin(implicit locale: Locale) extends BundleActivator with Loca
   }
 
   final override def stop(context: BundleContext): Unit = {
-    println(s"""Stopping plugin services: $name""")
+    println(s"Stopping plugin services: ${this.getClass.getSimpleName}")
     serviceRegistrations.foreach { service =>
       service._2.unregister()
       service._1 match {

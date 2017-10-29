@@ -2,7 +2,8 @@ package com.naden.namaste.models
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.{PageType, PanelType, Parameter}
+import com.naden.namaste.plugin.parameters.Parameter
+import com.naden.namaste.plugin.services.{PageType, PanelType}
 
 case class UserPageType(names: Map[Locale, String],
                         descriptions: Map[Locale, String],
@@ -12,10 +13,16 @@ case class UserPageType(names: Map[Locale, String],
                         override val listPanels: Map[(Int, Int), Seq[PanelSlot]],
                         override val detailPanels: Map[(Int, Int), Seq[PanelSlot]],
                         override val linkedPanelTypes: Set[PanelType] = Set.empty,
-                        override val parameters: Seq[Parameter[_]])
-    extends Object(createdBy)
-    with PageType {
+                        val parameters: Seq[Parameter[_]])
+    extends PageType {
 
-  override def name(implicit locale: Locale): String = names.getOrElse(locale, "")
-  override def description(implicit locale: Locale): String = descriptions.getOrElse(locale, "")
+  override def name: String = names.getOrElse(locale, "")
+  override def description: String = descriptions.getOrElse(locale, "")
+
+  // TODO
+  override def instanceParameters = Seq.empty
+  override def globalParameters = Seq.empty
+
+  override def onStartup(): Unit = {}
+  override def onShutdown(): Unit = {}
 }

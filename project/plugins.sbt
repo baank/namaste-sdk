@@ -1,1 +1,1 @@
-addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.9.1")
+addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.9.2")
