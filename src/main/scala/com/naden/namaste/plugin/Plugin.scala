@@ -43,11 +43,14 @@ abstract class Plugin extends BundleActivator {
     try {
       services.foreach { service =>
         serviceRegistrations += service -> context.registerService(cls, service.newInstance(), null)
-        service.asInstanceOf[Service].onStartup();
+        //TODO
+        //service.asInstanceOf[Service].onStartup()
       }
     } catch {
-      case e: Exception =>
+      case e: Exception => {
+        e.printStackTrace()
         println("Failed to register services of type: " + cls)
+      }
     }
   }
 
@@ -55,9 +58,10 @@ abstract class Plugin extends BundleActivator {
     println(s"Stopping plugin services: ${this.getClass.getSimpleName}")
     serviceRegistrations.foreach { service =>
       service._2.unregister()
-      service._1 match {
-        case s: Service => s.onShutdown()
-      }
+//    TODO
+      //      service._1 match {
+//        case s: Service => s.onShutdown()
+//      }
     }
   }
 }

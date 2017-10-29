@@ -8,6 +8,7 @@ import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
 trait Parameter[T] {
+  def key: String
   def name: String
   def description: String
   def default: Option[T]
