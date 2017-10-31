@@ -9,8 +9,8 @@ import com.naden.namaste.plugin.services.FontSize.FontSize
 
 trait PanelType extends Service {
 
-  def scripts: Seq[String] = Seq.empty[String]
-  def stylesheets: Seq[String] = Seq.empty[String]
+  def scripts: Seq[String] = Seq.empty
+  def stylesheets: Seq[String] = Seq.empty
   def userEditable: Boolean = true
 
   // Relationships

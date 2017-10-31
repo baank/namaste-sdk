@@ -1,7 +1,7 @@
 package com.naden.namaste.plugin.parametervalidators
 
 import java.util.Locale
-
+import com.naden.namaste.plugin.util.LocalizationUtils.str
 import com.naden.namaste.plugin.ParameterValidator
 
 case class MinimumCharactersValidator(length: Int)(implicit locale: Locale)
