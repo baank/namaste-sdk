@@ -2,7 +2,7 @@ package com.naden.namaste.models
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.parameters.Parameter
+import com.naden.namaste.plugin.Parameter
 import com.naden.namaste.plugin.services.{PageType, PanelType}
 
 case class UserPageType(names: Map[Locale, String],

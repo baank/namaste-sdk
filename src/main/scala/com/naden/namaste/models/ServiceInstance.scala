@@ -2,8 +2,7 @@ package com.naden.namaste.models
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.Service
-import com.naden.namaste.plugin.parameters.Parameter
+import com.naden.namaste.plugin.{Parameter, Service}
 
 case class ServiceInstance[T <: Service](names: Map[Locale, String],
                                          createdBy: User,

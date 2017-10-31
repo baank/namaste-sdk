@@ -1,5 +1,6 @@
 package com.naden.namaste.plugin.services
 
+import com.naden.namaste.models.Page
 import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.services.Border.Border
 import com.naden.namaste.plugin.services.BorderSize.BorderSize
@@ -11,6 +12,11 @@ trait PanelType extends Service {
   def scripts: Seq[String] = Seq.empty[String]
   def stylesheets: Seq[String] = Seq.empty[String]
   def userEditable: Boolean = true
+
+  // Relationships
+  def parentPage: Option[Page] = None
+  def subPages: Option[Seq[Page]] = None
+  def linkedPages: Map[String, Seq[Page]] = Map.empty
 
   // Refresh
   def showRefresh: Boolean = false

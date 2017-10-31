@@ -10,7 +10,7 @@ licenses += ("Apache-2.0", url(
   "https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.osgi" % "org.osgi.core" % "5.0.0",
+  "org.osgi" % "org.osgi.core" % "6.0.0",
   "commons-codec" % "commons-codec" % "1.11",
   "joda-time" % "joda-time" % "2.9.9",
   "javax.inject" % "javax.inject" % "1",

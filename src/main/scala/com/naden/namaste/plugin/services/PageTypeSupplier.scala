@@ -8,7 +8,6 @@ import scala.concurrent.Future
 
 trait PageTypeSupplier extends Service {
 
-  def exportPages(pages: Seq[Page],
-                  progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
+  def getPages(pages: Seq[Page], progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
 
 }

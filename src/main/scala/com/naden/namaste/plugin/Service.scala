@@ -2,7 +2,6 @@ package com.naden.namaste.plugin
 
 import java.util.Locale
 
-import com.naden.namaste.plugin.parameters.Parameter
 import com.naden.namaste.plugin.util.LocalizationUtils
 
 abstract class Service {

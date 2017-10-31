@@ -1,6 +1,5 @@
 package com.naden.namaste.plugin
 
-import com.naden.namaste.plugin.parameters.ParameterValidator
 import com.naden.namaste.plugin.services._
 import org.osgi.framework.{BundleActivator, BundleContext, ServiceRegistration}
 
