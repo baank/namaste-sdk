@@ -8,9 +8,7 @@ trait Parameter[T] {
   def key: String
   def name: String
   def description: String
-  def default: Option[T]
   def group: Option[String]
-  def options: Seq[(String, T)]
   def validators: Seq[ParameterValidator]
 }
 

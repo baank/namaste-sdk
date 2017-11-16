@@ -1,5 +1,6 @@
 package com.naden.namaste.models
 
+import java.time.LocalDateTime
 import java.util.{Date, UUID}
 
 object Status extends Enumeration { val ACTIVE, DELETED = Value }
@@ -7,9 +8,9 @@ object Status extends Enumeration { val ACTIVE, DELETED = Value }
 abstract class Object(createdBy: User) {
 
   val guid: UUID = UUID.randomUUID()
-  val createTime: Date = new Date()
+  val createTime: LocalDateTime = new Date()
   val status = Status.ACTIVE
-  val updateTime: Date = createTime
+  val updateTime: LocalDateTime = createTime
   val updatedBy: User = createdBy
   val version = 0L
   val icon = "Default.png"

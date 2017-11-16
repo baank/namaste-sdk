@@ -1,0 +1,19 @@
+@import com.naden.namaste.ui.components.models.Select
+
+@(select: Select)
+
+<label>@select.label</label>
+<select multiple="multiple" class="select">
+    @for(optionGroup <- select.optionGroups) {
+        <optgroup label="@optionGroup.label">
+            @for(option <- optionGroup.options) {
+                <option value="@option.value" disabled="@if(select.disabled){ disabled }" data-icon="@select.icon" selected="@if(select.selected){ selected }">@option.label</option>
+            }
+        </optgroup>
+    }
+
+    @for(option <- select.options) {
+        <option value="@option.value" disabled="@if(select.disabled){ disabled }" data-icon="@select.icon" selected="@if(select.selected){ selected }">@option.label</option>
+    }
+
+</select>

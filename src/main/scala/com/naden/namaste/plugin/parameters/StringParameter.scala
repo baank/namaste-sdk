@@ -7,9 +7,13 @@ import com.naden.namaste.plugin.util.LocalizationUtils.str
 
 case class StringParameter(key: String,
                            default: Option[String] = None,
+                           idealLength: Option[(Int,Int)] = None,
+                           maxLength: Option[Int] = None,
+                           inputFormat: Option[String] = None,
                            optionKeys: Seq[String] = Seq(),
                            stringValidators: Seq[ParameterValidator] = Seq())(implicit locale: Locale)
   extends LocalizedParameter[String](key) {
+
   def options = optionKeys.map(o => (str(locale, s"$key.parameter.$o"), o))
   def validators = stringValidators
 }

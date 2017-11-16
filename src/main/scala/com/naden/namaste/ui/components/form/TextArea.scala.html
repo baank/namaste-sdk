@@ -1,0 +1,5 @@
+@import com.naden.namaste.ui.components.models.TextArea
+
+@(textArea: TextArea)
+
+<textarea name="@textArea.name" rows="@textArea.rows" cols="@textArea.columns" class="form-control elastic" placeholder="@textArea.placeholder">@textArea.value</textarea>

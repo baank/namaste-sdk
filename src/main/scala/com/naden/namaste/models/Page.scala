@@ -13,5 +13,8 @@ case class Page(names: Map[Locale, String],
                 pageType: PageType,
                 panels: Map[PanelSlot, Panel],
                 linkId: String = RandomUtils.id(),
-                parameterValues: Map[Parameter[_], _])
+                parameterValues: Map[Parameter[_], _],
+                parentPage: Option[Page] = None,
+                subPages: Option[Seq[Page]] = None,
+                linkedPages: Map[String, Seq[Page]] = Map.empty)
     extends Object(createdBy)

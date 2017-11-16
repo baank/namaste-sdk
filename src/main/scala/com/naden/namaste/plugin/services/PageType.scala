@@ -7,11 +7,11 @@ trait PageType extends Service {
 
   // Seq
   def listColumnWidths: Map[Int, Seq[Int]]
-  def listPanels: Map[(Int, Int), Seq[PanelSlot]]
+  def listStructure: Map[(Int, Int), Seq[PanelSlot]]
 
   // Detail
   def detailColumnWidths: Map[Int, Seq[Int]]
-  def detailPanels: Map[(Int, Int), Seq[PanelSlot]]
+  def detailStructure: Map[(Int, Int), Seq[PanelSlot]]
 
   def linkedPanelTypes: Set[PanelType] = Set.empty
 

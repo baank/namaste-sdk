@@ -1,0 +1,9 @@
+@import com.naden.namaste.ui.components.models.RadioButton
+
+@(radioButtons: List[RadioButton])
+
+@for(radioButton <- radioButtons) {
+    <div class="radio">
+        <label><input name="@radioButton.name" type="radio" class="control-primary" checked="@if(radioButton.checked){ checked }">@radioButton.label</label>
+    </div>
+}

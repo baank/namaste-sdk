@@ -10,8 +10,8 @@ case class UserPageType(names: Map[Locale, String],
                         createdBy: User,
                         override val listColumnWidths: Map[Int, Seq[Int]],
                         override val detailColumnWidths: Map[Int, Seq[Int]],
-                        override val listPanels: Map[(Int, Int), Seq[PanelSlot]],
-                        override val detailPanels: Map[(Int, Int), Seq[PanelSlot]],
+                        override val listStructure: Map[(Int, Int), Seq[PanelSlot]],
+                        override val detailStructure: Map[(Int, Int), Seq[PanelSlot]],
                         override val linkedPanelTypes: Set[PanelType] = Set.empty,
                         val parameters: Seq[Parameter[_]])
     extends PageType {
