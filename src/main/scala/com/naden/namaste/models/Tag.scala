@@ -4,5 +4,5 @@ import com.naden.namaste.ui.models.Color.Color
 
 case class Tag(name: String,
                createdBy: User,
-               color: Color
+               color: Color)
   extends Object(createdBy)

@@ -14,6 +14,7 @@ abstract class Object(createdBy: User) {
   val updatedBy: User = createdBy
   val version = 0L
   val icon = "Default.png"
+  val relationships: Map[String, UUID] = Map()
 
   override def equals(o: Any): Boolean = o match {
     case that: Object => that.guid.equals(this.guid)

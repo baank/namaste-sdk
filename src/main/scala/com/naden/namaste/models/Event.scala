@@ -1,4 +1,12 @@
 package com.naden.namaste.models
 
-case class Event(name: String, createdBy: User)
+import java.time.LocalDateTime
+
+case class Event(title: String,
+                 createdBy: User,
+                 description: String,
+                 tags: List[String],
+                 startTime: LocalDateTime,
+                 endTime: LocalDateTime,
+                 attendingUsers: List[User])
     extends Object(createdBy)
