@@ -176,6 +176,7 @@ class OkHttpService @Inject ()(proxy: HttpProxy) extends HttpService {
       }
 
       override def contentLength(): Long = inputStream.available()
+
       override def contentType(): MediaType = MediaType.parse(mimeType)
     }
 
@@ -304,7 +305,6 @@ class OkHttpService @Inject ()(proxy: HttpProxy) extends HttpService {
       })
       .build
   }
-
 
 
   private def requestBuilder(url: String,

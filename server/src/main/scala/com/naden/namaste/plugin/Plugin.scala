@@ -10,14 +10,23 @@ abstract class Plugin extends BundleActivator {
   def version: (Int, Int, Int)
 
   def panelTypes: Set[Class[_ <: PanelType]]
+
   def pageTypes: Set[Class[_ <: PageType]]
+
   def pageImporters: Set[Class[_ <: PageImporter]]
+
   def pageExporters: Set[Class[_ <: PageExporter]]
+
   def storageServices: Set[Class[_ <: StorageService]]
+
   def authenticationServices: Set[Class[_ <: AuthenticationService]]
+
   def eventHandlers: Set[Class[_ <: EventHandler]]
+
   def themes: Set[Class[_ <: Theme]]
+
   def tasks: Set[Class[_ <: Task]]
+
   def parameterValidators: Set[Class[_ <: ParameterValidator]]
 
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
@@ -57,10 +66,10 @@ abstract class Plugin extends BundleActivator {
     println(s"Stopping plugin services: ${this.getClass.getSimpleName}")
     serviceRegistrations.foreach { service =>
       service._2.unregister()
-//    TODO
+      //    TODO
       //      service._1 match {
-//        case s: Service => s.onShutdown()
-//      }
+      //        case s: Service => s.onShutdown()
+      //      }
     }
   }
 }

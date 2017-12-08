@@ -49,7 +49,9 @@ lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).set
     "org.typelevel" %%% "squants" % "1.3.0",
     "com.github.marklister" %%% "base64" % "0.2.4",
     "com.thoughtworks.binding" %%% "binding" % "11.0.0-M6",
-    "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M6"
+    "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M6",
+    "com.beachape" %%% "enumeratum" % "1.5.12",
+    "com.beachape" %%% "enumeratum-upickle" % "1.5.5"
   )
 )
 

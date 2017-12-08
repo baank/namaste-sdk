@@ -1,7 +1,0 @@
-@import com.naden.namaste.ui.components.models.Checkbox
-
-@(checkboxes: List[Checkbox])
-
-@for(checkbox <- checkboxes) {
-    <label><input name="@checkbox.name" type="checkbox" class="control-primary" checked="@if(checkbox.checked){ checked }">@checkbox.label</label>
-}

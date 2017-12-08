@@ -95,24 +95,30 @@ package object osgi {
     if (map == null) null: Dictionary[K, V]
     else new Dictionary[K, V] {
       override def size = map.size
+
       override def isEmpty = map.isEmpty
+
       override def keys = asJavaEnumeration(map.keysIterator)
+
       override def elements = asJavaEnumeration(map.valuesIterator)
+
       override def get(o: Object) = map.get(o.asInstanceOf[K]) match {
         case None => null.asInstanceOf[V]
         case Some(value) => value.asInstanceOf[V]
       }
+
       override def put(key: K, value: V) =
         throw new UnsupportedOperationException("This Dictionary is read-only!")
+
       override def remove(o: Object) =
         throw new UnsupportedOperationException("This Dictionary is read-only!")
     }
   }
 
   def invokeService[I, T](
-      serviceReference: ServiceReference[I],
-      f: I => T,
-      context: BundleContext): Option[T] = {
+                           serviceReference: ServiceReference[I],
+                           f: I => T,
+                           context: BundleContext): Option[T] = {
 
     assert(serviceReference != null, "The ServiceReference must not be null!")
     assert(f != null, "The function to be applied to the service must not be null!")

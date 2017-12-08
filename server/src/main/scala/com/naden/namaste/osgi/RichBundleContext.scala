@@ -32,11 +32,11 @@ class RichBundleContext(context: BundleContext) {
     * @param interface3 The optional thirs service interface; must not be null!
     */
   def createService[S <: AnyRef, I1 >: S <: AnyRef, I2 >: S <: AnyRef, I3 >: S <: AnyRef](
-      service: S,
-      properties: Props = Map.empty,
-      interface1: Option[Class[I1]] = None,
-      interface2: Option[Class[I2]] = None,
-      interface3: Option[Class[I3]] = None): ServiceRegistration[S] = {
+                                                                                           service: S,
+                                                                                           properties: Props = Map.empty,
+                                                                                           interface1: Option[Class[I1]] = None,
+                                                                                           interface2: Option[Class[I2]] = None,
+                                                                                           interface3: Option[Class[I3]] = None): ServiceRegistration[S] = {
 
     require(service != null, "The service object must not be null!")
     require(properties != null, "The service properties must not be null!")
@@ -48,7 +48,10 @@ class RichBundleContext(context: BundleContext) {
       lazy val allInterfacesOrClass = {
         def allInterfaces(clazz: Class[_]) = {
           def interfacesWithoutScalaObject(clazz: Class[_]) =
-            clazz.getInterfaces.toList filter { _ != classOf[AnyRef] }
+            clazz.getInterfaces.toList filter {
+              _ != classOf[AnyRef]
+            }
+
           @tailrec
           def allInterfacesTR(interfaces: Seq[Class[_]], result: Seq[Class[_]]): Seq[Class[_]] =
             interfaces match {
@@ -58,12 +61,18 @@ class RichBundleContext(context: BundleContext) {
                 allInterfacesTR(nextInterfaces, interfaces ++ result)
               }
             }
+
           allInterfacesTR(interfacesWithoutScalaObject(clazz), Nil).distinct
         }
+
         val interfaces = allInterfaces(service.getClass).toArray
-        if (!interfaces.isEmpty) interfaces map { _.getName } else Array(service.getClass.getName)
+        if (!interfaces.isEmpty) interfaces map {
+          _.getName
+        } else Array(service.getClass.getName)
       }
-      val interfaces = Seq(interface1, interface2, interface3).flatten map { _.getName }
+      val interfaces = Seq(interface1, interface2, interface3).flatten map {
+        _.getName
+      }
       if (interfaces.nonEmpty) interfaces.toArray else allInterfacesOrClass
     }
 

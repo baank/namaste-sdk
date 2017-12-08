@@ -23,8 +23,10 @@ case class UserPanelType(
 
   // TODO
   override def instanceParameters = Seq.empty
+
   override def globalParameters = Seq.empty
 
   override def onStartup(): Unit = {}
+
   override def onShutdown(): Unit = {}
 }
