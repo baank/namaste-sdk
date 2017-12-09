@@ -4,8 +4,8 @@ import java.time.LocalDateTime
 
 import com.naden.namaste.models.PaymentStatus.PaymentStatus
 
-case class Invoice(title: String,
-                   createdBy: User,
+case class Invoice(createdBy: User,
+                   title: String,
                    description: String,
                    amount: Int,
                    recipient: String,

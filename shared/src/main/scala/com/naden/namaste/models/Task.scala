@@ -5,8 +5,8 @@ import java.time.LocalDateTime
 import com.naden.namaste.models.TaskPriority.TaskPriority
 import com.naden.namaste.models.TaskState.TaskState
 
-case class Task(title: String,
-                createdBy: User,
+case class Task(createdBy: User,
+                title: String,
                 description: String,
                 priority: TaskPriority,
                 state: TaskState,

@@ -15,7 +15,7 @@ lazy val root = project.in(file(".")).
     publish := {},
     publishLocal := {}
   ).
-  enablePlugins(ScalaJSPlugin)
+  enablePlugins(SbtOsgi)
 
 lazy val namasteSdk = crossProject.in(file(".")).
   settings(commonSettings).
@@ -46,8 +46,7 @@ lazy val namasteSdk = crossProject.in(file(".")).
       "org.scala-js" %%% "scalajs-java-time" % "0.2.3",
       "com.thoughtworks.binding" %%% "dom" % "11.0.0-M6"
     )
-  ).
-  enablePlugins(SbtOsgi)
+  )
 
 lazy val namasteSdkJVM = namasteSdk.jvm
 lazy val namasteSdkJS = namasteSdk.js

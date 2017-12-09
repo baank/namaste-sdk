@@ -4,9 +4,9 @@ import com.naden.namaste.plugin.Parameter
 import com.naden.namaste.plugin.services.{PageType, PanelType}
 
 case class UserPageType(
+    createdBy: User,
     name: String,
     description: String,
-    createdBy: User,
     override val listColumnWidths: Map[Int, Seq[Int]],
     override val detailColumnWidths: Map[Int, Seq[Int]],
     override val listStructure: Map[(Int, Int), Seq[PanelSlot]],
