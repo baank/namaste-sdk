@@ -2,7 +2,8 @@ package com.naden.namaste.models
 
 import com.naden.namaste.models.DataType.DataType
 
-case class TabularData(columnTypes: List[DataType], data: List[List[String]])
+case class TabularData(columnTypes: List[DataType],
+                       data: List[List[String]])
 
 object DataType extends Enumeration {
   type DataType = Value

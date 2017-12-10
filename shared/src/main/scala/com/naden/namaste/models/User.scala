@@ -5,9 +5,7 @@ case class User(createdBy: User,
                 lastName: String,
                 preferredName: Option[String],
                 emailAddress: String,
-                title: String,
+                title: Option[String],
                 groups: Set[Group],
-                thumbnail: String)
+                thumbnail: Option[String])
     extends Object(createdBy)
-
-case class UserSocialNetwork()

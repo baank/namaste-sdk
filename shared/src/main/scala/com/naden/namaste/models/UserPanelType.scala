@@ -9,7 +9,7 @@ import com.naden.namaste.plugin.services.PanelType
 
 case class UserPanelType(
     createdBy: User,
-    name: String,
+    title: String,
     description: String,
     override val scripts: Seq[String],
     override val stylesheets: Seq[String],

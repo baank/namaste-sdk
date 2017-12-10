@@ -4,7 +4,7 @@ import com.naden.namaste.plugin.Parameter
 import com.naden.namaste.plugin.services.PanelType
 
 case class Panel(createdBy: User,
-                 name: String,
+                 title: String,
                  description: String,
                  panelType: PanelType,
                  parameterValues: Map[Parameter[_], _])

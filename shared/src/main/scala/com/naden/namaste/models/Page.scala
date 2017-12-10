@@ -5,7 +5,7 @@ import com.naden.namaste.plugin.services.PageType
 import com.naden.namaste.util.RandomUtils
 
 case class Page(createdBy: User,
-                name: String,
+                title: String,
                 description: String,
                 tags: Set[String],
                 category: String,
