@@ -1,5 +1,7 @@
 package com.naden.namaste.models
 
+import java.awt.Component
+
 import com.naden.namaste.plugin.Parameter
 import com.naden.namaste.plugin.services.Border.Border
 import com.naden.namaste.plugin.services.BorderSize.BorderSize
@@ -18,6 +20,7 @@ case class UserPanelType(
     override val titleSize: FontSize,
     override val panelColour: Colour,
     override val borders: Set[(Border, BorderSize, Colour)],
+    override val layout: Layout[Component],
     parameters: Seq[Parameter[_]])
     extends PanelType {
 

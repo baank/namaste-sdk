@@ -7,20 +7,15 @@ case class UserPageType(
     createdBy: User,
     title: String,
     description: String,
-    override val listColumnWidths: Map[Int, Seq[Int]],
-    override val detailColumnWidths: Map[Int, Seq[Int]],
-    override val listStructure: Map[(Int, Int), Seq[PanelSlot]],
-    override val detailStructure: Map[(Int, Int), Seq[PanelSlot]],
+    listLayout: Layout[PanelSlot],
+    detailLayout: Layout[PanelSlot],
     override val linkedPanelTypes: Set[PanelType] = Set.empty,
     parameters: Seq[Parameter[_]])
     extends PageType {
 
   // TODO
-  override def instanceParameters = Seq.empty
-
-  override def globalParameters = Seq.empty
-
-  override def onStartup(): Unit = {}
-
-  override def onShutdown(): Unit = {}
+  def instanceParameters = Seq.empty
+  def globalParameters = Seq.empty
+  def onStartup(): Unit = {}
+  def onShutdown(): Unit = {}
 }

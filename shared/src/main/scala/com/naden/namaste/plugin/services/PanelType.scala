@@ -1,5 +1,8 @@
 package com.naden.namaste.plugin.services
 
+import java.awt.Component
+
+import com.naden.namaste.models.Layout
 import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.services.Border.Border
 import com.naden.namaste.plugin.services.BorderSize.BorderSize
@@ -20,7 +23,7 @@ trait PanelType extends Service {
   def titleSize: FontSize = FontSize.Default
   def panelColour: Colour = Colour.Default
   def borders: Set[(Border, BorderSize, Colour)] = Set.empty[(Border, BorderSize, Colour)]
-
+  def layout: Layout[Component]
 }
 
 object Border extends Enumeration {

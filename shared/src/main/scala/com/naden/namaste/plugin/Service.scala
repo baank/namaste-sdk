@@ -2,6 +2,9 @@ package com.naden.namaste.plugin
 
 abstract class Service {
 
+  def title: String
+  def description: String
+
   // Subclasses to override
   def instanceParameters: Seq[Parameter[_]]
 
