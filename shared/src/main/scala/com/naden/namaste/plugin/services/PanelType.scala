@@ -1,13 +1,11 @@
 package com.naden.namaste.plugin.services
 
-import java.awt.Component
-
+import com.naden.namaste.components.Component
 import com.naden.namaste.models.Layout
-import com.naden.namaste.plugin.Service
 import com.naden.namaste.plugin.services.Border.Border
 import com.naden.namaste.plugin.services.BorderSize.BorderSize
 import com.naden.namaste.plugin.services.Colour.Colour
-import com.naden.namaste.plugin.services.FontSize.FontSize
+import com.naden.namaste.plugin.{Parameter, Service}
 
 trait PanelType extends Service {
 
@@ -20,10 +18,10 @@ trait PanelType extends Service {
   def refresh(): Unit = ()
 
   // Appearance
-  def titleSize: FontSize = FontSize.Default
   def panelColour: Colour = Colour.Default
   def borders: Set[(Border, BorderSize, Colour)] = Set.empty[(Border, BorderSize, Colour)]
-  def layout: Layout[Component]
+
+  def layout(parameterValues: Map[Parameter[_], _]): Layout[Component]
 }
 
 object Border extends Enumeration {
@@ -39,9 +37,4 @@ object BorderSize extends Enumeration {
 object Colour extends Enumeration {
   type Colour = Value
   val Default, Red, Orange, Blue, Cyan, Green, White, None = Value
-}
-
-object FontSize extends Enumeration {
-  type FontSize = Value
-  val Default, H1, H2, H3, H4, H5, H6 = Value
 }

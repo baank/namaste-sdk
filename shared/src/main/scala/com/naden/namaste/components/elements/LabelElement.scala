@@ -9,7 +9,7 @@ case class LabelElement(title: String,
             color: Color = Color.Default,
             colorAccent: ColorAccent = ColorAccent.Default,
             labelStyle: LabelStyle = LabelStyle.Default,
-            icon: String) extends Component
+            icon: String = "") extends Component
 
 object LabelStyle extends Enumeration {
   type LabelStyle = Value

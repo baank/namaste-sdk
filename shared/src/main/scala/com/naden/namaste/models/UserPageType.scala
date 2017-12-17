@@ -9,13 +9,16 @@ case class UserPageType(
     description: String,
     listLayout: Layout[PanelSlot],
     detailLayout: Layout[PanelSlot],
-    override val linkedPanelTypes: Set[PanelType] = Set.empty,
-    parameters: Seq[Parameter[_]])
+    override val instanceParameters: Seq[Parameter[_]],
+    override val globalParameters: Seq[Parameter[_]],
+    override val linkedPanelTypes: Set[PanelType] = Set.empty)
     extends PageType {
 
-  // TODO
-  def instanceParameters = Seq.empty
-  def globalParameters = Seq.empty
+  def listLayout(parameterValues: Map[Parameter[_], _]) = listLayout
+
+  def detailLayout(parameterValues: Map[Parameter[_], _]) = detailLayout
+
   def onStartup(): Unit = {}
+
   def onShutdown(): Unit = {}
 }
