@@ -3,6 +3,7 @@ package com.naden.namaste.components.maps
 import com.naden.namaste.components.Component
 import com.naden.namaste.components.maps.MapPosition.MapPosition
 import com.naden.namaste.components.maps.MapType.MapType
+import com.thoughtworks.binding.dom
 
 case class GoogleMap(name: String,
             zoom: Option[Int] = None,
@@ -26,7 +27,12 @@ case class GoogleMap(name: String,
             rotatePosition: Option[MapPosition] = None,
             fullScreenControl: Option[Boolean] = None,
             fullScreenPosition: Option[MapPosition] = None,
-            markers: List[Marker] = List()) extends Component
+            markers: List[Marker] = List()) extends Component {
+
+  @dom def render() = {
+      <div>{this.getClass.getName}</div>
+  }
+}
 
 case class Marker(position: (Double, Double),
                   draggable: Boolean = false,

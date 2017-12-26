@@ -5,11 +5,21 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.4",
   organization := "com.naden.namaste",
   resolvers += Resolver.sonatypeRepo("releases"),
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+  updateOptions := updateOptions.value.withCachedResolution(true),
+  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+  scalacOptions ++= Seq(
+    "-deprecation",
+    "-opt:l:none",
+    "-Yno-generic-signatures",
+    "-no-specialization",
+    "-language:experimental.macros"
+  ),
+  javacOptions ++= Seq(
+  )
 )
 
 lazy val root = project.in(file(".")).
-  aggregate(namasteSdkJVM, namasteSdkJS).
+  aggregate(jvm, js).
   settings(commonSettings).
   settings(
     publish := {},
@@ -23,8 +33,9 @@ lazy val namasteSdk = crossProject.in(file(".")).
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "squants" % "1.3.0",
       "com.github.marklister" %%% "base64" % "0.2.4",
-      "com.thoughtworks.binding" %%% "binding" % "11.0.0-M6",
-      "com.thoughtworks.binding" %%% "futurebinding" % "11.0.0-M6"
+      "com.thoughtworks.binding" %%% "binding" % "latest.release",
+      "com.thoughtworks.binding" %%% "futurebinding" % "latest.release",
+      "org.scala-lang.modules" %% "scala-xml" % "1.0.6"
     )
   ).
   jvmSettings(
@@ -44,9 +55,9 @@ lazy val namasteSdk = crossProject.in(file(".")).
       "org.scala-lang.modules" %% "scala-xml" % "1.0.6",
       "fr.hmil" %%% "roshttp" % "2.0.2",
       "org.scala-js" %%% "scalajs-java-time" % "0.2.3",
-      "com.thoughtworks.binding" %%% "dom" % "11.0.0-M6"
+      "com.thoughtworks.binding" %%% "dom" % "latest.release"
     )
   )
 
-lazy val namasteSdkJVM = namasteSdk.jvm
-lazy val namasteSdkJS = namasteSdk.js
+lazy val jvm = namasteSdk.jvm
+lazy val js = namasteSdk.js

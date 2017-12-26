@@ -6,8 +6,9 @@ import com.naden.namaste.components.Component
 import com.naden.namaste.components.panels.CalendarAction.CalendarAction
 import com.naden.namaste.components.panels.CalendarView.CalendarView
 import com.naden.namaste.models.Event
+import com.thoughtworks.binding.dom
 
-case class CalendarPanel (events: List[Event],
+case class CalendarPanel(events: List[Event],
                     eventColors: Map[Event, String],
                     leftActions: List[CalendarAction],
                     centerActions: List[CalendarAction],
@@ -18,7 +19,12 @@ case class CalendarPanel (events: List[Event],
                     navigationLinks: Boolean,
                     editable: Boolean,
                     businessHours: Boolean,
-                    eventLimit: Boolean) extends Component
+                    eventLimit: Boolean) extends Component {
+
+  @dom def render() = {
+      <div>{this.getClass.getName}</div>
+  }
+}
 
 object CalendarView extends Enumeration {
   type CalendarView = Value

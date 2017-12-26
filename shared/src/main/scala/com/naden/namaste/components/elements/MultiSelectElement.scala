@@ -1,6 +1,7 @@
 package com.naden.namaste.components.elements
 
 import com.naden.namaste.components.Component
+import com.thoughtworks.binding.dom
 
 case class MultiSelectElement(name: String,
             label: String,
@@ -11,7 +12,12 @@ case class MultiSelectElement(name: String,
             includeSelectAllOption: Boolean = false,
             enableFiltering: Boolean = true,
             enableClickableOptionGroups: Boolean = false,
-            disableIfEmpty: Boolean = true) extends Component
+            disableIfEmpty: Boolean = true) extends Component {
+
+	@dom def render() = {
+		<div>{this.getClass.getName}</div>
+	}
+}
 
 case class MultiSelectOption(label: String,
                              value: String,
