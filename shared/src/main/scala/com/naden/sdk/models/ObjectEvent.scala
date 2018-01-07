@@ -1,5 +1,7 @@
 package com.naden.sdk.models
 
+import boopickle.Default._
+
 case object ObjectEvent extends Enumeration {
 	type ObjectEvent = Value
 

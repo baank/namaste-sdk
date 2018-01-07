@@ -2,6 +2,8 @@ package com.naden.sdk.models
 
 import java.util.UUID
 
+import boopickle.Default._
+
 case class Comment(createdBy: User,
                    comment: String,
                    votes: Int,

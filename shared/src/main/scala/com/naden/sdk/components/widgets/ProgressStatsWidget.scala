@@ -3,6 +3,7 @@ package com.naden.sdk.components.widgets
 import com.naden.sdk.components.Color.Color
 import com.naden.sdk.components.ColorAccent.ColorAccent
 import com.naden.sdk.components.{Component, Percentage, Value}
+import boopickle.Default._
 
 case class ProgressStatsWidget(title: String,
             subtitle: String,

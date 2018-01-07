@@ -6,6 +6,11 @@ import com.naden.sdk.components.Component
 import com.naden.sdk.components.panels.CalendarAction.CalendarAction
 import com.naden.sdk.components.panels.CalendarView.CalendarView
 import com.naden.sdk.models.Event
+import boopickle.Default._
+
+object CalendarPanel {
+  implicit val pickler = compositePickler[CalendarPanel]
+}
 
 case class CalendarPanel(events: List[Event],
                     eventColors: List[(Event, String)],

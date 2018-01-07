@@ -3,6 +3,7 @@ package com.naden.sdk.models
 import com.naden.sdk.plugin.Parameter
 import com.naden.sdk.plugin.services.PageType
 import com.naden.sdk.util.RandomUtils
+import boopickle.Default._
 
 case class Page(createdBy: User,
                 title: String,

@@ -1,6 +1,7 @@
 package com.naden.sdk.models
 
 import java.time.LocalDateTime
+import boopickle.Default._
 
 case class Event(createdBy: User,
                  title: String,

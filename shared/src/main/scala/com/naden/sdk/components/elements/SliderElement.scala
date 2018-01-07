@@ -2,6 +2,11 @@ package com.naden.sdk.components.elements
 
 import com.naden.sdk.components.Component
 import com.naden.sdk.components.elements.SliderStyle.SliderStyle
+import boopickle.Default._
+
+object SliderElement {
+  implicit val pickler = compositePickler[SliderElement]
+}
 
 case class SliderElement(name: String,
                           label: String,

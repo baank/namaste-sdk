@@ -4,6 +4,7 @@ import com.naden.sdk.components.Color.Color
 import com.naden.sdk.components.ColorAccent.ColorAccent
 import com.naden.sdk.components.IconSize.IconSize
 import com.naden.sdk.components.{Color, ColorAccent, Component, IconSize}
+import boopickle.Default._
 
 case class ButtonElement(name: String,
             label: String,
