@@ -11,4 +11,4 @@ case class ColorParameter(key: String,
                           default: Option[Color] = None,
                           options: Seq[Color] = Seq(),
                           validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[Color]
+    extends Parameter

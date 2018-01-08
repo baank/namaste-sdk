@@ -8,4 +8,4 @@ case class ListParameter[A](key: String,
                             group: Option[String],
                             default: Option[A] = None,
                             validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[Seq[A]]
+    extends Parameter

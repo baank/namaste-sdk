@@ -4,11 +4,6 @@ import com.naden.sdk.components.Color.Color
 import com.naden.sdk.components.{Color, ColorAccent, Component}
 import com.naden.sdk.components.ColorAccent.ColorAccent
 import com.naden.sdk.components.elements.LabelStyle.LabelStyle
-import boopickle.Default._
-
-object LabelElement {
-  implicit val pickler = compositePickler[LabelElement]
-}
 
 case class LabelElement(title: String,
             color: Color = Color.Default,

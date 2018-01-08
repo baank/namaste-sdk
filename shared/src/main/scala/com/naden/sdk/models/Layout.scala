@@ -2,7 +2,6 @@ package com.naden.sdk.models
 
 import com.naden.sdk.models.ColumnOffset.ColumnOffset
 import com.naden.sdk.models.ColumnWidth.ColumnWidth
-import boopickle.Default._
 
 case class Layout[+A](rows: List[Row[A]])
 

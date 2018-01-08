@@ -2,7 +2,6 @@ package com.naden.sdk.models
 
 import java.time.LocalDateTime
 import java.util.UUID
-import boopickle.Default._
 
 case object Status extends Enumeration { val ACTIVE, DELETED = Value }
 

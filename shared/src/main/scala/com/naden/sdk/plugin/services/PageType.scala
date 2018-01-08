@@ -5,9 +5,9 @@ import com.naden.sdk.plugin.{Parameter, Service}
 
 trait PageType extends Service {
 
-  def detailLayout(parameterValues: Map[Parameter[_], _]): Layout[PanelSlot]
+  def detailLayout(parameterValues: Map[Parameter, _]): Layout[PanelSlot]
 
-  def listLayout(parameterValues: Map[Parameter[_], _]): Layout[PanelSlot]
+  def listLayout(parameterValues: Map[Parameter, _]): Layout[PanelSlot]
 
   def linkedPanelTypes: Set[PanelType] = Set.empty
 

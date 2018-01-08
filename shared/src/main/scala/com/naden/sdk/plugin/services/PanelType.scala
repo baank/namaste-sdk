@@ -16,7 +16,7 @@ trait PanelType extends Service {
   def panelColour: Color = Color.Default
   def borders: Set[(Border, BorderSize, Color)] = Set.empty[(Border, BorderSize, Color)]
 
-  def layout(parameterValues: Map[Parameter[_], _]): Layout[Component]
+  def layout(parameterValues: Map[Parameter, _]): Layout[Component]
   def layoutHasChanged: Boolean
 
   def allowUserRefresh: Boolean

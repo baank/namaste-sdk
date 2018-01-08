@@ -8,4 +8,4 @@ case class HtmlParameter(key: String,
                          group: Option[String],
                          default: Option[String] = None,
                          validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[String]
+    extends Parameter

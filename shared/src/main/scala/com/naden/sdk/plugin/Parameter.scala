@@ -1,6 +1,6 @@
 package com.naden.sdk.plugin
 
-trait Parameter[T] {
+trait Parameter {
   def key: String
   def title: String
   def description: String

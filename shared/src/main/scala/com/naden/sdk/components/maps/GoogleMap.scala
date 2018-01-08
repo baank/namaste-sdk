@@ -3,11 +3,6 @@ package com.naden.sdk.components.maps
 import com.naden.sdk.components.Component
 import com.naden.sdk.components.maps.MapPosition.MapPosition
 import com.naden.sdk.components.maps.MapType.MapType
-import boopickle.Default._
-
-object GoogleMap {
-  implicit val pickler = compositePickler[GoogleMap]
-}
 
 case class GoogleMap(name: String,
             zoom: Option[Int] = None,

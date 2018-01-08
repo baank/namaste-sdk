@@ -2,7 +2,6 @@ package com.naden.sdk.components.cards
 
 import com.naden.sdk.components.Component
 import com.naden.sdk.models.Page
-import boopickle.Default._
 
 case class PageCard(page: Page,
             showTitle: Boolean,

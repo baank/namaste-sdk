@@ -7,7 +7,7 @@ case class BooleanParameter(key: String,
                             description: String,
                             group: Option[String],
                             default: Option[Boolean] = None)()
-    extends Parameter[Boolean] {
+    extends Parameter {
 
   def validators = Seq.empty
 }

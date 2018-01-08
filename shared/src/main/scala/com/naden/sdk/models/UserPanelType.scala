@@ -12,8 +12,8 @@ case class UserPanelType(
     title: String,
     description: String,
     layout: Layout[Component],
-    override val instanceParameters: List[Parameter[_]],
-    override val globalParameters: List[Parameter[_]],
+    override val instanceParameters: List[Parameter],
+    override val globalParameters: List[Parameter],
     override val scripts: List[String],
     override val stylesheets: List[String],
     override val userEditable: Boolean,
@@ -22,7 +22,7 @@ case class UserPanelType(
     override val borders: Set[(Border, BorderSize, Color)])
     extends PanelType {
 
-  override def layout(parameterValues: Map[Parameter[_], _]) = layout
+  override def layout(parameterValues: Map[Parameter, _]) = layout
 
   override def layoutHasChanged: Boolean = false
 

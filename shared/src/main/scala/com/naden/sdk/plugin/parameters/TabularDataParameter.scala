@@ -8,4 +8,4 @@ case class TabularDataParameter(key: String,
                                 description: String,
                                 group: Option[String],
                                 validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[TabularData]
+    extends Parameter

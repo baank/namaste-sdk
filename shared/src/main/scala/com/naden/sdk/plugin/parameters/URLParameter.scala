@@ -8,4 +8,4 @@ case class URLParameter[URL](key: String,
                              group: Option[String],
                              default: Option[URL] = None,
                              validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[URL]
+    extends Parameter

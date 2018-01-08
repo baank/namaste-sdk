@@ -6,7 +6,7 @@ case class NewPasswordParameter(key: String,
                                 title: String,
                                 description: String,
                                 group: Option[String])
-    extends Parameter[String] {
+    extends Parameter {
 
   def options = Seq.empty
   def validators = Seq.empty

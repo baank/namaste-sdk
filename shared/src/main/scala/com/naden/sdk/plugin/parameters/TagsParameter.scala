@@ -10,4 +10,4 @@ case class TagsParameter(key: String,
                          limit: Option[Int] = None,
                          allowDuplicates: Boolean = true,
                          validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[Seq[String]]
+    extends Parameter

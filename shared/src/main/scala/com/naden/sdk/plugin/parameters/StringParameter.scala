@@ -12,7 +12,7 @@ case class StringParameter(key: String,
                            inputFormat: Option[String] = None,
                            options: Seq[String] = Seq(),
                            stringValidators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[String] {
+    extends Parameter {
 
   def validators = stringValidators
 }

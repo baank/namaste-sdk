@@ -1,5 +1,4 @@
 package com.naden.sdk.models
-import boopickle.Default._
 
 case class Image(createdBy: User,
                  title: String,

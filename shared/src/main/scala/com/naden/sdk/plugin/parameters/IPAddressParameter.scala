@@ -11,4 +11,4 @@ case class IPAddressParameter(key: String,
                               default: Option[InetAddress] = None,
                               options: Seq[InetAddress] = Seq(),
                               validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[InetAddress]
+    extends Parameter

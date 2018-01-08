@@ -6,7 +6,7 @@ case class SearchQueryParameter(key: String,
                                 title: String,
                                 description: String,
                                 group: Option[String])()
-    extends Parameter[String] {
+    extends Parameter {
 
   def validators = Seq.empty
 }

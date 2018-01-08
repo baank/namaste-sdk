@@ -14,7 +14,7 @@ case class DateTimeParameter(key: String,
                              dateStyle: DateTimeStyle = DateTimeStyle.Short,
                              timeStyle: DateTimeStyle = DateTimeStyle.Short,
                              validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[LocalDateTime]
+    extends Parameter
 
 object DateTimeStyle extends Enumeration {
   type DateTimeStyle = Value

@@ -1,7 +1,6 @@
 package com.naden.sdk.components.widgets
 
 import com.naden.sdk.components.{Component, Value}
-import boopickle.Default._
 
 case class PieChartWidget(title: String,
             subtitle: String,

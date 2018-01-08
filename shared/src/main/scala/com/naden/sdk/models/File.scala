@@ -1,5 +1,4 @@
 package com.naden.sdk.models
-import boopickle.Default._
 
 case class File(createdBy: User,
                 title: String,

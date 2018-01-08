@@ -3,11 +3,6 @@ package com.naden.sdk.models
 import java.time.LocalDateTime
 
 import com.naden.sdk.models.PaymentStatus.PaymentStatus
-import boopickle.Default._
-
-object Invoice {
-  implicit val pickler = compositePickler[Invoice]
-}
 
 case class Invoice(createdBy: User,
                    title: String,

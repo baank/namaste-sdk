@@ -9,4 +9,4 @@ case class FileParameter(key: String,
                          description: String,
                          group: Option[String],
                          validators: Seq[ParameterValidator] = Seq())()
-    extends Parameter[File] {}
+    extends Parameter {}

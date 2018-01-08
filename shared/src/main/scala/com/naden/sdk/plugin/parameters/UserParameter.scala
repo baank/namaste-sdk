@@ -7,7 +7,7 @@ case class UserParameter(key: String,
                          title: String,
                          description: String,
                          group: Option[String])
-    extends Parameter[User] {
+    extends Parameter {
 
   def validators = Seq.empty
 }

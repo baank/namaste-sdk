@@ -5,5 +5,5 @@ import com.naden.sdk.plugin.{Parameter, Service}
 case class ServiceInstance[T <: Service](createdBy: User,
                                          names: String,
                                          service: T,
-                                         parameterValues: Map[Parameter[_], _])
+                                         parameterValues: Map[Parameter, _])
     extends Object(createdBy)

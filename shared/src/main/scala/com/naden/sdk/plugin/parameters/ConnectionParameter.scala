@@ -8,7 +8,7 @@ case class ConnectionParameter(key: String,
                                description: String,
                                group: Option[String],
                                default: Option[Connection] = None)()
-    extends Parameter[Connection] {
+    extends Parameter {
 
   def validators = Seq.empty
 }
