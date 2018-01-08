@@ -3,13 +3,17 @@ package com.naden.sdk.models
 import java.time.LocalDateTime
 import java.util.UUID
 
-case object Status extends Enumeration { val ACTIVE, DELETED = Value }
+sealed trait Status
+object Status {
+  case object Active extends Status
+  case object Delete extends Status
+}
 
 abstract class Object(createdBy: User) {
 
   val guid: UUID = UUID.randomUUID()
   val createTime: LocalDateTime = LocalDateTime.now()
-  val status = Status.ACTIVE
+  val status = Status.Active
   val updateTime: LocalDateTime = createTime
   val updatedBy: User = createdBy
   val version = 0L

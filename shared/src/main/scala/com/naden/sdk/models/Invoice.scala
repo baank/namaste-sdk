@@ -2,36 +2,34 @@ package com.naden.sdk.models
 
 import java.time.LocalDateTime
 
-import com.naden.sdk.models.PaymentStatus.PaymentStatus
-
 case class Invoice(createdBy: User,
                    title: String,
                    description: String,
                    amount: Int,
                    recipient: String,
                    paymentStatus: PaymentStatus,
-                   paymentMethod: PaymentStatus,
+                   paymentMethod: PaymentMethod,
                    dueTime: LocalDateTime)
     extends Object(createdBy)
 
-case object PaymentMethod extends Enumeration {
-  type PaymentMethod = Value
-  val MASTERCARD = Value("Mastercard")
-  val VISA = Value("Visa")
-  val AMEX = Value("American Express")
-  val DINERS = Value("Diner's Club")
-  val PAYPAL = Value("Paypal")
-  val BITCOIN = Value("Bitcoin")
-  val CASH = Value("Cash")
-  val MONEY_ORDER = Value("Money Order")
-  val CHEQUE = Value("Cheque")
+sealed trait PaymentMethod
+object PaymentMethod {
+  case object Mastercard extends PaymentMethod
+  case object Visa extends PaymentMethod
+  case object Amex extends PaymentMethod
+  case object Diners extends PaymentMethod
+  case object Paypal extends PaymentMethod
+  case object Bitcoin extends PaymentMethod
+  case object Cash extends PaymentMethod
+  case object MoneyOrder extends PaymentMethod
+  case object Cheque extends PaymentMethod
 }
 
-case object PaymentStatus extends Enumeration {
-  type PaymentStatus = Value
-  val OVERDUE = Value("Overdue")
-  val PENDING = Value("Pending")
-  val PAID = Value("Paid")
-  val ON_HOLD = Value("On Hold")
-  val CANCELLED = Value("Cancelled")
+sealed trait PaymentStatus
+object PaymentStatus {
+  case object Overdue extends PaymentStatus
+  case object Pending extends PaymentStatus
+  case object Paid extends PaymentStatus
+  case object OnHold extends PaymentStatus
+  case object Cancelled extends PaymentStatus
 }

@@ -3,8 +3,6 @@ package com.naden.sdk.components.panels
 import java.time.LocalDateTime
 
 import com.naden.sdk.components.Component
-import com.naden.sdk.components.panels.CalendarAction.CalendarAction
-import com.naden.sdk.components.panels.CalendarView.CalendarView
 import com.naden.sdk.models.Event
 
 case class CalendarPanel(events: List[Event],
@@ -20,32 +18,32 @@ case class CalendarPanel(events: List[Event],
                     businessHours: Boolean,
                     eventLimit: Boolean) extends Component
 
-case object CalendarView extends Enumeration {
-  type CalendarView = Value
-  val BASIC_DAY = Value("basicDay")
-  val BASIC_WEEK = Value("basicWeek")
-  val AGENDA_DAY = Value("agendaDay")
-  val AGENDA_WEEK = Value("agendaWeek")
-  val LIST_DAY = Value("listDay")
-  val LIST_WEEK = Value("listWeek")
-  val LIST_MONTH = Value("listMonth")
-  val LIST_YEAR = Value("listYear")
-  val MONTH = Value("month")
+sealed trait CalendarView
+object CalendarView {
+  case object BasicDay extends CalendarView
+  case object BasicWeek extends CalendarView
+  case object AgendaDay extends CalendarView
+  case object AgendaWeek extends CalendarView
+  case object ListDay extends CalendarView
+  case object ListWeek extends CalendarView
+  case object ListMonth extends CalendarView
+  case object ListYear extends CalendarView
+  case object Month extends CalendarView
 }
 
-case object CalendarAction extends Enumeration {
-  type CalendarAction = Value
-  val BASIC_DAY_VIEW = CalendarView.BASIC_DAY
-  val BASIC_WEEK_VIEW = CalendarView.BASIC_WEEK
-  val AGENDA_DAY_VIEW = CalendarView.AGENDA_DAY
-  val AGENDA_WEEK_VIEW = CalendarView.AGENDA_WEEK
-  val LIST_DAY_VIEW = CalendarView.LIST_DAY
-  val LIST_WEEK_VIEW = CalendarView.LIST_WEEK
-  val LIST_MONTH_VIEW = CalendarView.LIST_MONTH
-  val LIST_YEAR_VIEW = CalendarView.LIST_YEAR
-  val MONTH_VIEW = CalendarView.MONTH
-  val TITLE = Value("title")
-  val TODAY = Value("today")
-  val PREVIOUS = Value("prev")
-  val NEXT = Value("next")
+sealed trait CalendarAction
+object CalendarAction {
+  case object BasicDayView extends CalendarAction
+  case object BasicWeekView extends CalendarAction
+  case object AgendaDayView extends CalendarAction
+  case object AgendaWeekView extends CalendarAction
+  case object ListDayView extends CalendarAction
+  case object ListWeekView extends CalendarAction
+  case object ListMonthView extends CalendarAction
+  case object ListYearView extends CalendarAction
+  case object MonthView extends CalendarAction
+  case object Title extends CalendarAction
+  case object Today extends CalendarAction
+  case object Previous extends CalendarAction
+  case object Next extends CalendarAction
 }

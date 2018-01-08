@@ -1,9 +1,6 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.components.Color.Color
 import com.naden.sdk.components.{Color, ColorAccent, Component}
-import com.naden.sdk.components.ColorAccent.ColorAccent
-import com.naden.sdk.components.elements.LabelStyle.LabelStyle
 
 case class LabelElement(title: String,
             color: Color = Color.Default,
@@ -11,11 +8,11 @@ case class LabelElement(title: String,
             labelStyle: LabelStyle = LabelStyle.Default,
             icon: String = "") extends Component
             
-case object LabelStyle extends Enumeration {
-  type LabelStyle = Value
-  val Default = Value
-  val Rounded = Value
-  val Square = Value
-  val Block = Value
-  val Flat = Value
+sealed trait LabelStyle
+object LabelStyle {
+  case object Default extends LabelStyle
+  case object Rounded extends LabelStyle
+  case object Square extends LabelStyle
+  case object Block extends LabelStyle
+  case object Flat extends LabelStyle
 }

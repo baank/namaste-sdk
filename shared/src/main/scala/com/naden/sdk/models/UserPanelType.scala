@@ -1,9 +1,6 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.components.Border.Border
-import com.naden.sdk.components.BorderSize.BorderSize
-import com.naden.sdk.components.Color.Color
-import com.naden.sdk.components.Component
+import com.naden.sdk.components.{Border, BorderSize, Color, Component}
 import com.naden.sdk.plugin.Parameter
 import com.naden.sdk.plugin.services.PanelType
 

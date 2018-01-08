@@ -1,8 +1,6 @@
 package com.naden.sdk.components.widgets
 
-import com.naden.sdk.components.Color.Color
-import com.naden.sdk.components.ColorAccent.ColorAccent
-import com.naden.sdk.components.{Component, Percentage, Value}
+import com.naden.sdk.components._
 
 case class ProgressStatsWidget(title: String,
             subtitle: String,
@@ -14,10 +12,10 @@ case class ProgressStatsWidget(title: String,
             coloredBackground: Boolean,
             relatedValues: List[Value]) extends Component
 
-object ProgressStyle extends Enumeration {
-  type GaugeStyle = Value
-  val HORIZONTAL = Value
-  val CIRCULAR = Value
-  val HALF = Value
-  val SPEEDOMETER = Value
+sealed trait ProgressStyle
+object ProgressStyle {
+  case object Horizontal extends ProgressStyle
+  case object Circular extends ProgressStyle
+  case object Half extends ProgressStyle
+  case object Speedometer extends ProgressStyle
 }

@@ -1,8 +1,6 @@
 package com.naden.sdk.components.maps
 
 import com.naden.sdk.components.Component
-import com.naden.sdk.components.maps.MapPosition.MapPosition
-import com.naden.sdk.components.maps.MapType.MapType
 
 case class GoogleMap(name: String,
             zoom: Option[Int] = None,
@@ -32,45 +30,40 @@ case class Marker(position: (Double, Double),
                   draggable: Boolean = false,
                   dropAnimation: Boolean = false)
 
-case object MapType extends Enumeration {
-  type MapType = Value
-  val ROADMAP = Value("roadmap")
-  val SATELLITE = Value("satellite")
-  val HYBRID = Value("hybrid")
-  val TERRAIN = Value("terrain")
+sealed trait MapType {
+  case object Roadmap extends MapType
+  case object Satellite extends MapType
+  case object Hybrid extends MapType
+  case object Terrain extends MapType
 }
 
-case object MapPosition extends Enumeration {
-  type MapPosition = Value
-  val TOP_LEFT = Value("TOP_LEFT")
-  val TOP_CENTER = Value("TOP_CENTER")
-  val TOP_RIGHT = Value("TOP_RIGHT")
-  val LEFT_TOP = Value("LEFT_TOP")
-  val LEFT_CENTER = Value("LEFT_CENTER")
-  val LEFT_BOTTOM = Value("LEFT_BOTTOM")
-  val RIGHT_TOP = Value("RIGHT_TOP")
-  val RIGHT_CENTER = Value("RIGHT_CENTER")
-  val RIGHT_BOTTOM = Value("RIGHT_BOTTOM")
-  val BOTTOM_LEFT = Value("BOTTOM_LEFT")
-  val BOTTOM_CENTER = Value("BOTTOM_CENTER")
-  val BOTTOM_RIGHT = Value("BOTTOM_RIGHT")
+sealed trait MapPosition {
+  case object TopLeft extends MapPosition
+  case object TopCenter extends MapPosition
+  case object TopRight extends MapPosition
+  case object LeftTop extends MapPosition
+  case object LeftCenter extends MapPosition
+  case object LeftBottom extends MapPosition
+  case object RightTop extends MapPosition
+  case object RightCenter extends MapPosition
+  case object RightBottom extends MapPosition
+  case object BottomLeft extends MapPosition
+  case object BottomCenter extends MapPosition
+  case object BottomRight extends MapPosition
 }
 
-case object MapTypeControlSize extends Enumeration {
-  type MapTypeControlSize = Value
-  val HORIZONTAL_BAR = Value("HORIZONTAL_BAR")
-  val DROPDOWN_MENU = Value("DROPDOWN_MENU")
+sealed trait MapTypeControlSize {
+  case object HorizontalBar extends MapTypeControlSize
+  case object DropdownMenu extends MapTypeControlSize
 }
 
-case object MapDropAnimation extends Enumeration {
-  type MapDropAnimation = Value
-  val BOUNCE = Value("BOUNCE")
-  val DROP = Value("DROP")
+sealed trait MapDropAnimation {
+  case object Bounce extends MapDropAnimation
+  case object Drop extends MapDropAnimation
 }
 
-case object MapLayer extends Enumeration {
-  type MapLayer = Value
-  val BIKE = Value("Bicycling")
-  val TRAFFIC = Value("Traffic")
-  val TRANSIT = Value("Transit")
+sealed trait MapLayer {
+  case object Bike extends MapLayer
+  case object Traffic extends MapLayer
+  case object Transit extends MapLayer
 }

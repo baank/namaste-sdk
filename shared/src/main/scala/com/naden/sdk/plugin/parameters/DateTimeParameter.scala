@@ -2,7 +2,6 @@ package com.naden.sdk.plugin.parameters
 
 import java.time.LocalDateTime
 
-import com.naden.sdk.plugin.parameters.DateTimeStyle.DateTimeStyle
 import com.naden.sdk.plugin.{Parameter, ParameterValidator}
 
 case class DateTimeParameter(key: String,
@@ -16,11 +15,11 @@ case class DateTimeParameter(key: String,
                              validators: Seq[ParameterValidator] = Seq())()
     extends Parameter
 
-object DateTimeStyle extends Enumeration {
-  type DateTimeStyle = Value
-  val None = Value("-")
-  val Short = Value("S")
-  val Medium = Value("M")
-  val Long = Value("L")
-  val Full = Value("F")
+sealed trait DateTimeStyle
+object DateTimeStyle {
+  case object None extends DateTimeStyle
+  case object Short extends DateTimeStyle
+  case object Medium extends DateTimeStyle
+  case object Long extends DateTimeStyle
+  case object Full extends DateTimeStyle
 }

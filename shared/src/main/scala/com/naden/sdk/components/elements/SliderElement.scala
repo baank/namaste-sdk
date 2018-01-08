@@ -1,7 +1,6 @@
 package com.naden.sdk.components.elements
 
 import com.naden.sdk.components.Component
-import com.naden.sdk.components.elements.SliderStyle.SliderStyle
 
 case class SliderElement(name: String,
                           label: String,
@@ -21,8 +20,8 @@ case class SliderElement(name: String,
                           prettifySeperator: String = "",
                           decorateBoth: Boolean = false) extends Component
                             
-case object SliderStyle extends Enumeration {
-  type SliderStyle = Value
-  val Single = Value
-  val Double = Value
+sealed trait SliderStyle
+object SliderStyle {
+  case object Single extends SliderStyle
+  case object Double extends SliderStyle
 }

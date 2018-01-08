@@ -1,16 +1,14 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.models.DataType.DataType
-
 case class TabularData(columnTypes: List[DataType],
                        data: List[List[String]])
 
-case object DataType extends Enumeration {
-  type DataType = Value
-  val Boolean = Value
-  val Date = Value
-  val Currency = Value
-  val Password = Value
-  val Percentage = Value
-  val String = Value
+sealed trait DataType
+object DataType {
+  case object Boolean extends DataType
+  case object Date extends DataType
+  case object Currency extends DataType
+  case object Password extends DataType
+  case object Percentage extends DataType
+  case object String extends DataType
 }

@@ -2,9 +2,6 @@ package com.naden.sdk.models
 
 import java.time.LocalDateTime
 
-import com.naden.sdk.models.TaskPriority.TaskPriority
-import com.naden.sdk.models.TaskState.TaskState
-
 case class Task(createdBy: User,
                 title: String,
                 description: String,
@@ -14,22 +11,22 @@ case class Task(createdBy: User,
                 assignedUsers: List[User])
     extends Object(createdBy)
 
-case object TaskPriority extends Enumeration {
-  type TaskPriority = Value
-  val HIGHEST = Value("Highest")
-  val HIGH = Value("High")
-  val NORMAL = Value("Normal")
-  val LOW = Value("Low")
-  val LOWEST = Value("Lowest")
+sealed trait TaskPriority
+object TaskPriority {
+  case object Highest extends TaskPriority
+  case object High extends TaskPriority
+  case object Normal extends TaskPriority
+  case object Low extends TaskPriority
+  case object Lowest extends TaskPriority
 }
 
-case object TaskState extends Enumeration {
-  type TaskState = Value
-  val OPEN = Value("Open")
-  val ON_HOLD = Value("On Hold")
-  val RESOLVED = Value("Resolved")
-  val DUPLICATE = Value("Duplicate")
-  val INVALID = Value("Invalid")
-  val WONT_DO = Value("Won't Do")
-  val CLOSED = Value("Closed")
+sealed trait TaskState
+object TaskState {
+  case object Open extends TaskState
+  case object OnHold extends TaskState
+  case object Resolved extends TaskState
+  case object Duplicate extends TaskState
+  case object Invalid extends TaskState
+  case object WontDo extends TaskState
+  case object Closed extends TaskState
 }

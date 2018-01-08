@@ -1,10 +1,10 @@
 package com.naden.sdk.services.http
 
-import com.naden.sdk.services.http.AuthType.AuthType
-
-case object AuthType extends Enumeration {
-  type AuthType = Value
-  val None, Basic, NTLM = Value
+sealed trait AuthType
+object AuthType {
+  case object None extends AuthType
+  case object Basic extends AuthType
+  case object NTLM extends AuthType
 }
 
 trait HttpProxy {

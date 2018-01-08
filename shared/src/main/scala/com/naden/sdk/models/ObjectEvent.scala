@@ -1,10 +1,8 @@
 package com.naden.sdk.models
 
-
-case object ObjectEvent extends Enumeration {
-	type ObjectEvent = Value
-
-	val Created = Value("Added")
-	val Updated = Value("Updated")
-	val Deleted = Value("Deleted")
+sealed trait ObjectEvent
+object ObjectEvent {
+	case object Created extends ObjectEvent
+	case object Updated extends ObjectEvent
+	case object Deleted extends ObjectEvent
 }
