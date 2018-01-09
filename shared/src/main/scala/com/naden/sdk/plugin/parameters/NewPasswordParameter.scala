@@ -1,6 +1,6 @@
 package com.naden.sdk.plugin.parameters
 
-import com.naden.sdk.plugin.Parameter
+import com.naden.sdk.plugin.{Parameter, ParameterValidator}
 
 case class NewPasswordParameter(key: String,
                                 title: String,
@@ -8,6 +8,6 @@ case class NewPasswordParameter(key: String,
                                 group: Option[String])
     extends Parameter {
 
-  def options = Seq.empty
-  def validators = Seq.empty
+  def options = List.empty
+  def validators = List.empty
 }

@@ -1,7 +1,6 @@
 package com.naden.sdk.plugin.parameters
 
-import com.naden.sdk.models.User
-import com.naden.sdk.plugin.Parameter
+import com.naden.sdk.plugin.{Parameter, ParameterValidator}
 
 case class UserParameter(key: String,
                          title: String,
@@ -9,5 +8,5 @@ case class UserParameter(key: String,
                          group: Option[String])
     extends Parameter {
 
-  def validators = Seq.empty
+  def validators = List.empty
 }

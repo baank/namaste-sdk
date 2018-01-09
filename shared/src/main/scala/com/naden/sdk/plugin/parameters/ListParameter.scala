@@ -7,5 +7,5 @@ case class ListParameter[A](key: String,
                             description: String,
                             group: Option[String],
                             default: Option[A] = None,
-                            validators: Seq[ParameterValidator] = Seq())()
+                            validators: List[ParameterValidator] = List())()
     extends Parameter

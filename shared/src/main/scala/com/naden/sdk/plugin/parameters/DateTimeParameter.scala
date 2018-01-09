@@ -12,7 +12,7 @@ case class DateTimeParameter(key: String,
                              dateOptions: Seq[LocalDateTime] = Seq(),
                              dateStyle: DateTimeStyle = DateTimeStyle.Short,
                              timeStyle: DateTimeStyle = DateTimeStyle.Short,
-                             validators: Seq[ParameterValidator] = Seq())()
+                             validators: List[ParameterValidator] = List())()
     extends Parameter
 
 sealed trait DateTimeStyle

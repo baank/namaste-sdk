@@ -1,6 +1,6 @@
 package com.naden.sdk.plugin.parameters
 
-import com.naden.sdk.plugin.Parameter
+import com.naden.sdk.plugin.{Parameter, ParameterValidator}
 
 case class SearchQueryParameter(key: String,
                                 title: String,
@@ -8,5 +8,5 @@ case class SearchQueryParameter(key: String,
                                 group: Option[String])()
     extends Parameter {
 
-  def validators = Seq.empty
+  def validators = List.empty
 }

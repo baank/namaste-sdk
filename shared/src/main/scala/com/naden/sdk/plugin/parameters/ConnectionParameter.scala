@@ -1,7 +1,7 @@
 package com.naden.sdk.plugin.parameters
 
 import com.naden.sdk.models.Connection
-import com.naden.sdk.plugin.Parameter
+import com.naden.sdk.plugin.{Parameter, ParameterValidator}
 
 case class ConnectionParameter(key: String,
                                title: String,
@@ -10,5 +10,5 @@ case class ConnectionParameter(key: String,
                                default: Option[Connection] = None)()
     extends Parameter {
 
-  def validators = Seq.empty
+  def validators = List.empty
 }

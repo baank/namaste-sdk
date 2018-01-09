@@ -7,5 +7,5 @@ import com.naden.sdk.plugin.util.ProgressObserver
 trait PageImporter extends Service {
 
   def importPages(pages: Seq[Page], progressObserver: ProgressObserver)
-  def requiredPageTypes: Seq[PageType]
+  def requiredPageTypes[PT <: PageType]: List[PT]
 }

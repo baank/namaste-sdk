@@ -10,8 +10,8 @@ case class StringParameter(key: String,
                            idealLength: Option[(Int, Int)] = None,
                            maxLength: Option[Int] = None,
                            inputFormat: Option[String] = None,
-                           options: Seq[String] = Seq(),
-                           stringValidators: Seq[ParameterValidator] = Seq())()
+                           options: List[String] = List(),
+                           stringValidators: List[ParameterValidator] = List())()
     extends Parameter {
 
   def validators = stringValidators

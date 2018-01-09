@@ -5,5 +5,5 @@ trait Parameter {
   def title: String
   def description: String
   def group: Option[String]
-  def validators: Seq[ParameterValidator]
+  def validators: List[ParameterValidator]
 }

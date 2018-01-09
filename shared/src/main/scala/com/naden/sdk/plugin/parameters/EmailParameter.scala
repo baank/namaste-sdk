@@ -7,5 +7,5 @@ case class EmailParameter(key: String,
                           description: String,
                           group: Option[String],
                           default: Option[String] = None,
-                          validators: Seq[ParameterValidator] = Seq())()
+                          validators: List[ParameterValidator] = List())()
     extends Parameter

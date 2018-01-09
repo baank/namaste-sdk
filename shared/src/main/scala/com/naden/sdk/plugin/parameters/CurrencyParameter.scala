@@ -9,5 +9,5 @@ case class CurrencyParameter(key: String,
                              group: Option[String],
                              default: Option[String] = None,
                              options: Seq[Money] = Seq(),
-                             validators: Seq[ParameterValidator] = Seq())()
+                             validators: List[ParameterValidator] = List())()
     extends Parameter

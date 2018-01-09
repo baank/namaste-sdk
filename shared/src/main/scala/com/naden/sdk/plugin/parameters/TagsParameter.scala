@@ -9,5 +9,5 @@ case class TagsParameter(key: String,
                          default: Option[String] = None,
                          limit: Option[Int] = None,
                          allowDuplicates: Boolean = true,
-                         validators: Seq[ParameterValidator] = Seq())()
+                         validators: List[ParameterValidator] = List())()
     extends Parameter

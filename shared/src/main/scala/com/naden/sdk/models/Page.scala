@@ -10,10 +10,10 @@ case class Page(createdBy: User,
                 tags: Set[String],
                 category: String,
                 pageType: PageType,
-                panels: Map[PanelSlot, Panel],
-                parameterValues: Map[Parameter, _],
+                panels: List[(PanelSlot, Panel)],
+                parameterValues: List[(Parameter, String)],
                 linkId: String = RandomUtils.id(),
                 parentPage: Option[Page] = None,
                 subPages: Option[List[Page]] = None,
-                linkedPages: Map[String, List[Page]] = Map.empty)
+                linkedPages: List[(String, List[Page])] = List.empty)
     extends Object(createdBy)

@@ -7,5 +7,5 @@ case class TabularDataParameter(key: String,
                                 title: String,
                                 description: String,
                                 group: Option[String],
-                                validators: Seq[ParameterValidator] = Seq())()
+                                validators: List[ParameterValidator] = List())()
     extends Parameter

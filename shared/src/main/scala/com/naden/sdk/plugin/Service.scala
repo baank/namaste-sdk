@@ -6,16 +6,15 @@ abstract class Service {
   def description: String
 
   // Subclasses to override
-  def instanceParameters: Seq[Parameter]
-
-  def globalParameters: Seq[Parameter]
+  def instanceParameters: List[Parameter]
+  def globalParameters: List[Parameter]
 
   def onStartup(): Unit
 
   def onShutdown(): Unit
 
   private var _context: Map[String, _] = Map.empty
-  private var _parameterValues: Map[Parameter, _] = Map.empty
+  private var _parameterValues: List[(Parameter, String)] = List.empty
 
   def context = _context
 
@@ -25,7 +24,7 @@ abstract class Service {
     _context = newContext
   }
 
-  final def onUserConfigure(newParameterValues: Map[Parameter, _]): Unit = {
+  final def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit = {
     _parameterValues = newParameterValues
   }
 }

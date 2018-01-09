@@ -8,7 +8,7 @@ case class IPAddressParameter(key: String,
                               title: String,
                               description: String,
                               group: Option[String],
-                              default: Option[InetAddress] = None,
-                              options: Seq[InetAddress] = Seq(),
-                              validators: Seq[ParameterValidator] = Seq())()
+                              default: Option[String] = None,
+                              options: Seq[String] = Seq(),
+                              validators: List[ParameterValidator] = List())()
     extends Parameter

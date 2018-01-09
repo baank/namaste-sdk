@@ -7,5 +7,5 @@ case class Panel(createdBy: User,
                  title: String,
                  description: String,
                  panelType: PanelType,
-                 parameterValues: Map[Parameter, _])
+                 parameterValues: List[(Parameter, String)])
     extends Object(createdBy) {}

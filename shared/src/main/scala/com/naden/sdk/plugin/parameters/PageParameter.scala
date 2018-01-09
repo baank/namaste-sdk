@@ -8,6 +8,6 @@ case class PageParameter(key: String,
                          group: Option[String])
     extends Parameter {
 
-  def options = Seq.empty
-  def validators = Seq.empty[ParameterValidator]
+  def options = List.empty
+  def validators = List.empty
 }

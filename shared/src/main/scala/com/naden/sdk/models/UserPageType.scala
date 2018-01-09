@@ -14,11 +14,9 @@ case class UserPageType(
     override val linkedPanelTypes: Set[PanelType] = Set.empty)
     extends PageType {
 
-  def listLayout(parameterValues: Map[Parameter, _]) = listLayout
-
-  def detailLayout(parameterValues: Map[Parameter, _]) = detailLayout
+  def listLayout(parameterValues: List[(Parameter, String)]) = listLayout
+  def detailLayout(parameterValues: List[(Parameter, String)]) = detailLayout
 
   def onStartup(): Unit = {}
-
   def onShutdown(): Unit = {}
 }

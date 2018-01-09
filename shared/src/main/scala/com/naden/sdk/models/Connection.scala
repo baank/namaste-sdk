@@ -1,9 +1,8 @@
 package com.naden.sdk.models
 
-import java.net.InetAddress
-
 case class Connection(createdBy: User,
-                      ipAddress: InetAddress,
+                      ip4Address: String,
+                      ip6Address: String,
                       port: Int,
                       requireSSL: Boolean,
                       username: Option[String],
