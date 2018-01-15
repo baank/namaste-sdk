@@ -1,13 +1,19 @@
 package com.naden.sdk.models
 
-case class Layout[+A](rows: List[Row[A]])
+import io.circe.generic.JsonCodec
 
-case class Row[+A](columns: List[Column[A]])
+@JsonCodec
+case class Layout(rows: List[Row])
 
-case class Column[+A](contents: List[A],
+@JsonCodec
+case class Row(columns: List[Column])
+
+@JsonCodec
+case class Column(contents: List[PanelSlot],
                      width: ColumnWidth,
                      offset: ColumnOffset = ColumnOffset.None)
 
+@JsonCodec
 sealed trait ColumnOffset
 object ColumnOffset {
   case object None extends ColumnOffset
@@ -25,6 +31,7 @@ object ColumnOffset {
   case object Twelve extends ColumnOffset
 }
 
+@JsonCodec
 sealed trait ColumnWidth
 object ColumnWidth {
   case object One extends ColumnWidth

@@ -1,7 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.components.Component
+import com.naden.sdk.models.Component
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class MultiSelectElement(name: String,
             label: String,
             optionGroups: List[MultiSelectOptionGroup],
@@ -13,12 +15,13 @@ case class MultiSelectElement(name: String,
             enableClickableOptionGroups: Boolean = false,
             disableIfEmpty: Boolean = true) extends Component
 
+@JsonCodec
 case class MultiSelectOption(label: String,
                              value: String,
                              selected: Boolean,
                              disabled: Boolean = false,
                              icon: String = "")
-
+@JsonCodec
 case class MultiSelectOptionGroup(label: String,
                                   options: List[MultiSelectOption],
                                   disabled: Boolean = false)

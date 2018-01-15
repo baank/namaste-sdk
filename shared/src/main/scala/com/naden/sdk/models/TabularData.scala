@@ -1,8 +1,12 @@
 package com.naden.sdk.models
 
+import io.circe.generic.JsonCodec
+
+@JsonCodec
 case class TabularData(columnTypes: List[DataType],
                        data: List[List[String]])
 
+@JsonCodec
 sealed trait DataType
 object DataType {
   case object Boolean extends DataType

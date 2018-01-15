@@ -1,6 +1,5 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.plugin.services._
 import org.osgi.framework.{BundleActivator, BundleContext, ServiceRegistration}
 
 import scala.collection.mutable.{ListBuffer => MutableList}
@@ -26,8 +25,6 @@ abstract class Plugin extends BundleActivator {
   def themes: Set[Class[_ <: Theme]]
 
   def tasks: Set[Class[_ <: Task]]
-
-  def parameterValidators: Set[Class[_ <: ParameterValidator]]
 
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
 

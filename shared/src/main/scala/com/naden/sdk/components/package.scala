@@ -1,5 +1,8 @@
 package com.naden.sdk.components
 
+import io.circe.generic.JsonCodec
+
+@JsonCodec
 sealed trait Border
 object Border {
   case object Default extends Border
@@ -10,6 +13,7 @@ object Border {
   case object Bottom extends Border
 }
 
+@JsonCodec
 sealed trait BorderSize
 object BorderSize {
   case object Default extends BorderSize
@@ -18,6 +22,7 @@ object BorderSize {
   case object ExtraLarge extends BorderSize
 }
 
+@JsonCodec
 sealed trait Color
 object Color {
   case object Default extends Color
@@ -38,6 +43,7 @@ object Color {
   case object Slate extends Color
 }
 
+@JsonCodec
 sealed trait ColorAccent
 object ColorAccent {
   case object Default extends ColorAccent
@@ -49,12 +55,14 @@ object ColorAccent {
   case object ThreeHundred extends ColorAccent
 }
 
+@JsonCodec
 sealed trait IconPosition
 object IconPosition {
   case object Left extends IconPosition
   case object Right extends IconPosition
 }
 
+@JsonCodec
 sealed trait IconSize
 object IconSize {
   case object Default extends IconSize
@@ -64,6 +72,8 @@ object IconSize {
   case object Mini extends IconSize
 }
 
+@JsonCodec
 case class Percentage(percentage: Double, name: String)
 
+@JsonCodec
 case class Value(value: Double, name: String)

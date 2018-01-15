@@ -1,7 +1,10 @@
 package com.naden.sdk.models
 
 import java.time.LocalDateTime
+import io.circe.java8.time._
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class Invoice(createdBy: User,
                    title: String,
                    description: String,
@@ -12,6 +15,7 @@ case class Invoice(createdBy: User,
                    dueTime: LocalDateTime)
     extends Object(createdBy)
 
+@JsonCodec
 sealed trait PaymentMethod
 object PaymentMethod {
   case object Mastercard extends PaymentMethod
@@ -25,6 +29,7 @@ object PaymentMethod {
   case object Cheque extends PaymentMethod
 }
 
+@JsonCodec
 sealed trait PaymentStatus
 object PaymentStatus {
   case object Overdue extends PaymentStatus

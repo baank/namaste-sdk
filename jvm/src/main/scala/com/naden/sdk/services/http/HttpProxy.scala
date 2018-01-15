@@ -1,5 +1,8 @@
 package com.naden.sdk.services.http
 
+import io.circe.generic.JsonCodec
+
+@JsonCodec
 sealed trait AuthType
 object AuthType {
   case object None extends AuthType

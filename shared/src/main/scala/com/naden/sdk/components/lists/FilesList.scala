@@ -1,8 +1,9 @@
 package com.naden.sdk.components.lists
 
-import com.naden.sdk.components.Component
-import com.naden.sdk.models.File
+import com.naden.sdk.models.{Component, File}
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class FilesList(title: String,
             icon: String,
             files: List[File] = List.empty,

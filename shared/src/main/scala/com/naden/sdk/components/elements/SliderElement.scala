@@ -1,7 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.components.Component
+import com.naden.sdk.models.Component
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class SliderElement(name: String,
                           label: String,
                           style: SliderStyle,
@@ -19,7 +21,8 @@ case class SliderElement(name: String,
                           prettify: Boolean = false,
                           prettifySeperator: String = "",
                           decorateBoth: Boolean = false) extends Component
-                            
+
+@JsonCodec
 sealed trait SliderStyle
 object SliderStyle {
   case object Single extends SliderStyle

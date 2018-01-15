@@ -3,6 +3,10 @@ package com.naden.sdk.models
 import java.time.LocalDateTime
 import java.util.UUID
 
+import io.circe.generic.JsonCodec
+import io.circe.java8.time._
+
+@JsonCodec
 sealed trait Status
 object Status {
   case object Active extends Status

@@ -1,5 +1,8 @@
 package com.naden.sdk.models
 
+import io.circe.generic.JsonCodec
+
+@JsonCodec
 case class Image(createdBy: User,
                  title: String,
                  description: String,

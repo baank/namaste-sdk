@@ -1,7 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.components.Component
+import com.naden.sdk.models.Component
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class SwitchElement(name: String,
             label: String,
             checked: Boolean) extends Component

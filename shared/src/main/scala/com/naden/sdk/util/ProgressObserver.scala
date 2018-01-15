@@ -1,4 +1,4 @@
-package com.naden.sdk.plugin.util
+package com.naden.sdk.util
 
 trait ProgressObserver {
 

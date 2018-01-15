@@ -1,8 +1,9 @@
 package com.naden.sdk.components.cards
 
-import com.naden.sdk.components.Component
-import com.naden.sdk.models.Invoice
+import com.naden.sdk.models.{Component, Invoice}
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class InvoiceCard(invoice: Invoice,
             showTitle: Boolean,
             showSocial: Boolean,

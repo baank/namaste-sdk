@@ -6,6 +6,7 @@ lazy val commonSettings = Seq(
   organization := "com.naden",
   resolvers += Resolver.sonatypeRepo("releases"),
   updateOptions := updateOptions.value.withCachedResolution(true),
+  addCompilerPlugin("io.tryp" % "splain" % "0.2.7" cross CrossVersion.patch),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
   scalacOptions ++= Seq(
     "-deprecation"
@@ -27,9 +28,12 @@ lazy val naden = crossProject.in(file(".")).
   settings(commonSettings).
   settings(
     libraryDependencies ++= Seq(
-      "org.typelevel"             %%% "squants"               % "1.3.0",
-      "com.github.marklister"     %%% "base64"                % "0.2.4",
-      "io.suzaku"                 %%% "boopickle"             % "1.2.6"
+      "org.typelevel"           %%% "squants"               % "1.3.0",
+      "com.github.marklister"   %%% "base64"                % "0.2.4",
+      "io.circe"                %%% "circe-core"            % "0.9.0",
+      "io.circe"                %%% "circe-generic"         % "0.9.0", "io.circe"                  %%% "circe-java8"           % "0.9.0",
+	  "io.circe"                %%% "circe-generic-extras"  % "0.9.0", "io.circe"                  %%% "circe-java8"           % "0.9.0",
+      "io.circe"                %%% "circe-parser"          % "0.9.0"
     )
   ).
   jvmSettings(

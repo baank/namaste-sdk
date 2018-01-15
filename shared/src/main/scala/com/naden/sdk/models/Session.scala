@@ -1,3 +1,3 @@
 package com.naden.sdk.models
 
-object Session {}
+case class Session()

@@ -2,9 +2,11 @@ package com.naden.sdk.components.panels
 
 import java.time.LocalDateTime
 
-import com.naden.sdk.components.Component
-import com.naden.sdk.models.Event
+import com.naden.sdk.models.{Component, Event}
+import io.circe.java8.time._
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class CalendarPanel(events: List[Event],
                     eventColors: List[(Event, String)],
                     leftActions: List[CalendarAction],
@@ -18,6 +20,7 @@ case class CalendarPanel(events: List[Event],
                     businessHours: Boolean,
                     eventLimit: Boolean) extends Component
 
+@JsonCodec
 sealed trait CalendarView
 object CalendarView {
   case object BasicDay extends CalendarView
@@ -31,6 +34,7 @@ object CalendarView {
   case object Month extends CalendarView
 }
 
+@JsonCodec
 sealed trait CalendarAction
 object CalendarAction {
   case object BasicDayView extends CalendarAction
