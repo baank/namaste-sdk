@@ -13,10 +13,9 @@ case class Page(createdBy: User,
                 category: String,
                 pageType: PageType,
                 panels: List[(PanelSlot, Panel)],
-                parameterValues: List[ParameterValue],
+                parameterValues: List[(Parameter, String)],
                 linkId: String = RandomUtils.id(),
                 parentPage: Option[Page] = None,
-                subPages: Option[List[Page]] = None)
-               // TODO
-			   // linkedPages: Map[String, List[Page]] = Map.empty)
+                subPages: Option[List[Page]] = None,
+                linkedPages: List[(String, List[Page])] = List.empty)
     extends Object(createdBy)

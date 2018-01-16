@@ -16,12 +16,12 @@ case class UserPanelType(
     override val allowUserRefresh: Boolean)
     extends PanelType {
 
-  override def layout(parameterValues: List[ParameterValue]) = layout
+  override def layout(parameterValues: List[(Parameter, String)]) = layout
   override def layoutHasChanged: Boolean = false
 
   override def onStartup(): Unit = {}
   override def onShutdown(): Unit = {}
 
   override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-  override def onUserConfigure(newParameterValues: List[ParameterValue]): Unit = {}
+  override def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit = {}
 }

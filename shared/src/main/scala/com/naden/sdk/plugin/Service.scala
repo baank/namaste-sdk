@@ -1,6 +1,6 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.models.{Parameter, ParameterValue}
+import com.naden.sdk.models.Parameter
 
 trait Service {
 
@@ -18,6 +18,6 @@ trait Service {
 
   def onAppContextChange(newContext: Map[String, _]): Unit
 
-  def onUserConfigure(newParameterValues: List[ParameterValue]): Unit
+  def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit
 
 }

@@ -9,5 +9,5 @@ case class Panel(createdBy: User,
                  title: String,
                  description: String,
                  panelType: PanelType,
-                 parameterValues: List[ParameterValue])
+                 parameterValues: List[(Parameter, String)])
     extends Object(createdBy) {}

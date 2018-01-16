@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   organization := "com.naden",
   resolvers += Resolver.sonatypeRepo("releases"),
   updateOptions := updateOptions.value.withCachedResolution(true),
-  addCompilerPlugin("io.tryp" % "splain" % "0.2.7" cross CrossVersion.patch),
+  //addCompilerPlugin("io.tryp" % "splain" % "0.2.7" cross CrossVersion.patch),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
   scalacOptions ++= Seq(
     "-deprecation"

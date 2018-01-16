@@ -1,6 +1,7 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.models.{Component, ParameterValue}
+import com.naden.sdk.models.{Component, Parameter}
+
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
 @EnableReflectiveInstantiation
@@ -12,7 +13,7 @@ trait PanelType extends Service {
 
   def userEditable: Boolean = true
 
-  def layout(parameterValues: List[ParameterValue]): List[Component]
+  def layout(parameterValues: List[(Parameter, String)]): List[Component]
 
   // TODO
  // def layout(parameterValues: List[ParameterValue]): Layout[Component]
