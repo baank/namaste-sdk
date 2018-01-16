@@ -9,5 +9,3 @@ case class EventCard(event: Event,
             showSocial: Boolean,
             showMessaging: Boolean,
             value: String) extends Component
-
-

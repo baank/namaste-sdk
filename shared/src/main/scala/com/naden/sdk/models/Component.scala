@@ -7,7 +7,3 @@ import scala.collection.mutable
 trait Component {
 
 }
-
-object Component {
-	val allComponents: mutable.Map[String,Component] = mutable.Map.empty
-}

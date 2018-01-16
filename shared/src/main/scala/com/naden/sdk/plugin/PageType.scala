@@ -2,9 +2,10 @@ package com.naden.sdk.plugin
 
 import com.naden.sdk.models.{Layout, ParameterValue}
 
-import scala.collection.mutable
+import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
-trait PageType[T] extends Service {
+@EnableReflectiveInstantiation
+trait PageType extends Service {
 
   def detailLayout(parameterValues: List[ParameterValue]): Layout
 
@@ -12,8 +13,4 @@ trait PageType[T] extends Service {
 
   def linkedPanelTypes: Set[PanelType] = Set.empty
 
-}
-
-object PageType {
-	val allPageTypes: mutable.Map[String, PageType[_]] = mutable.Map.empty
 }

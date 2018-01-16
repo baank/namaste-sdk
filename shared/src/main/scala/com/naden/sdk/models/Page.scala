@@ -3,7 +3,7 @@ package com.naden.sdk.models
 import com.naden.sdk.plugin.PageType
 import com.naden.sdk.util.RandomUtils
 import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodec._
+import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class Page(createdBy: User,
@@ -17,5 +17,6 @@ case class Page(createdBy: User,
                 linkId: String = RandomUtils.id(),
                 parentPage: Option[Page] = None,
                 subPages: Option[List[Page]] = None)
-               // linkedPages: Map[String, List[Page]] = Map.empty)
+               // TODO
+			   // linkedPages: Map[String, List[Page]] = Map.empty)
     extends Object(createdBy)

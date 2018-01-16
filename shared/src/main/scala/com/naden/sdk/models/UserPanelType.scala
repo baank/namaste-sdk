@@ -1,10 +1,7 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.plugin.{PageType, PanelType}
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodec._
-import io.circe.{Decoder, Encoder}
-import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
+import com.naden.sdk.plugin.PanelType
+import com.naden.sdk.util.CirceCodecs
 
 case class UserPanelType(
     createdBy: User,
@@ -24,4 +21,7 @@ case class UserPanelType(
 
   override def onStartup(): Unit = {}
   override def onShutdown(): Unit = {}
+
+  override def onAppContextChange(newContext: Map[String, _]): Unit = {}
+  override def onUserConfigure(newParameterValues: List[ParameterValue]): Unit = {}
 }

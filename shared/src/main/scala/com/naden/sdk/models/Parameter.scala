@@ -1,12 +1,11 @@
 package com.naden.sdk.models
 
-import java.net.URI
 import java.time.LocalDateTime
 
 import io.circe.generic.JsonCodec
 import squants.Money
 
-import com.naden.sdk.util.CirceCodec._
+import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
 sealed trait DateTimeStyle
@@ -162,7 +161,7 @@ object Parameter {
                                 options: Seq[String] = Seq(),
                                 validators: List[ParameterValidator] = List()) extends Parameter
 
-  // TODO
+// TODO
 //  case class ListParameter[A](key: String,
 //                              title: String,
 //                              description: String,

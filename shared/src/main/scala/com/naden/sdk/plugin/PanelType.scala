@@ -1,10 +1,9 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.models.{Component, Layout, ParameterValue}
-import io.circe.{Decoder, Encoder}
+import com.naden.sdk.models.{Component, ParameterValue}
+import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
-import scala.collection.mutable
-
+@EnableReflectiveInstantiation
 trait PanelType extends Service {
 
   def scripts: List[String] = List.empty
@@ -22,8 +21,4 @@ trait PanelType extends Service {
 
   def allowUserRefresh: Boolean
 
-}
-
-object PanelType {
-  val allPanelTypes: mutable.Map[String,PanelType] = mutable.Map.empty
 }
