@@ -21,7 +21,7 @@ object Dependencies {
   val autowire      = "0.3.1" // https://github.com/lihaoyi/autowire
   val upickle       = "0.4.3" // http://www.lihaoyi.com/upickle-pprint/upickle/
   val cats          = "0.9.0" // https://github.com/typelevel/cats
-  val scalaJavaTime = "2.0.0-M12" // https://github.com/cquiroz/scala-java-time
+  val scalaJavaTime = "2.0.0-M12" // https://github.com/cquiroz/scala-org.threeten.bp
   val circeVersion  = "0.7.0" // https://circe.github.io/circe
 
   // Codegen only

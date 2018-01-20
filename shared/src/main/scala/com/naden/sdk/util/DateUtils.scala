@@ -1,7 +1,6 @@
 package com.naden.sdk.util
 
-import java.text.SimpleDateFormat
-import java.time._
+import org.threeten.bp._
 
 object DateUtils {
 	private[this] val isoFmt = format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
@@ -9,13 +8,10 @@ object DateUtils {
 	private[this] val niceDateFmt = format.DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy")
 	private[this] val niceTimeFmt = format.DateTimeFormatter.ofPattern("HH:mm:ss")
 
-	implicit def localDateOrdering: Ordering[LocalDate] = Ordering.fromLessThan(_ isBefore _)
-	implicit def localDateTimeOrdering: Ordering[LocalDateTime] = Ordering.fromLessThan(_ isBefore _)
-
-	def today = LocalDate.now()
-	def now = LocalDateTime.now()
+	def today = LocalDate.now
+	def now = LocalDateTime.now
 	def nowMillis = toMillis(now)
-	def currentTime = LocalTime.now()
+	def currentTime = LocalTime.now
 
 	def toMillis(ldt: LocalDateTime) = ldt.atZone(ZoneId.systemDefault).toInstant.toEpochMilli
 	def fromMillis(millis: Long) = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault).toLocalDateTime
@@ -27,13 +23,4 @@ object DateUtils {
 	def niceDate(d: LocalDate) = niceDateFmt.format(d)
 	def niceTime(t: LocalTime) = niceTimeFmt.format(t)
 	def niceDateTime(dt: LocalDateTime) = s"${niceDate(dt.toLocalDate)} ${niceTime(dt.toLocalTime)} UTC"
-
-	val dFmt = new SimpleDateFormat("yyyy-MM-dd")
-	def sqlDateFromString(s: String) = new java.sql.Date(dFmt.parse(s).getTime)
-
-	val tFmt = new SimpleDateFormat("hh:mm:ss")
-	def sqlTimeFromString(s: String) = new java.sql.Time(tFmt.parse(s).getTime)
-
-	val dtFmt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
-	def sqlDateTimeFromString(s: String) = new java.sql.Timestamp(dtFmt.parse(s).getTime)
 }

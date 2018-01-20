@@ -1,8 +1,8 @@
 package com.naden.sdk.models
 
-import java.time.LocalDateTime
-import io.circe.java8.time._
+import org.threeten.bp.LocalDateTime
 import io.circe.generic.JsonCodec
+import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class Invoice(createdBy: User,

@@ -1,7 +1,7 @@
 package com.naden.sdk.util
 
 import java.net.URI
-import java.time.LocalDateTime
+import org.threeten.bp.LocalDateTime
 import java.util.UUID
 
 import cats.syntax.either._
@@ -146,8 +146,8 @@ object CirceCodecs {
 
 	implicit val encodeLocalDateTime: Encoder[LocalDateTime] = Encoder.encodeLong.contramap[LocalDateTime](DateUtils.toMillis)
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
-	implicit val encodePageType: Encoder[PageType] = Encoder.encodeString.contramap[PageType](_.getClass.getCanonicalName)
-	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getCanonicalName)
+	implicit val encodePageType: Encoder[PageType] = Encoder.encodeString.contramap[PageType](_.getClass.getName)
+	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
 	implicit val encodeUuid: Encoder[UUID] = Encoder.encodeString.contramap[UUID](_.toString)
 

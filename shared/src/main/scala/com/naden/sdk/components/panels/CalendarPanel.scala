@@ -1,9 +1,8 @@
 package com.naden.sdk.components.panels
 
-import java.time.LocalDateTime
-
+import org.threeten.bp.LocalDateTime
+import com.naden.sdk.util.CirceCodecs._
 import com.naden.sdk.models.{Component, Event}
-import io.circe.java8.time._
 import io.circe.generic.JsonCodec
 
 @JsonCodec

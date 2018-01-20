@@ -1,6 +1,6 @@
 package com.naden.sdk.models
 
-import java.time.LocalDateTime
+import org.threeten.bp.LocalDateTime
 
 import io.circe.generic.JsonCodec
 import squants.Money
@@ -18,7 +18,13 @@ object DateTimeStyle {
 }
 
 @JsonCodec
-sealed trait Parameter
+sealed trait Parameter {
+  def key: String
+  def title: String
+  def description: String
+  def group: Option[String]
+  def required: Boolean
+}
 object Parameter {
 
   case class BooleanParameter(key: String,

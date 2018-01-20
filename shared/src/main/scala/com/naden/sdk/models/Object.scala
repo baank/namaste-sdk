@@ -1,10 +1,9 @@
 package com.naden.sdk.models
 
-import java.time.LocalDateTime
+import org.threeten.bp.LocalDateTime
 import java.util.UUID
 
 import io.circe.generic.JsonCodec
-import io.circe.java8.time._
 
 @JsonCodec
 sealed trait Status
@@ -16,7 +15,7 @@ object Status {
 abstract class Object(createdBy: User) {
 
   val guid: UUID = UUID.randomUUID()
-  val createTime: LocalDateTime = LocalDateTime.now()
+  val createTime: LocalDateTime = LocalDateTime.now
   val status = Status.Active
   val updateTime: LocalDateTime = createTime
   val updatedBy: User = createdBy
