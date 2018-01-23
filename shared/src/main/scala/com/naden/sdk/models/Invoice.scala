@@ -1,10 +1,8 @@
 package com.naden.sdk.models
 
 import org.threeten.bp.LocalDateTime
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodecs._
+import boopickle.Default._
 
-@JsonCodec
 case class Invoice(createdBy: User,
                    title: String,
                    description: String,
@@ -15,7 +13,6 @@ case class Invoice(createdBy: User,
                    dueTime: LocalDateTime)
     extends Object(createdBy)
 
-@JsonCodec
 sealed trait PaymentMethod
 object PaymentMethod {
   case object Mastercard extends PaymentMethod
@@ -29,7 +26,6 @@ object PaymentMethod {
   case object Cheque extends PaymentMethod
 }
 
-@JsonCodec
 sealed trait PaymentStatus
 object PaymentStatus {
   case object Overdue extends PaymentStatus
@@ -37,4 +33,9 @@ object PaymentStatus {
   case object Paid extends PaymentStatus
   case object OnHold extends PaymentStatus
   case object Cancelled extends PaymentStatus
+}
+
+
+object Invoice {
+	implicit val pickler: Pickler[Invoice] = generatePickler[Invoice]
 }

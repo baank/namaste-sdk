@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class User(createdBy: User,
                 firstName: String,
                 lastName: String,
@@ -12,3 +11,7 @@ case class User(createdBy: User,
                 groups: Set[Group],
                 thumbnail: Option[String])
     extends Object(createdBy)
+
+object User {
+	implicit val pickler: Pickler[User] = generatePickler[User]
+}

@@ -1,7 +1,12 @@
 package com.naden.sdk.components.cards
 
-import com.naden.sdk.models.{Component, Question}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.{Component, Question}
+
 case class QuestionCard(question: Question) extends Component
+
+
+object QuestionCard {
+	implicit val pickler: Pickler[QuestionCard] = generatePickler[QuestionCard]
+}

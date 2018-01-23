@@ -1,10 +1,10 @@
 package com.naden.sdk.components.elements
 
+import boopickle.Default._
+
 import com.naden.sdk.components.{Color, ColorAccent, IconSize}
 import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
 
-@JsonCodec
 case class ButtonElement(name: String,
             label: String,
             size: IconSize = IconSize.Default,
@@ -13,3 +13,8 @@ case class ButtonElement(name: String,
             labeled: Boolean = false,
             rounded: Boolean = false,
             floating: Boolean = false) extends Component
+
+
+object ButtonElement {
+	implicit val pickler: Pickler[ButtonElement] = generatePickler[ButtonElement]
+}

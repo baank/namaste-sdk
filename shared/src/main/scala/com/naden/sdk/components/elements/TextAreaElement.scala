@@ -1,11 +1,16 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class TextAreaElement(name: String,
             rows: Int,
             columns: Int,
             placeholder: String = "",
             value: String = "") extends Component
+
+
+object TextAreaElement {
+	implicit val pickler: Pickler[TextAreaElement] = generatePickler[TextAreaElement]
+}

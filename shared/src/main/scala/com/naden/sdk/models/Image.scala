@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Image(createdBy: User,
                  title: String,
                  description: String,
@@ -12,3 +11,8 @@ case class Image(createdBy: User,
                  height: Int,
                  mimeType: String)
     extends Object(createdBy)
+
+
+object Image {
+	implicit val pickler: Pickler[Image] = generatePickler[Image]
+}

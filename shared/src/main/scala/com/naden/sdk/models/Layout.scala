@@ -1,19 +1,15 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Layout(rows: List[Row])
 
-@JsonCodec
 case class Row(columns: List[Column])
 
-@JsonCodec
 case class Column(contents: List[PanelSlot],
                      width: ColumnWidth,
                      offset: ColumnOffset = ColumnOffset.None)
 
-@JsonCodec
 sealed trait ColumnOffset
 object ColumnOffset {
   case object None extends ColumnOffset
@@ -31,7 +27,6 @@ object ColumnOffset {
   case object Twelve extends ColumnOffset
 }
 
-@JsonCodec
 sealed trait ColumnWidth
 object ColumnWidth {
   case object One extends ColumnWidth
@@ -46,4 +41,10 @@ object ColumnWidth {
   case object Ten extends ColumnWidth
   case object Eleven extends ColumnWidth
   case object Twelve extends ColumnWidth
+}
+
+object Layout {
+  implicit val layoutPickler: Pickler[Layout] = generatePickler[Layout]
+  implicit val rowPickler: Pickler[Row] = generatePickler[Row]
+  implicit val columnPickler: Pickler[Column] = generatePickler[Column]
 }

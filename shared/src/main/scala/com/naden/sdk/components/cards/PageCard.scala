@@ -1,11 +1,16 @@
 package com.naden.sdk.components.cards
 
-import com.naden.sdk.models.{Component, Page}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.{Component, Page}
+
 case class PageCard(page: Page,
             showTitle: Boolean,
             showSocial: Boolean,
             showMessaging: Boolean,
             value: String) extends Component
+
+
+object PageCard {
+	implicit val pickler: Pickler[PageCard] = generatePickler[PageCard]
+}

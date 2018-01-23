@@ -1,12 +1,10 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class TabularData(columnTypes: List[DataType],
                        data: List[List[String]])
 
-@JsonCodec
 sealed trait DataType
 object DataType {
   case object Boolean extends DataType
@@ -15,4 +13,9 @@ object DataType {
   case object Password extends DataType
   case object Percentage extends DataType
   case object String extends DataType
+}
+
+
+object TabularData {
+	implicit val pickler: Pickler[TabularData] = generatePickler[TabularData]
 }

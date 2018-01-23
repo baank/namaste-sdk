@@ -1,7 +1,11 @@
 package com.naden.sdk.components.widgets
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class DonutStatsWidget(fixme: String) extends Component
+
+object DonutStatsWidget {
+	implicit val pickler: Pickler[DonutStatsWidget] = generatePickler[DonutStatsWidget]
+}

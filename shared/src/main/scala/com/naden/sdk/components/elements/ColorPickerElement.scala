@@ -1,9 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class ColorPickerElement(name: String,
                               label: String,
                               allowEmpty: Boolean = false,
@@ -19,3 +19,8 @@ case class ColorPickerElement(name: String,
                               hideAfterPaletteSelect: Boolean = false,
                               selectionPalette: List[String] = List.empty,
                               maxSelectionSize: Int = 3) extends Component
+
+
+object ColorPickerElement {
+	implicit val pickler: Pickler[ColorPickerElement] = generatePickler[ColorPickerElement]
+}

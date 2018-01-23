@@ -1,9 +1,14 @@
 package com.naden.sdk.components.lists
 
-import com.naden.sdk.models.{Comment, Component}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.{Comment, Component}
+
 case class CommentsList(title: String,
             icon: String,
             comments: List[Comment] = List.empty) extends Component
+
+
+object CommentsList {
+	implicit val pickler: Pickler[CommentsList] = generatePickler[CommentsList]
+}

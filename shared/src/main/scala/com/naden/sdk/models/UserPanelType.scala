@@ -1,7 +1,7 @@
 package com.naden.sdk.models
 
 import com.naden.sdk.plugin.PanelType
-import com.naden.sdk.util.CirceCodecs
+import boopickle.Default._
 
 case class UserPanelType(
     createdBy: User,
@@ -24,4 +24,9 @@ case class UserPanelType(
 
   override def onAppContextChange(newContext: Map[String, _]): Unit = {}
   override def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit = {}
+}
+
+
+object UserPanelType {
+	implicit val pickler: Pickler[UserPanelType] = generatePickler[UserPanelType]
 }

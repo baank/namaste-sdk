@@ -1,9 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class TextFieldElement(name: String,
             label: String,
             idealLength: Option[(Int, Int)] = None,
@@ -11,3 +11,8 @@ case class TextFieldElement(name: String,
             inputFormat: Option[String] = None,
             placeholder: String,
             value: String) extends Component
+
+
+object TextFieldElement {
+	implicit val pickler: Pickler[TextFieldElement] = generatePickler[TextFieldElement]
+}

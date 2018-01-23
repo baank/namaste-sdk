@@ -2,10 +2,8 @@ package com.naden.sdk.models
 
 import com.naden.sdk.plugin.PageType
 import com.naden.sdk.util.RandomUtils
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodecs._
+import boopickle.Default._
 
-@JsonCodec
 case class Page(createdBy: User,
                 title: String,
                 description: String,
@@ -19,3 +17,7 @@ case class Page(createdBy: User,
                 subPages: Option[List[Page]] = None,
                 linkedPages: List[(String, List[Page])] = List.empty)
     extends Object(createdBy)
+
+object Page {
+	implicit val pickler: Pickler[Page] = generatePickler[Page]
+}

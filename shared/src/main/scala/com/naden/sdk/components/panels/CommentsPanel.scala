@@ -1,10 +1,15 @@
 package com.naden.sdk.components.panels
 
-import com.naden.sdk.models.{Comment, Component, User}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.{Comment, Component, User}
+
 case class CommentsPanel(comments: List[Comment],
                     loggedInUser: User,
                     allowVoting: Boolean,
                     allowReplies: Boolean) extends Component
+
+
+object CommentsPanel {
+	implicit val pickler: Pickler[CommentsPanel] = generatePickler[CommentsPanel]
+}

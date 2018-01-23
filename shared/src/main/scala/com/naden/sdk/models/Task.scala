@@ -1,10 +1,8 @@
 package com.naden.sdk.models
 
 import org.threeten.bp.LocalDateTime
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodecs._
+import boopickle.Default._
 
-@JsonCodec
 case class Task(createdBy: User,
                 title: String,
                 description: String,
@@ -14,7 +12,6 @@ case class Task(createdBy: User,
                 assignedUsers: List[User])
     extends Object(createdBy)
 
-@JsonCodec
 sealed trait TaskPriority
 object TaskPriority {
   case object Highest extends TaskPriority
@@ -24,7 +21,6 @@ object TaskPriority {
   case object Lowest extends TaskPriority
 }
 
-@JsonCodec
 sealed trait TaskState
 object TaskState {
   case object Open extends TaskState
@@ -34,4 +30,9 @@ object TaskState {
   case object Invalid extends TaskState
   case object WontDo extends TaskState
   case object Closed extends TaskState
+}
+
+
+object Task {
+	implicit val pickler: Pickler[Task] = generatePickler[Task]
 }

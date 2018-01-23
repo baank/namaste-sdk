@@ -2,7 +2,6 @@ package com.naden.sdk.plugin
 
 import com.naden.sdk.models.Page
 import com.naden.sdk.util.ProgressObserver
-import io.circe.{Decoder, Encoder}
 
 trait PageImporter extends Service {
 
@@ -10,7 +9,4 @@ trait PageImporter extends Service {
 
   def requiredPageTypes[PT <: PageType]: List[PT]
 
-  def decoder: Decoder[PageImporter]
-
-  def encoder: Encoder[PageImporter]
 }

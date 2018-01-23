@@ -1,11 +1,16 @@
 package com.naden.sdk.components.cards
 
-import com.naden.sdk.models.{Component, Video}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.{Component, Video}
+
 case class VideoCard(video: Video,
             showTitle: Boolean,
             showDescription: Boolean,
             showPlayTime: Boolean,
             showDownload: Boolean) extends Component
+
+
+object VideoCard {
+	implicit val pickler: Pickler[VideoCard] = generatePickler[VideoCard]
+}

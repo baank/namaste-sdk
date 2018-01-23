@@ -1,7 +1,12 @@
 package com.naden.sdk.components.structure
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class AccordionStructure(fixme: String) extends Component
+
+
+object AccordionStructure {
+	implicit val pickler: Pickler[AccordionStructure] = generatePickler[AccordionStructure]
+}

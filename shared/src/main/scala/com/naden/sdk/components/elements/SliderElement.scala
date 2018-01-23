@@ -1,9 +1,9 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class SliderElement(name: String,
                           label: String,
                           style: SliderStyle,
@@ -22,9 +22,12 @@ case class SliderElement(name: String,
                           prettifySeperator: String = "",
                           decorateBoth: Boolean = false) extends Component
 
-@JsonCodec
 sealed trait SliderStyle
 object SliderStyle {
   case object Single extends SliderStyle
   case object Double extends SliderStyle
+}
+
+object SliderElement {
+	implicit val pickler: Pickler[SliderElement] = generatePickler[SliderElement]
 }

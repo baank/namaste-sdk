@@ -1,9 +1,9 @@
 package com.naden.sdk.components.maps
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class GoogleMap(name: String,
             zoom: Option[Int] = None,
             center: Option[(Double, Double)] = None,
@@ -28,12 +28,10 @@ case class GoogleMap(name: String,
             fullScreenPosition: Option[MapPosition] = None,
             markers: List[Marker] = List.empty) extends Component
 
-@JsonCodec
 case class Marker(position: (Double, Double),
                   draggable: Boolean = false,
                   dropAnimation: Boolean = false)
 
-@JsonCodec
 sealed trait MapType
 object MapType {
   case object Roadmap extends MapType
@@ -42,7 +40,6 @@ object MapType {
   case object Terrain extends MapType
 }
 
-@JsonCodec
 sealed trait MapPosition
 object MapPosition {
   case object TopLeft extends MapPosition
@@ -59,24 +56,26 @@ object MapPosition {
   case object BottomRight extends MapPosition
 }
 
-@JsonCodec
 sealed trait MapTypeControlSize
 object MapTypeControlSize {
   case object HorizontalBar extends MapTypeControlSize
   case object DropdownMenu extends MapTypeControlSize
 }
 
-@JsonCodec
 sealed trait MapDropAnimation
 object MapDropAnimation {
   case object Bounce extends MapDropAnimation
   case object Drop extends MapDropAnimation
 }
 
-@JsonCodec
 sealed trait MapLayer
 object MapLayer {
   case object Bike extends MapLayer
   case object Traffic extends MapLayer
   case object Transit extends MapLayer
+}
+
+object GoogleMap {
+  implicit val googleMapPickler: Pickler[GoogleMap] = generatePickler[GoogleMap]
+  implicit val markerPickler: Pickler[Marker] = generatePickler[Marker]
 }

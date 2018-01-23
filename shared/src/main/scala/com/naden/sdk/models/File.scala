@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class File(createdBy: User,
                 title: String,
                 description: String,
@@ -10,3 +9,8 @@ case class File(createdBy: User,
                 fileSize: Double,
                 mimeType: String)
     extends Object(createdBy)
+
+
+object File {
+	implicit val pickler: Pickler[File] = generatePickler[File]
+}

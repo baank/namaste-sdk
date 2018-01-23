@@ -1,11 +1,10 @@
 package com.naden.sdk.components.panels
 
-import org.threeten.bp.LocalDateTime
-import com.naden.sdk.util.CirceCodecs._
-import com.naden.sdk.models.{Component, Event}
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import org.threeten.bp.LocalDateTime
+import com.naden.sdk.models.{Component, Event}
+
 case class CalendarPanel(events: List[Event],
                     eventColors: List[(Event, String)],
                     leftActions: List[CalendarAction],
@@ -19,7 +18,6 @@ case class CalendarPanel(events: List[Event],
                     businessHours: Boolean,
                     eventLimit: Boolean) extends Component
 
-@JsonCodec
 sealed trait CalendarView
 object CalendarView {
   case object BasicDay extends CalendarView
@@ -33,7 +31,6 @@ object CalendarView {
   case object Month extends CalendarView
 }
 
-@JsonCodec
 sealed trait CalendarAction
 object CalendarAction {
   case object BasicDayView extends CalendarAction
@@ -49,4 +46,8 @@ object CalendarAction {
   case object Today extends CalendarAction
   case object Previous extends CalendarAction
   case object Next extends CalendarAction
+}
+
+object CalendarPanel {
+	implicit val pickler: Pickler[CalendarPanel] = generatePickler[CalendarPanel]
 }

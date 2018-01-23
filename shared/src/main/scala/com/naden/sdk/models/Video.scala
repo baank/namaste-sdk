@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Video(createdBy: User,
                  title: String,
                  description: String,
@@ -13,3 +12,8 @@ case class Video(createdBy: User,
                  playTime: Int,
                  mimeType: String)
     extends Object(createdBy)
+
+
+object Video {
+	implicit val pickler: Pickler[Video] = generatePickler[Video]
+}

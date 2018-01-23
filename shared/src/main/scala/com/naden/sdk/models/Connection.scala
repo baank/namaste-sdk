@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Connection(createdBy: User,
                       ip4Address: String,
                       ip6Address: String,
@@ -11,3 +10,7 @@ case class Connection(createdBy: User,
                       username: Option[String],
                       password: Option[String])
   extends Object(createdBy)
+
+object Connection {
+	implicit val pickler: Pickler[Connection] = generatePickler[Connection]
+}

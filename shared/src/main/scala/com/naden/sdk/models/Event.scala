@@ -1,10 +1,8 @@
 package com.naden.sdk.models
 
 import org.threeten.bp.LocalDateTime
-import com.naden.sdk.util.CirceCodecs._
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Event(createdBy: User,
                  title: String,
                  description: String,
@@ -13,3 +11,8 @@ case class Event(createdBy: User,
                  endTime: LocalDateTime,
                  attendingUsers: List[User])
     extends Object(createdBy)
+
+
+object Event {
+	implicit val pickler: Pickler[Event] = generatePickler[Event]
+}

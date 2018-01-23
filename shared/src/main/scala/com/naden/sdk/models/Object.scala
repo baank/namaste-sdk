@@ -2,10 +2,8 @@ package com.naden.sdk.models
 
 import org.threeten.bp.LocalDateTime
 import java.util.UUID
+import boopickle.Default._
 
-import io.circe.generic.JsonCodec
-
-@JsonCodec
 sealed trait Status
 object Status {
   case object Active extends Status

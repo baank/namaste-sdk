@@ -1,7 +1,12 @@
 package com.naden.sdk.components.panels
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class TimerPanel(fixme: String) extends Component
+
+
+object TimerPanel {
+	implicit val pickler: Pickler[TimerPanel] = generatePickler[TimerPanel]
+}

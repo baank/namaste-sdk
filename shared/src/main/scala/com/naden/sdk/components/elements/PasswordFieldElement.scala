@@ -1,7 +1,12 @@
 package com.naden.sdk.components.elements
 
-import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
+import com.naden.sdk.models.Component
+
 case class PasswordFieldElement(name: String) extends Component
+
+
+object PasswordFieldElement {
+	implicit val pickler: Pickler[PasswordFieldElement] = generatePickler[PasswordFieldElement]
+}

@@ -1,10 +1,8 @@
 package com.naden.sdk.models
 
 import com.naden.sdk.plugin.{PageType, PanelType}
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodecs._
+import boopickle.Default._
 
-@JsonCodec
 case class UserPageType(
     createdBy: User,
     title: String,
@@ -24,4 +22,8 @@ case class UserPageType(
 
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
 	override def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit = {}
+}
+
+object UserPageType {
+	implicit val pickler: Pickler[UserPageType] = generatePickler[UserPageType]
 }

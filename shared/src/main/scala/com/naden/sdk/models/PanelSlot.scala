@@ -1,10 +1,13 @@
 package com.naden.sdk.models
 
 import com.naden.sdk.plugin.PanelType
-import io.circe.generic.JsonCodec
-import com.naden.sdk.util.CirceCodecs._
+import boopickle.Default._
 
-@JsonCodec
 case class PanelSlot(createdBy: User,
                      panelType: PanelType,
                      minHeight: Int) extends Object(createdBy) {}
+
+
+object PanelSlot {
+	implicit val pickler: Pickler[PanelSlot] = generatePickler[PanelSlot]
+}

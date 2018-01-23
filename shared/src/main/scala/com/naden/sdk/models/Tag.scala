@@ -1,8 +1,12 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 case class Tag(createdBy: User,
                title: String)
     extends Object(createdBy)
+
+
+object Tag {
+	implicit val pickler: Pickler[Tag] = generatePickler[Tag]
+}

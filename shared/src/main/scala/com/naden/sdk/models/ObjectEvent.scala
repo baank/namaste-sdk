@@ -1,8 +1,7 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import boopickle.Default._
 
-@JsonCodec
 sealed trait ObjectEvent
 object ObjectEvent {
 	case object Created extends ObjectEvent

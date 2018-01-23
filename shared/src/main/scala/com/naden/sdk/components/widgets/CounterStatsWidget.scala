@@ -1,10 +1,10 @@
 package com.naden.sdk.components.widgets
 
+import boopickle.Default._
+
 import com.naden.sdk.components._
 import com.naden.sdk.models.Component
-import io.circe.generic.JsonCodec
 
-@JsonCodec
 case class CounterStatsWidget(value: String,
             valueName: String,
             icon: String,
@@ -13,3 +13,8 @@ case class CounterStatsWidget(value: String,
             colorAccent: ColorAccent = ColorAccent.Default,
             coloredBackground: Boolean = false,
             relatedValues: List[Value]) extends Component
+
+
+object CounterStatsWidget {
+	implicit val pickler: Pickler[CounterStatsWidget] = generatePickler[CounterStatsWidget]
+}

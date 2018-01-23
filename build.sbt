@@ -1,7 +1,6 @@
 import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonSettings = Seq(
-  name := "naden-sdk",
   version := "1.0",
   scalaVersion := "2.12.4",
   organization := "com.naden",
@@ -10,8 +9,7 @@ lazy val commonSettings = Seq(
   //addCompilerPlugin("io.tryp" % "splain" % "0.2.7" cross CrossVersion.patch),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
   scalacOptions ++= Seq("-deprecation"),
-  javacOptions ++= Seq(
-  )
+  javacOptions ++= Seq()
 )
 
 lazy val root = project.in(file(".")).
@@ -23,17 +21,14 @@ lazy val root = project.in(file(".")).
   ).
   enablePlugins(SbtOsgi)
 
-lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
-  settings(commonSettings).
+lazy val shared = crossProject(JSPlatform, JVMPlatform).in(file(".")).
   settings(
+    commonSettings,
     libraryDependencies ++= Seq(
-      "org.typelevel"           %%% "squants"               % "1.3.0",
-      "com.github.marklister"   %%% "base64"                % "0.2.4",
-      "io.circe"                %%% "circe-core"            % "0.9.0",
-      "io.circe"                %%% "circe-generic"         % "0.9.0",
-      "io.circe"                %%% "circe-generic-extras"  % "0.9.0",
-      "io.circe"                %%% "circe-parser"          % "0.9.0",
-      "io.github.cquiroz"       %%% "scala-java-time"       % "2.0.0-M12"
+      "org.typelevel"                       %%% "squants"               % "1.3.0",
+      "com.github.marklister"               %%% "base64"                % "0.2.4",
+      "io.suzaku"                           %%% "boopickle"             % "1.2.6",
+      "io.github.cquiroz"                   %%% "scala-java-time"       % "2.0.0-M12"
     )
   ).
   jvmSettings(
@@ -53,5 +48,5 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
     libraryDependencies ++= Seq()
   )
 
-lazy val jvm = naden.jvm
-lazy val js = naden.js
+lazy val jvm = shared.jvm
+lazy val js = shared.js
