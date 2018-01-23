@@ -2,6 +2,7 @@ package com.naden.sdk.models
 
 import org.threeten.bp.LocalDateTime
 import boopickle.Default._
+import com.naden.sdk.util.BoopickleCodecs._
 
 case class Invoice(createdBy: User,
                    title: String,

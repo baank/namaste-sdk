@@ -8,11 +8,12 @@ import com.naden.sdk.components.maps._
 import com.naden.sdk.components.panels._
 import com.naden.sdk.components.structure._
 import com.naden.sdk.components.widgets._
+import com.naden.sdk.util.BoopickleCodecs._
 
 trait Component {}
 
 object Component {
-	implicit val components: Pickler[Component] = compositePickler[Component].
+	implicit val pickler: Pickler[Component] = compositePickler[Component].
 		addConcreteType[EventCard].
 		addConcreteType[ImageCard].
 		addConcreteType[InvoiceCard].

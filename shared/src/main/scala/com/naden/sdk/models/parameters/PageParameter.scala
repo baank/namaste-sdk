@@ -1,8 +1,9 @@
 package com.naden.sdk.models.parameters
 
 import boopickle.Default._
-
 import com.naden.sdk.models.{Page, Parameter, ParameterValidator}
+import com.naden.sdk.util.BoopickleCodecs._
+import com.naden.sdk.models.Page._
 
 case class PageParameter(key: String,
                          title: String,

@@ -1,7 +1,9 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.plugin.PanelType
 import boopickle.Default._
+import com.naden.sdk.models.Component._
+import com.naden.sdk.plugin.PanelType
+import com.naden.sdk.util.BoopickleCodecs._
 
 case class UserPanelType(
     createdBy: User,

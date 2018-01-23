@@ -1,7 +1,9 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.plugin.{PageType, PanelType}
 import boopickle.Default._
+import com.naden.sdk.plugin.{PageType, PanelType}
+import com.naden.sdk.util.BoopickleCodecs._
+import com.naden.sdk.models.Parameter._
 
 case class UserPageType(
     createdBy: User,

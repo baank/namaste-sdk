@@ -1,7 +1,8 @@
 package com.naden.sdk.models
 
-import org.threeten.bp.LocalDateTime
 import boopickle.Default._
+import org.threeten.bp.LocalDateTime
+import com.naden.sdk.util.BoopickleCodecs._
 
 case class Event(createdBy: User,
                  title: String,

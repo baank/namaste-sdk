@@ -1,6 +1,7 @@
 package com.naden.sdk.models
 
 import boopickle.Default._
+import com.naden.sdk.util.BoopickleCodecs._
 
 case class Layout(rows: List[Row])
 
@@ -44,7 +45,7 @@ object ColumnWidth {
 }
 
 object Layout {
-  implicit val layoutPickler: Pickler[Layout] = generatePickler[Layout]
-  implicit val rowPickler: Pickler[Row] = generatePickler[Row]
   implicit val columnPickler: Pickler[Column] = generatePickler[Column]
+  implicit val rowPickler: Pickler[Row] = generatePickler[Row]
+  implicit val layoutPickler: Pickler[Layout] = generatePickler[Layout]
 }

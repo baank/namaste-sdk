@@ -2,6 +2,7 @@ package com.naden.sdk.models
 
 import boopickle.Default._
 import com.naden.sdk.models.parameters._
+import com.naden.sdk.util.BoopickleCodecs._
 
 trait Parameter {
   def key: String

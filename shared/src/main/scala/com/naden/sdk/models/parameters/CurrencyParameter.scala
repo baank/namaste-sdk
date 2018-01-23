@@ -1,8 +1,8 @@
 package com.naden.sdk.models.parameters
 
 import boopickle.Default._
-
 import com.naden.sdk.models.{Parameter, ParameterValidator}
+import com.naden.sdk.util.BoopickleCodecs._
 import squants.Money
 
 case class CurrencyParameter(key: String,

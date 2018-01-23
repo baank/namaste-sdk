@@ -1,9 +1,9 @@
 package com.naden.sdk.components.panels
 
 import boopickle.Default._
-
 import org.threeten.bp.LocalDateTime
 import com.naden.sdk.models.{Component, Event}
+import com.naden.sdk.util.BoopickleCodecs._
 
 case class CalendarPanel(events: List[Event],
                     eventColors: List[(Event, String)],
