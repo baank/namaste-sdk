@@ -12,4 +12,4 @@ case class Event(createdBy: User,
                  startTime: LocalDateTime,
                  endTime: LocalDateTime,
                  attendingUsers: List[User])
-    extends Object(createdBy)
+    extends Entity

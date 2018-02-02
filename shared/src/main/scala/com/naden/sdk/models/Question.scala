@@ -8,4 +8,4 @@ case class Question(createdBy: User,
                     category: String,
                     body: String,
                     votes: Int)
-    extends Object(createdBy)
+    extends Entity

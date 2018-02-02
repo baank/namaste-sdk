@@ -10,4 +10,4 @@ case class Panel(createdBy: User,
                  description: String,
                  panelType: PanelType,
                  parameterValues: List[(Parameter, String)])
-    extends Object(createdBy) {}
+    extends Entity {}

@@ -10,4 +10,4 @@ case class Connection(createdBy: User,
                       requireSSL: Boolean,
                       username: Option[String],
                       password: Option[String])
-  extends Object(createdBy)
+  extends Entity

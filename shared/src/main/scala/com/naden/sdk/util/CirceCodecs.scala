@@ -24,7 +24,7 @@ object CirceCodecs {
 
 	implicit def decodeComponent: Decoder[Component] = Decoder.instance[Component] { c =>
 		val content = c.downField("component").success.get
-		c.downField("name").as[String].getOrElse(throw new Exception("Component type not found")).toLowerCase match {
+		c.downField("type").as[String].getOrElse(throw new Exception("Component type not found")).toLowerCase match {
 			case "eventcard" => deriveDecoder[EventCard].apply(content)
 			case "imagecard" => deriveDecoder[ImageCard].apply(content)
 			case "invoicecard" => deriveDecoder[InvoiceCard].apply(content)
@@ -80,7 +80,8 @@ object CirceCodecs {
 
 	implicit def encodeComponent: Encoder[Component] = Encoder.instance[Component] { component =>
 
-		val json = component.getClass.getName match {
+		val componentType = component.getClass.getSimpleName.toLowerCase
+		val json = componentType match {
 
 			case "eventcard" => deriveEncoder[EventCard].apply(component.asInstanceOf[EventCard])
 			case "imagecard" => deriveEncoder[ImageCard].apply(component.asInstanceOf[ImageCard])
@@ -134,7 +135,7 @@ object CirceCodecs {
 			case "timerwidget" => deriveEncoder[TimerWidget].apply(component.asInstanceOf[TimerWidget])
 		}
 
-		Json.obj("type" -> component.getClass.getName.asJson, "component" -> json)
+		Json.obj("type" -> componentType.asJson, "component" -> json)
 	}
 
 	implicit val decodeLocalDateTime: Decoder[LocalDateTime] = Decoder.decodeLong.emap { long => Either.catchNonFatal(DateUtils.fromMillis(long)).leftMap(_ => "Malformed Money")}
@@ -150,14 +151,4 @@ object CirceCodecs {
 	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
 	implicit val encodeUuid: Encoder[UUID] = Encoder.encodeString.contramap[UUID](_.toString)
-
-
-	// TODO
-	//	implicit def decodeParameterList[A](implicit ev: deriveDecoder[A]): deriveDecoder[ListParameter[A]] =
-	//		derivederiveDecoder[ListParameter[A]]
-
-
-	// TODO
-	//	implicit def encodeParameterList[A](implicit ev: deriveEncoder[[A]): deriveEncoder[[ListParameter[A]] =
-	//		derivederiveEncoder[[ListParameter[A]]
 }

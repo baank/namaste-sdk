@@ -6,4 +6,4 @@ case class ServiceInstance[T <: Service](createdBy: User,
                                          names: String,
                                          service: T,
                                          parameterValues: List[(Parameter, String)])
-    extends Object(createdBy)
+    extends Entity

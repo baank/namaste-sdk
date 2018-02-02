@@ -18,4 +18,4 @@ case class Page(createdBy: User,
                 parentPage: Option[Page] = None,
                 subPages: Option[List[Page]] = None,
                 linkedPages: List[(String, List[Page])] = List.empty)
-    extends Object(createdBy)
+    extends Entity

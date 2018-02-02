@@ -12,7 +12,7 @@ case class Task(createdBy: User,
                 state: TaskState,
                 dueTime: LocalDateTime,
                 assignedUsers: List[User])
-    extends Object(createdBy)
+    extends Entity
 
 @JsonCodec
 sealed trait TaskPriority

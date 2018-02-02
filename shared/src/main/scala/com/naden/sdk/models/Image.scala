@@ -11,4 +11,4 @@ case class Image(createdBy: User,
                  width: Int,
                  height: Int,
                  mimeType: String)
-    extends Object(createdBy)
+    extends Entity

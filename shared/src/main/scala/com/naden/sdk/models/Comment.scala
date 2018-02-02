@@ -11,4 +11,6 @@ case class Comment(createdBy: User,
                    votes: Int,
                    parent: UUID,
                    children: List[UUID])
-    extends Object(createdBy)
+    extends Entity
+
+

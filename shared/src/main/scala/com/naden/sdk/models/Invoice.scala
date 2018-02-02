@@ -13,7 +13,7 @@ case class Invoice(createdBy: User,
                    paymentStatus: PaymentStatus,
                    paymentMethod: PaymentMethod,
                    dueTime: LocalDateTime)
-    extends Object(createdBy)
+    extends Entity
 
 @JsonCodec
 sealed trait PaymentMethod

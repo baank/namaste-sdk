@@ -12,4 +12,4 @@ case class Video(createdBy: User,
                  height: Int,
                  playTime: Int,
                  mimeType: String)
-    extends Object(createdBy)
+    extends Entity

@@ -9,4 +9,4 @@ case class File(createdBy: User,
                 fileName: String,
                 fileSize: Double,
                 mimeType: String)
-    extends Object(createdBy)
+    extends Entity

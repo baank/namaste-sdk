@@ -11,4 +11,4 @@ case class User(createdBy: User,
                 title: Option[String],
                 groups: Set[Group],
                 thumbnail: Option[String])
-    extends Object(createdBy)
+    extends Entity
