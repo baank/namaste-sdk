@@ -46,8 +46,7 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
       "com.squareup.okhttp3" % "okhttp" % "3.9.1",
       "com.squareup.okhttp3" % "logging-interceptor" % "3.9.1",
       "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.9.2",
-      "org.scala-js" %% "scalajs-stubs" % "0.6.21" % "provided",
-      "com.chuusai" %% "shapeless" % "2.3.3"
+      "org.scala-js" %% "scalajs-stubs" % "0.6.21" % "provided"
     )
   ).
   jsSettings(
