@@ -3,7 +3,7 @@ package com.naden.sdk.models
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Connection(createdBy: User,
+case class Connection(createdBy: Option[User],
                       ip4Address: String,
                       ip6Address: String,
                       port: Int,

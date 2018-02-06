@@ -3,7 +3,7 @@ package com.naden.sdk.models
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Image(createdBy: User,
+case class Image(createdBy: Option[User],
                  title: String,
                  description: String,
                  fileName: String,

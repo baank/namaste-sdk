@@ -3,6 +3,6 @@ package com.naden.sdk.models
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Tag(createdBy: User,
+case class Tag(createdBy: Option[User],
                title: String)
     extends Entity

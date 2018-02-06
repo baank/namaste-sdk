@@ -3,7 +3,7 @@ package com.naden.sdk.models
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class User(createdBy: User,
+case class User(createdBy: Option[User],
                 firstName: String,
                 lastName: String,
                 preferredName: Option[String],

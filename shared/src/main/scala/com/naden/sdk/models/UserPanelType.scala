@@ -4,7 +4,7 @@ import com.naden.sdk.plugin.PanelType
 import com.naden.sdk.util.CirceCodecs
 
 case class UserPanelType(
-    createdBy: User,
+    createdBy: Option[User],
     title: String,
     description: String,
     layout: List[Component],

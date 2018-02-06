@@ -5,7 +5,7 @@ import com.naden.sdk.util.CirceCodecs._
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Event(createdBy: User,
+case class Event(createdBy: Option[User],
                  title: String,
                  description: String,
                  tags: List[String],

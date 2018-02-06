@@ -14,13 +14,13 @@ object Status {
 
 abstract class Entity {
 
-  val createdBy: User
+  val createdBy: Option[User]
 
   val guid: UUID = UUID.randomUUID()
   val createTime: LocalDateTime = LocalDateTime.now
   val status: Status = Status.Active
   val updateTime: LocalDateTime = createTime
-  val updatedBy: User = createdBy
+  val updatedBy: Option[User] = createdBy
   val version = 0L
   val icon = "Default.png"
   val relationships: Map[String, UUID] = Map()

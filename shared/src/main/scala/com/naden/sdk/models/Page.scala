@@ -6,7 +6,7 @@ import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Page(createdBy: User,
+case class Page(createdBy: Option[User],
                 title: String,
                 description: String,
                 tags: Set[String],

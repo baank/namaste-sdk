@@ -5,6 +5,6 @@ import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class PanelSlot(createdBy: User,
+case class PanelSlot(createdBy: Option[User],
                      panelType: PanelType,
                      minHeight: Int) extends Entity {}

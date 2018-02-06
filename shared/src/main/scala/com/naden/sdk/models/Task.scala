@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Task(createdBy: User,
+case class Task(createdBy: Option[User],
                 title: String,
                 description: String,
                 priority: TaskPriority,
