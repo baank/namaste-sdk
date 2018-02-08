@@ -1,9 +1,9 @@
 package com.naden.sdk.models
 
-import org.threeten.bp.LocalDateTime
+import java.time.Instant
 import java.util.UUID
-
 import io.circe.generic.JsonCodec
+import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
 sealed trait Status
@@ -13,13 +13,11 @@ object Status {
 }
 
 abstract class Entity {
-
   val createdBy: Option[User]
-
-  val guid: UUID = UUID.randomUUID()
-  val createTime: LocalDateTime = LocalDateTime.now
+  val guid: Option[String] = None
+  val createTime: Instant =  Instant.now
   val status: Status = Status.Active
-  val updateTime: LocalDateTime = createTime
+  val updateTime: Instant = createTime
   val updatedBy: Option[User] = createdBy
   val version = 0L
   val icon = "Default.png"

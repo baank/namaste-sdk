@@ -1,6 +1,7 @@
 package com.naden.sdk.components.panels
 
-import org.threeten.bp.LocalDateTime
+import java.time.Instant
+
 import com.naden.sdk.util.CirceCodecs._
 import com.naden.sdk.models.{Component, Event}
 import io.circe.generic.JsonCodec
@@ -12,7 +13,7 @@ case class CalendarPanel(events: List[Event],
                     centerActions: List[CalendarAction],
                     rightActions: List[CalendarAction],
                     defaultView: CalendarView,
-                    defaultTime: LocalDateTime,
+                    defaultTime: Instant,
                     viewLabels: List[(CalendarView, String)],
                     navigationLinks: Boolean,
                     editable: Boolean,

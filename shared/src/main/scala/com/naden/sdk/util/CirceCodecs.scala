@@ -1,8 +1,8 @@
 package com.naden.sdk.util
 
 import java.net.URI
-import org.threeten.bp.LocalDateTime
-import java.util.UUID
+import java.time.Instant
+import java.util.{Date, UUID}
 
 import cats.syntax.either._
 import com.naden.sdk.components.cards._
@@ -138,14 +138,14 @@ object CirceCodecs {
 		Json.obj("type" -> componentType.asJson, "component" -> json)
 	}
 
-	implicit val decodeLocalDateTime: Decoder[LocalDateTime] = Decoder.decodeLong.emap { long => Either.catchNonFatal(DateUtils.fromMillis(long)).leftMap(_ => "Malformed Money")}
+	implicit val decodeInstant: Decoder[Instant] = Decoder.decodeLong.emap { long => Either.catchNonFatal(Instant.ofEpochMilli(long)).leftMap(_ => "Malformed Money")}
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money")}
 	implicit val decodePageType: Decoder[PageType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PageType](str)).leftMap(_ => "Malformed Page Type")}
 	implicit val decodePanelType: Decoder[PanelType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PanelType](str)).leftMap(_ => "Malformed Panel Type") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 	implicit val decodeUuid: Decoder[UUID] = Decoder.decodeString.emap { str => Either.catchNonFatal(UUID.fromString(str)).leftMap(_ => "Malformed UUID")}
 
-	implicit val encodeLocalDateTime: Encoder[LocalDateTime] = Encoder.encodeLong.contramap[LocalDateTime](DateUtils.toMillis)
+	implicit val encodeInstant: Encoder[Instant] = Encoder.encodeLong.contramap[Instant](_.toEpochMilli)
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
 	implicit val encodePageType: Encoder[PageType] = Encoder.encodeString.contramap[PageType](_.getClass.getName)
 	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getName)

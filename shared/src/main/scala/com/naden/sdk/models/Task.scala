@@ -1,6 +1,6 @@
 package com.naden.sdk.models
 
-import org.threeten.bp.LocalDateTime
+import java.time.Instant
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 
@@ -10,7 +10,7 @@ case class Task(createdBy: Option[User],
                 description: String,
                 priority: TaskPriority,
                 state: TaskState,
-                dueTime: LocalDateTime,
+                dueTime: Instant,
                 assignedUsers: List[User])
     extends Entity
 

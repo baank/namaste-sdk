@@ -1,6 +1,6 @@
 package com.naden.sdk.models
 
-import org.threeten.bp.LocalDateTime
+import java.time.Instant
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 
@@ -12,7 +12,7 @@ case class Invoice(createdBy: Option[User],
                    recipient: String,
                    paymentStatus: PaymentStatus,
                    paymentMethod: PaymentMethod,
-                   dueTime: LocalDateTime)
+                   dueTime: Instant)
     extends Entity
 
 @JsonCodec

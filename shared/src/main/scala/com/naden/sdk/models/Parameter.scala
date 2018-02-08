@@ -1,6 +1,6 @@
 package com.naden.sdk.models
 
-import org.threeten.bp.LocalDateTime
+import java.time.Instant
 
 import io.circe.generic.JsonCodec
 import squants.Money
@@ -65,9 +65,9 @@ object Parameter {
                                title: String,
                                description: String,
                                group: Option[String],
-                               default: Option[LocalDateTime] = None,
+                               default: Option[Instant] = None,
                                required: Boolean,
-                               dateOptions: Seq[LocalDateTime] = Seq(),
+                               dateOptions: Seq[Instant] = Seq(),
                                dateStyle: DateTimeStyle = DateTimeStyle.Short,
                                timeStyle: DateTimeStyle = DateTimeStyle.Short,
                                validators: List[ParameterValidator] = List()) extends Parameter

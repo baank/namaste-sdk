@@ -32,8 +32,8 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
       "io.circe"                %%% "circe-core"            % "0.9.0",
       "io.circe"                %%% "circe-generic"         % "0.9.0",
       "io.circe"                %%% "circe-generic-extras"  % "0.9.0",
-      "io.circe"                %%% "circe-parser"          % "0.9.0",
-      "io.github.cquiroz"       %%% "scala-java-time"       % "2.0.0-M12"
+      "io.circe"                %%% "circe-parser"          % "0.9.0"
+      //"io.github.cquiroz"       %%% "scala-java-time"       % "2.0.0-M12"
     )
   ).
   jvmSettings(
@@ -42,15 +42,13 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
       "org.osgi" % "org.osgi.core" % "6.0.0",
       "commons-codec" % "commons-codec" % "1.11",
       "javax.inject" % "javax.inject" % "1",
-      "org.apache.httpcomponents" % "httpcore" % "4.4.8",
-      "com.squareup.okhttp3" % "okhttp" % "3.9.1",
-      "com.squareup.okhttp3" % "logging-interceptor" % "3.9.1",
-      "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.9.2",
       "org.scala-js" %% "scalajs-stubs" % "0.6.21" % "provided"
     )
   ).
   jsSettings(
-    libraryDependencies ++= Seq()
+    libraryDependencies ++= Seq(
+      "org.scala-js"            %%% "scalajs-java-time"     % "0.2.3"
+    )
   )
 
 lazy val jvm = naden.jvm
