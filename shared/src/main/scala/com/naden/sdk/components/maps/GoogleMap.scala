@@ -2,6 +2,7 @@ package com.naden.sdk.components.maps
 
 import com.naden.sdk.models.Component
 import io.circe.generic.JsonCodec
+import enumeratum._
 
 @JsonCodec
 case class GoogleMap(name: String,
@@ -33,18 +34,17 @@ case class Marker(position: (Double, Double),
                   draggable: Boolean = false,
                   dropAnimation: Boolean = false)
 
-@JsonCodec
-sealed trait MapType
-object MapType {
+sealed trait MapType extends EnumEntry
+case object MapType extends Enum[MapType] with CirceEnum[MapType] {
   case object Roadmap extends MapType
   case object Satellite extends MapType
   case object Hybrid extends MapType
   case object Terrain extends MapType
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait MapPosition
-object MapPosition {
+sealed trait MapPosition extends EnumEntry
+case object MapPosition extends Enum[MapPosition] with CirceEnum[MapPosition] {
   case object TopLeft extends MapPosition
   case object TopCenter extends MapPosition
   case object TopRight extends MapPosition
@@ -57,26 +57,27 @@ object MapPosition {
   case object BottomLeft extends MapPosition
   case object BottomCenter extends MapPosition
   case object BottomRight extends MapPosition
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait MapTypeControlSize
-object MapTypeControlSize {
+sealed trait MapTypeControlSize extends EnumEntry
+case object MapTypeControlSize extends Enum[MapTypeControlSize] with CirceEnum[MapTypeControlSize] {
   case object HorizontalBar extends MapTypeControlSize
   case object DropdownMenu extends MapTypeControlSize
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait MapDropAnimation
-object MapDropAnimation {
+sealed trait MapDropAnimation extends EnumEntry
+case object MapDropAnimation extends Enum[MapDropAnimation] with CirceEnum[MapDropAnimation] {
   case object Bounce extends MapDropAnimation
   case object Drop extends MapDropAnimation
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait MapLayer
-object MapLayer {
+sealed trait MapLayer extends EnumEntry
+case object MapLayer extends Enum[MapLayer] with CirceEnum[MapLayer] {
   case object Bike extends MapLayer
   case object Traffic extends MapLayer
   case object Transit extends MapLayer
+  val values = findValues
 }

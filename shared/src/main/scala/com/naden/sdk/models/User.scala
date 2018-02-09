@@ -11,4 +11,4 @@ case class User(createdBy: Option[User],
                 title: Option[String],
                 groups: Set[Group],
                 thumbnail: Option[String])
-    extends Entity
+    extends Entity with Serializable

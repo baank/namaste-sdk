@@ -1,9 +1,9 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import enumeratum._
 
-@JsonCodec
-sealed trait ParameterValidator
-object ParameterValidator {
-  case object MinimumCharactersValidator extends ParameterValidator
+sealed trait ParameterValidator extends EnumEntry
+case object ParameterValidator extends Enum[ParameterValidator] with CirceEnum[ParameterValidator] {
+  case object MinimumCharactersValidator extends ParameterValidator with Serializable
+  val values = findValues
 }

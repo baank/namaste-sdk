@@ -1,11 +1,11 @@
 package com.naden.sdk.models
 
-import io.circe.generic.JsonCodec
+import enumeratum._
 
-@JsonCodec
-sealed trait EntityEvent
-object EntityEvent {
+sealed trait EntityEvent extends EnumEntry
+case object EntityEvent extends Enum[EntityEvent] with CirceEnum[EntityEvent] {
 	case object Created extends EntityEvent
 	case object Updated extends EntityEvent
 	case object Deleted extends EntityEvent
+	val values = findValues
 }

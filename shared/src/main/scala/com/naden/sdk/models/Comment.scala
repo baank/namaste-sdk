@@ -11,6 +11,4 @@ case class Comment(createdBy: Option[User],
                    votes: Int,
                    parent: UUID,
                    children: List[UUID])
-    extends Entity
-
-
+    extends Entity with Serializable

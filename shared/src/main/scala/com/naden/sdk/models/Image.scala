@@ -11,4 +11,4 @@ case class Image(createdBy: Option[User],
                  width: Int,
                  height: Int,
                  mimeType: String)
-    extends Entity
+    extends Entity with Serializable

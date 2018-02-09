@@ -2,6 +2,7 @@ package com.naden.sdk.components.elements
 
 import com.naden.sdk.models.Component
 import io.circe.generic.JsonCodec
+import enumeratum._
 
 @JsonCodec
 case class SliderElement(name: String,
@@ -22,9 +23,9 @@ case class SliderElement(name: String,
                           prettifySeperator: String = "",
                           decorateBoth: Boolean = false) extends Component
 
-@JsonCodec
-sealed trait SliderStyle
-object SliderStyle {
+sealed trait SliderStyle extends EnumEntry
+case object SliderStyle extends Enum[SliderStyle] with CirceEnum[SliderStyle] {
   case object Single extends SliderStyle
   case object Double extends SliderStyle
+  val values = findValues
 }

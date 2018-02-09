@@ -8,4 +8,4 @@ case class Question(createdBy: Option[User],
                     category: String,
                     body: String,
                     votes: Int)
-    extends Entity
+    extends Entity with Serializable

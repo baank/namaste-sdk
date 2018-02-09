@@ -32,8 +32,8 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
       "io.circe"                %%% "circe-core"            % "0.9.0",
       "io.circe"                %%% "circe-generic"         % "0.9.0",
       "io.circe"                %%% "circe-generic-extras"  % "0.9.0",
-      "io.circe"                %%% "circe-parser"          % "0.9.0"
-      //"io.github.cquiroz"       %%% "scala-java-time"       % "2.0.0-M12"
+      "io.circe"                %%% "circe-parser"          % "0.9.0",
+      "com.beachape"            %%% "enumeratum-circe"      % "1.5.15"
     )
   ).
   jvmSettings(

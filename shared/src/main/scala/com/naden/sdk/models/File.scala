@@ -9,4 +9,4 @@ case class File(createdBy: Option[User],
                 fileName: String,
                 fileSize: Double,
                 mimeType: String)
-    extends Entity
+    extends Entity with Serializable

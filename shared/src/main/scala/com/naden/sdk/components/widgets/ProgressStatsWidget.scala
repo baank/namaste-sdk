@@ -3,6 +3,7 @@ package com.naden.sdk.components.widgets
 import com.naden.sdk.components._
 import com.naden.sdk.models.Component
 import io.circe.generic.JsonCodec
+import enumeratum._
 
 @JsonCodec
 case class ProgressStatsWidget(title: String,
@@ -15,11 +16,11 @@ case class ProgressStatsWidget(title: String,
             coloredBackground: Boolean,
             relatedValues: List[Value]) extends Component
 
-@JsonCodec
-sealed trait ProgressStyle
-object ProgressStyle {
+sealed trait ProgressStyle extends EnumEntry
+case object ProgressStyle extends Enum[ProgressStyle] with CirceEnum[ProgressStyle] {
   case object Horizontal extends ProgressStyle
   case object Circular extends ProgressStyle
   case object Half extends ProgressStyle
   case object Speedometer extends ProgressStyle
+  val values = findValues
 }

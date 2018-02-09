@@ -6,4 +6,4 @@ case class ServiceInstance[T <: Service](createdBy: Option[User],
                                          names: String,
                                          service: T,
                                          parameterValues: List[(Parameter, String)])
-    extends Entity
+    extends Entity with Serializable

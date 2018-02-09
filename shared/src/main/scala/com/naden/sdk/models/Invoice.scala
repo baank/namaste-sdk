@@ -3,6 +3,7 @@ package com.naden.sdk.models
 import java.time.Instant
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
+import enumeratum._
 
 @JsonCodec
 case class Invoice(createdBy: Option[User],
@@ -13,11 +14,10 @@ case class Invoice(createdBy: Option[User],
                    paymentStatus: PaymentStatus,
                    paymentMethod: PaymentMethod,
                    dueTime: Instant)
-    extends Entity
+    extends Entity with Serializable
 
-@JsonCodec
-sealed trait PaymentMethod
-object PaymentMethod {
+sealed trait PaymentMethod extends EnumEntry
+case object PaymentMethod extends Enum[PaymentMethod] with CirceEnum[PaymentMethod] {
   case object Mastercard extends PaymentMethod
   case object Visa extends PaymentMethod
   case object Amex extends PaymentMethod
@@ -27,14 +27,15 @@ object PaymentMethod {
   case object Cash extends PaymentMethod
   case object MoneyOrder extends PaymentMethod
   case object Cheque extends PaymentMethod
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait PaymentStatus
-object PaymentStatus {
+sealed trait PaymentStatus extends EnumEntry
+case object PaymentStatus extends Enum[PaymentStatus] with CirceEnum[PaymentStatus] {
   case object Overdue extends PaymentStatus
   case object Pending extends PaymentStatus
   case object Paid extends PaymentStatus
   case object OnHold extends PaymentStatus
   case object Cancelled extends PaymentStatus
+  val values = findValues
 }

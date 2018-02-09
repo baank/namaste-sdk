@@ -5,6 +5,7 @@ import java.time.Instant
 import com.naden.sdk.util.CirceCodecs._
 import com.naden.sdk.models.{Component, Event}
 import io.circe.generic.JsonCodec
+import enumeratum._
 
 @JsonCodec
 case class CalendarPanel(events: List[Event],
@@ -20,9 +21,8 @@ case class CalendarPanel(events: List[Event],
                     businessHours: Boolean,
                     eventLimit: Boolean) extends Component
 
-@JsonCodec
-sealed trait CalendarView
-object CalendarView {
+sealed trait CalendarView extends EnumEntry
+case object CalendarView extends Enum[CalendarView] with CirceEnum[CalendarView] {
   case object BasicDay extends CalendarView
   case object BasicWeek extends CalendarView
   case object AgendaDay extends CalendarView
@@ -32,11 +32,11 @@ object CalendarView {
   case object ListMonth extends CalendarView
   case object ListYear extends CalendarView
   case object Month extends CalendarView
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait CalendarAction
-object CalendarAction {
+sealed trait CalendarAction extends EnumEntry
+case object CalendarAction extends Enum[CalendarAction] with CirceEnum[CalendarAction] {
   case object BasicDayView extends CalendarAction
   case object BasicWeekView extends CalendarAction
   case object AgendaDayView extends CalendarAction
@@ -50,4 +50,5 @@ object CalendarAction {
   case object Today extends CalendarAction
   case object Previous extends CalendarAction
   case object Next extends CalendarAction
+  val values = findValues
 }

@@ -6,4 +6,4 @@ import io.circe.generic.JsonCodec
 case class Group(createdBy: Option[User],
                  title: String,
                  users: Set[User] = Set.empty)
-    extends Entity
+    extends Entity with Serializable

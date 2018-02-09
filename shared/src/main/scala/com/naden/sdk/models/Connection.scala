@@ -10,4 +10,4 @@ case class Connection(createdBy: Option[User],
                       requireSSL: Boolean,
                       username: Option[String],
                       password: Option[String])
-  extends Entity
+  extends Entity with Serializable

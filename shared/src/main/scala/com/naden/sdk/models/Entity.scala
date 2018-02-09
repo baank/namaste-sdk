@@ -4,17 +4,22 @@ import java.time.Instant
 import java.util.UUID
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
+import enumeratum._
 
-@JsonCodec
-sealed trait Status
-object Status {
+sealed trait Status extends EnumEntry
+case object Status extends Enum[Status] with CirceEnum[Status] {
   case object Active extends Status
   case object Delete extends Status
+  val values = findValues
 }
 
 abstract class Entity {
+
   val createdBy: Option[User]
-  val guid: Option[String] = None
+
+  // TODO: Make this immutable
+  var guid: Option[String] = None
+
   val createTime: Instant =  Instant.now
   val status: Status = Status.Active
   val updateTime: Instant = createTime

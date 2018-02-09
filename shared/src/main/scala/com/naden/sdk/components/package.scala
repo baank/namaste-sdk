@@ -1,30 +1,34 @@
 package com.naden.sdk.components
 
 import io.circe.generic.JsonCodec
+import enumeratum._
 
-@JsonCodec
-sealed trait Border
-object Border {
+sealed trait Border extends EnumEntry
+case object Border extends Enum[Border] with CirceEnum[Border] {
   case object Default extends Border
   case object All extends Border
   case object Left extends Border
   case object Right extends Border
   case object Top extends Border
   case object Bottom extends Border
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait BorderSize
-object BorderSize {
+import enumeratum._
+
+sealed trait BorderSize extends EnumEntry
+case object BorderSize extends Enum[BorderSize] with CirceEnum[BorderSize] {
   case object Default extends BorderSize
   case object Basic extends BorderSize
   case object Large extends BorderSize
   case object ExtraLarge extends BorderSize
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait Color
-object Color {
+import enumeratum._
+
+sealed trait Color extends EnumEntry
+case object Color extends Enum[Color] with CirceEnum[Color] {
   case object Default extends Color
   case object Blue extends Color
   case object LighBlue extends Color
@@ -41,11 +45,13 @@ object Color {
   case object Brown extends Color
   case object Grey extends Color
   case object Slate extends Color
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait ColorAccent
-object ColorAccent {
+import enumeratum._
+
+sealed trait ColorAccent extends EnumEntry
+case object ColorAccent extends Enum[ColorAccent] with CirceEnum[ColorAccent] {
   case object Default extends ColorAccent
   case object EightHundred extends ColorAccent
   case object SevenHundred extends ColorAccent
@@ -53,23 +59,28 @@ object ColorAccent {
   case object FiveHundred extends ColorAccent
   case object FourHundred extends ColorAccent
   case object ThreeHundred extends ColorAccent
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait IconPosition
-object IconPosition {
+import enumeratum._
+
+sealed trait IconPosition extends EnumEntry
+case object IconPosition extends Enum[IconPosition] with CirceEnum[IconPosition] {
   case object Left extends IconPosition
   case object Right extends IconPosition
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait IconSize
-object IconSize {
+import enumeratum._
+
+sealed trait IconSize extends EnumEntry
+case object IconSize extends Enum[IconSize] with CirceEnum[IconSize] {
   case object Default extends IconSize
   case object ExtraLarge extends IconSize
   case object Large extends IconSize
   case object Small extends IconSize
   case object Mini extends IconSize
+  val values = findValues
 }
 
 @JsonCodec

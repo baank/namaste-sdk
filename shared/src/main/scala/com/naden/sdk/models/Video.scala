@@ -12,4 +12,4 @@ case class Video(createdBy: Option[User],
                  height: Int,
                  playTime: Int,
                  mimeType: String)
-    extends Entity
+    extends Entity with Serializable

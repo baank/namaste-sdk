@@ -7,4 +7,4 @@ import com.naden.sdk.util.CirceCodecs._
 @JsonCodec
 case class PanelSlot(createdBy: Option[User],
                      panelType: PanelType,
-                     minHeight: Int) extends Entity {}
+                     minHeight: Int) extends Entity with Serializable {}

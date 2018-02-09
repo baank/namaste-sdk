@@ -18,4 +18,4 @@ case class Page(createdBy: Option[User],
                 parentPage: Option[Page] = None,
                 subPages: Option[List[Page]] = None,
                 linkedPages: List[(String, List[Page])] = List.empty)
-    extends Entity
+    extends Entity with Serializable

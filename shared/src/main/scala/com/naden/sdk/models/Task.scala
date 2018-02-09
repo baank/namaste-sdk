@@ -3,6 +3,7 @@ package com.naden.sdk.models
 import java.time.Instant
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
+import enumeratum._
 
 @JsonCodec
 case class Task(createdBy: Option[User],
@@ -12,21 +13,20 @@ case class Task(createdBy: Option[User],
                 state: TaskState,
                 dueTime: Instant,
                 assignedUsers: List[User])
-    extends Entity
+    extends Entity with Serializable
 
-@JsonCodec
-sealed trait TaskPriority
-object TaskPriority {
+sealed trait TaskPriority extends EnumEntry
+case object TaskPriority extends Enum[TaskPriority] with CirceEnum[TaskPriority] {
   case object Highest extends TaskPriority
   case object High extends TaskPriority
   case object Normal extends TaskPriority
   case object Low extends TaskPriority
   case object Lowest extends TaskPriority
+  val values = findValues
 }
 
-@JsonCodec
-sealed trait TaskState
-object TaskState {
+sealed trait TaskState extends EnumEntry
+case object TaskState extends Enum[TaskState] with CirceEnum[TaskState] {
   case object Open extends TaskState
   case object OnHold extends TaskState
   case object Resolved extends TaskState
@@ -34,4 +34,5 @@ object TaskState {
   case object Invalid extends TaskState
   case object WontDo extends TaskState
   case object Closed extends TaskState
+  val values = findValues
 }

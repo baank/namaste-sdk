@@ -10,4 +10,4 @@ case class Panel(createdBy: Option[User],
                  description: String,
                  panelType: PanelType,
                  parameterValues: List[(Parameter, String)])
-    extends Entity {}
+    extends Entity with Serializable {}

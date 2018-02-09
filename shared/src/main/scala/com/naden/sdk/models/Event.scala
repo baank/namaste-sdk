@@ -12,4 +12,4 @@ case class Event(createdBy: Option[User],
                  startTime: Instant,
                  endTime: Instant,
                  attendingUsers: List[User])
-    extends Entity
+    extends Entity with Serializable
