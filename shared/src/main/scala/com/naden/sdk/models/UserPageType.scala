@@ -6,7 +6,6 @@ import com.naden.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class UserPageType(
-    createdBy: Option[User],
     title: String,
     description: String,
     listLayout: Layout,

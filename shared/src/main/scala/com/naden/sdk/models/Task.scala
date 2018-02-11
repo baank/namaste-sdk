@@ -1,19 +1,39 @@
 package com.naden.sdk.models
 
 import java.time.Instant
+import java.util.UUID
+
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 import enumeratum._
 
 @JsonCodec
-case class Task(createdBy: Option[User],
-                title: String,
+case class Task(title: String,
                 description: String,
-                priority: TaskPriority,
-                state: TaskState,
+                taskPriority: TaskPriority,
+                taskState: TaskState,
                 dueTime: Instant,
-                assignedUsers: List[User])
-    extends Entity with Serializable
+                assignedUsers: List[User],
+                createdBy: Option[UUID],
+                createdTime: Instant,
+                updatedBy: Option[UUID],
+                updatedTime: Instant,
+                guid: Option[UUID],
+                status: Status,
+                version: Long,
+                relationships: Map[String, UUID])
+    extends Entity with Serializable {
+
+  type EntityType = Task
+  def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
+  def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+}
+
+object Task {
+  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: UUID): Task = {
+    apply(title, description, priority, state, dueTime, assignedUsers, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+  }
+}
 
 sealed trait TaskPriority extends EnumEntry
 case object TaskPriority extends Enum[TaskPriority] with CirceEnum[TaskPriority] {

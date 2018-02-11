@@ -2,9 +2,12 @@ package com.naden.sdk.models
 
 import java.time.Instant
 import java.util.UUID
+
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 import enumeratum._
+
+import scala.annotation.meta.field
 
 sealed trait Status extends EnumEntry
 case object Status extends Enum[Status] with CirceEnum[Status] {
@@ -13,25 +16,24 @@ case object Status extends Enum[Status] with CirceEnum[Status] {
   val values = findValues
 }
 
-abstract class Entity {
+trait Entity {
 
-  val createdBy: Option[User]
+  type EntityType <: Entity
 
-  // TODO: Make this immutable
-  var guid: Option[String] = None
+  val createdBy: Option[UUID]
+  val createdTime: Instant
+  val updatedTime: Instant
+  val updatedBy: Option[UUID]
+  val guid: Option[UUID]
+  val status: Status
+  val version: Long
+  val relationships: Map[String, UUID]
 
-  val createTime: Instant =  Instant.now
-  val status: Status = Status.Active
-  val updateTime: Instant = createTime
-  val updatedBy: Option[User] = createdBy
-  val version = 0L
-  val icon = "Default.png"
-  val relationships: Map[String, UUID] = Map()
+  def copyGuid(guid: UUID): EntityType
+  def copyUpdate(updatedBy: UUID, updateTime: Instant): EntityType
+}
 
-  override def equals(o: Any): Boolean = o match {
-    case that: Entity => that.guid.equals(this.guid)
-    case _            => false
-  }
-
-  override final def hashCode(): Int = guid.hashCode
+object Entity {
+  type Indexed = com.naden.sdk.annotations.AtlasIndexed @field
+  type Unique = com.naden.sdk.annotations.AtlasUnique @field
 }

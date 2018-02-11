@@ -13,7 +13,7 @@ trait PanelType extends Service {
 
   def userEditable: Boolean = true
 
-  def layout(parameterValues: List[(Parameter, String)]): List[Component]
+  def layout(parameterValues: List[(Parameter, Any)]): List[Component]
 
   // TODO
  // def layout(parameterValues: List[ParameterValue]): Layout[Component]
