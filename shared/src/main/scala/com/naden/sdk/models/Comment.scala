@@ -24,6 +24,7 @@ case class Comment(comment: String,
 	type EntityType = Comment
 	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
 	def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Comment {
@@ -31,7 +32,15 @@ object Comment {
 		apply(comment, votes, None, List(), Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
 	}
 
+	def apply(comment: String, votes: Int, createdBy: User): Comment = {
+		apply(comment, votes, None, List(), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
+	}
+
 	def apply(comment: String, votes: Int, parent: Option[UUID], children: List[UUID], createdBy: UUID): Comment = {
 		apply(comment, votes, parent, children, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(comment: String, votes: Int, parent: Comment, children: List[Comment], createdBy: User): Comment = {
+		apply(comment, votes, parent.guid, children.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
 }

@@ -26,10 +26,15 @@ case class Connection(ip4Address: Option[String],
 	type EntityType = Connection
 	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
 	def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Connection {
 	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: UUID): Connection = {
 		apply(ip4Address, ip6Address, port, requireSSL, username, password, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: User): Connection = {
+		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
 }

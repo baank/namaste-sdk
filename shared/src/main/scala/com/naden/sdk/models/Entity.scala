@@ -31,6 +31,7 @@ trait Entity {
 
   def copyGuid(guid: UUID): EntityType
   def copyUpdate(updatedBy: UUID, updateTime: Instant): EntityType
+  def copyUpdate(updatedBy: User, updateTime: Instant): EntityType
 }
 
 object Entity {

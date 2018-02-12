@@ -25,10 +25,15 @@ case class Panel(title: String,
 	type EntityType = Panel
 	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
 	def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Panel {
 	def apply(title: String, description: String, panelType: PanelType, parameterValues: List[(Parameter, String)], createdBy: UUID): Panel = {
 		apply(title, description, panelType, parameterValues, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(title: String, description: String, panelType: PanelType, parameterValues: List[(Parameter, String)], createdBy: User): Panel = {
+		apply(title, description, panelType, parameterValues, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
 }

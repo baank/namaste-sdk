@@ -33,6 +33,7 @@ case class Page(title: String,
 	type EntityType = Page
 	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
 	def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Page {
@@ -46,5 +47,13 @@ object Page {
 
 	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, UUID)], parameterValues: List[(Parameter, String)], createdBy: UUID): Page = {
 		apply(title, description, tags, category, pageType, panels, parameterValues, RandomUtils.id(), None, List(), List(), Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, Panel)], parameterValues: List[(Parameter, String)], linkId: String, createdBy: User): Page = {
+		apply(title, description, tags, category, pageType, panels.map { f => (f._1, f._2.guid.get) }, parameterValues, linkId, None, List(), List(), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, Panel)], parameterValues: List[(Parameter, String)], createdBy: User): Page = {
+		apply(title, description, tags, category, pageType, panels.map { f => (f._1, f._2.guid.get) }, parameterValues, RandomUtils.id(), None, List(), List(), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
 }

@@ -13,7 +13,7 @@ case class Task(title: String,
                 taskPriority: TaskPriority,
                 taskState: TaskState,
                 dueTime: Instant,
-                assignedUsers: List[User],
+                assignedUsers: List[UUID],
                 createdBy: Option[UUID],
                 createdTime: Instant,
                 updatedBy: Option[UUID],
@@ -27,11 +27,15 @@ case class Task(title: String,
   type EntityType = Task
   def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
   def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
-}
+  def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)}
 
 object Task {
-  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: UUID): Task = {
+  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[UUID], createdBy: UUID): Task = {
     apply(title, description, priority, state, dueTime, assignedUsers, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+  }
+
+  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: User): Task = {
+    apply(title, description, priority, state, dueTime, assignedUsers.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
   }
 }
 

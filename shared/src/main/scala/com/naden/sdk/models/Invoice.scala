@@ -29,12 +29,17 @@ case class Invoice(title: String,
   type EntityType = Invoice
   def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
   def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+  def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Invoice {
     def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: UUID): Invoice = {
       apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
     }
+
+  def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
+    apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
+  }
 }
 
 sealed trait PaymentMethod extends EnumEntry

@@ -23,10 +23,15 @@ case class PanelSlot(panelType: PanelType,
 	type EntityType = PanelSlot
 	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
 	def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object PanelSlot {
 	def apply(panelType: PanelType, minHeight: Int, createdBy: UUID): PanelSlot = {
 		apply(panelType, minHeight, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
+	}
+
+	def apply(panelType: PanelType, minHeight: Int, createdBy: User): PanelSlot = {
+		apply(panelType, minHeight, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
 }
