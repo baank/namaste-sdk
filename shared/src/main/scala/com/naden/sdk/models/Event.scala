@@ -30,10 +30,6 @@ case class Event(title: String,
 }
 
 object Event {
-	def apply(title: String, description: String, tags: List[String], startTime: Instant, endTime: Instant, attendingUsers: List[UUID], createdBy: UUID): Event = {
-		apply(title, description, tags, startTime, endTime, attendingUsers, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, description: String, tags: List[String], startTime: Instant, endTime: Instant, attendingUsers: List[User], createdBy: User): Event = {
 		apply(title, description, tags, startTime, endTime, attendingUsers.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

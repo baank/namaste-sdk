@@ -30,10 +30,6 @@ case class Connection(ip4Address: Option[String],
 }
 
 object Connection {
-	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: UUID): Connection = {
-		apply(ip4Address, ip6Address, port, requireSSL, username, password, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: User): Connection = {
 		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

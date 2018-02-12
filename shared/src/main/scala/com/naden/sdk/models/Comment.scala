@@ -28,16 +28,8 @@ case class Comment(comment: String,
 }
 
 object Comment {
-	def apply(comment: String, votes: Int, createdBy: UUID): Comment = {
-		apply(comment, votes, None, List(), Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(comment: String, votes: Int, createdBy: User): Comment = {
 		apply(comment, votes, None, List(), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
-	}
-
-	def apply(comment: String, votes: Int, parent: Option[UUID], children: List[UUID], createdBy: UUID): Comment = {
-		apply(comment, votes, parent, children, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
 	}
 
 	def apply(comment: String, votes: Int, parent: Comment, children: List[Comment], createdBy: User): Comment = {

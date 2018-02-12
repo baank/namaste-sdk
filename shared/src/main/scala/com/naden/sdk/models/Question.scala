@@ -28,10 +28,6 @@ case class Question(title: String,
 }
 
 object Question {
-	def apply(title: String, category: String, body: String, votes: Int, createdBy: UUID): Question = {
-		apply(title, category, body, votes, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, category: String, body: String, votes: Int, createdBy: User): Question = {
 		apply(title, category, body, votes, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

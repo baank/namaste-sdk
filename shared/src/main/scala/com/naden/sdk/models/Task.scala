@@ -30,10 +30,6 @@ case class Task(title: String,
   def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)}
 
 object Task {
-  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[UUID], createdBy: UUID): Task = {
-    apply(title, description, priority, state, dueTime, assignedUsers, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-  }
-
   def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: User): Task = {
     apply(title, description, priority, state, dueTime, assignedUsers.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
   }

@@ -32,10 +32,6 @@ case class Video(title: String,
 }
 
 object Video {
-	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, playTime: Long, mimeType: String, createdBy: UUID): Video = {
-		apply(title, description, fileName, fileSize, width, height, playTime, mimeType, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, playTime: Long, mimeType: String, createdBy: User): Video = {
 		apply(title, description, fileName, fileSize, width, height, playTime, mimeType, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

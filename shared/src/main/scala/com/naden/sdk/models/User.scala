@@ -32,10 +32,6 @@ case class User(firstName: String,
 }
 
 object User {
-	def apply(firstName: String, lastName: String, preferredName: Option[String], emailAddress: String, title: Option[String], groups: Set[UUID], thumbnail: Option[String], createdBy: UUID): User = {
-		apply(firstName, lastName, preferredName, emailAddress, title, groups, thumbnail, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(firstName: String, lastName: String, preferredName: Option[String], emailAddress: String, title: Option[String], groups: Set[Group], thumbnail: Option[String]): User = {
 		apply(firstName, lastName, preferredName, emailAddress, title, groups.flatMap(_.guid), thumbnail, None, Instant.now, None, Instant.now, None, Status.Active, 1, Map())
 	}

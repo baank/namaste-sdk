@@ -31,10 +31,6 @@ case class Image(title: String,
 }
 
 object Image {
-	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, mimeType: String, createdBy: UUID): Image = {
-		apply(title, description, fileName, fileSize, width, height, mimeType, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, mimeType: String, createdBy: User): Image = {
 		apply(title, description, fileName, fileSize, width, height, mimeType, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

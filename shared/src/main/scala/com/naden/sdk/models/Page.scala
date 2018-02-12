@@ -37,18 +37,6 @@ case class Page(title: String,
 }
 
 object Page {
-	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, UUID)], parameterValues: List[(Parameter, String)], linkId: String, parentPage: Option[UUID], subPages: List[UUID], linkedPages: List[(String, List[UUID])], createdBy: UUID): Page = {
-		apply(title, description, tags, category, pageType, panels, parameterValues, linkId, parentPage, subPages, linkedPages, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
-	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, UUID)], parameterValues: List[(Parameter, String)], linkId: String, createdBy: UUID): Page = {
-		apply(title, description, tags, category, pageType, panels, parameterValues, linkId, None, List(), List(), Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
-	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, UUID)], parameterValues: List[(Parameter, String)], createdBy: UUID): Page = {
-		apply(title, description, tags, category, pageType, panels, parameterValues, RandomUtils.id(), None, List(), List(), Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, description: String, tags: Set[String], category: String, pageType: PageType, panels: List[(PanelSlot, Panel)], parameterValues: List[(Parameter, String)], linkId: String, createdBy: User): Page = {
 		apply(title, description, tags, category, pageType, panels.map { f => (f._1, f._2.guid.get) }, parameterValues, linkId, None, List(), List(), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

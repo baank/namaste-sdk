@@ -27,10 +27,6 @@ case class PanelSlot(panelType: PanelType,
 }
 
 object PanelSlot {
-	def apply(panelType: PanelType, minHeight: Int, createdBy: UUID): PanelSlot = {
-		apply(panelType, minHeight, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(panelType: PanelType, minHeight: Int, createdBy: User): PanelSlot = {
 		apply(panelType, minHeight, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

@@ -33,10 +33,6 @@ case class Invoice(title: String,
 }
 
 object Invoice {
-    def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: UUID): Invoice = {
-      apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-    }
-
   def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
     apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
   }

@@ -26,10 +26,6 @@ case class Group(title: String,
 }
 
 object Group {
-	def apply(title: String, users: Set[UUID], createdBy: UUID): Group = {
-		apply(title, users, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, users: Set[User], createdBy: User): Group = {
 		apply(title, users.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

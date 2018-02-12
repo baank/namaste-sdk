@@ -29,10 +29,6 @@ case class Panel(title: String,
 }
 
 object Panel {
-	def apply(title: String, description: String, panelType: PanelType, parameterValues: List[(Parameter, String)], createdBy: UUID): Panel = {
-		apply(title, description, panelType, parameterValues, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply(title: String, description: String, panelType: PanelType, parameterValues: List[(Parameter, String)], createdBy: User): Panel = {
 		apply(title, description, panelType, parameterValues, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}

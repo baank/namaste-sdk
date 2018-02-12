@@ -25,10 +25,6 @@ case class ServiceInstance[T <: Service](names: String,
 }
 
 object ServiceInstance {
-	def apply[T <: Service](names: String, service: T, parameterValues: List[(Parameter, String)], createdBy: UUID): ServiceInstance[T] = {
-		apply(names, service, parameterValues, Some(createdBy), Instant.now, Some(createdBy), Instant.now, None, Status.Active, 1, Map())
-	}
-
 	def apply[T <: Service](names: String, service: T, parameterValues: List[(Parameter, String)], createdBy: User): ServiceInstance[T] = {
 		apply(names, service, parameterValues, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
 	}
