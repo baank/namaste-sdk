@@ -2,7 +2,7 @@ package com.naden.sdk.util
 
 import java.net.URI
 import java.time.Instant
-import java.util.{Date, UUID}
+import java.util.UUID
 
 import cats.syntax.either._
 import com.naden.sdk.components.cards._
@@ -12,8 +12,8 @@ import com.naden.sdk.components.maps._
 import com.naden.sdk.components.panels._
 import com.naden.sdk.components.structure._
 import com.naden.sdk.components.widgets._
-import com.naden.sdk.models.Component
-import com.naden.sdk.plugin.{PageType, PanelType}
+import com.naden.sdk.models._
+import com.naden.sdk.plugin.{PageType, PanelType, Service}
 import com.naden.sdk.utils.ReflectUtils
 import io.circe._
 import io.circe.generic.semiauto._
@@ -79,10 +79,8 @@ object CirceCodecs {
 	}
 
 	implicit def encodeComponent: Encoder[Component] = Encoder.instance[Component] { component =>
-
 		val componentType = component.getClass.getSimpleName.toLowerCase
 		val json = componentType match {
-
 			case "eventcard" => deriveEncoder[EventCard].apply(component.asInstanceOf[EventCard])
 			case "imagecard" => deriveEncoder[ImageCard].apply(component.asInstanceOf[ImageCard])
 			case "invoicecard" => deriveEncoder[InvoiceCard].apply(component.asInstanceOf[InvoiceCard])
@@ -138,10 +136,55 @@ object CirceCodecs {
 		Json.obj("type" -> componentType.asJson, "component" -> json)
 	}
 
+	implicit def decodeEntity: Decoder[Entity] = Decoder.instance[Entity] { c =>
+		val content = c.downField("entity").success.get
+		c.downField("type").as[String].getOrElse(throw new Exception("Entity type not found")).toLowerCase match {
+			case "comment" => deriveDecoder[Comment].apply(content)
+			case "connection" => deriveDecoder[Connection].apply(content)
+			case "event" => deriveDecoder[Event].apply(content)
+			case "file" => deriveDecoder[File].apply(content)
+			case "image" => deriveDecoder[Image].apply(content)
+			case "invoice" => deriveDecoder[Invoice].apply(content)
+			case "group" => deriveDecoder[Group].apply(content)
+			case "page" => deriveDecoder[Page].apply(content)
+			case "panel" => deriveDecoder[Panel].apply(content)
+			case "panelslot" => deriveDecoder[PanelSlot].apply(content)
+			case "question" => deriveDecoder[Question].apply(content)
+			//case "serviceinstance" => deriveDecoder[ServiceInstance[_]].apply(content)
+			case "task" => deriveDecoder[Task].apply(content)
+			case "user" => deriveDecoder[User].apply(content)
+			case "video" => deriveDecoder[Video].apply(content)
+		}
+	}
+
+	implicit def encodeEntity: Encoder[Entity] = Encoder.instance[Entity] { entity =>
+		val entityType = entity.getClass.getSimpleName.toLowerCase
+		val json = entityType match {
+			case "user" => deriveEncoder[User].apply(entity.asInstanceOf[User])
+			case "comment" => deriveEncoder[Comment].apply(entity.asInstanceOf[Comment])
+			case "connection" => deriveEncoder[Connection].apply(entity.asInstanceOf[Connection])
+			case "event" => deriveEncoder[Event].apply(entity.asInstanceOf[Event])
+			case "file" => deriveEncoder[File].apply(entity.asInstanceOf[File])
+			case "image" => deriveEncoder[Image].apply(entity.asInstanceOf[Image])
+			case "invoice" => deriveEncoder[Invoice].apply(entity.asInstanceOf[Invoice])
+			case "group" => deriveEncoder[Group].apply(entity.asInstanceOf[Group])
+			case "page" => deriveEncoder[Page].apply(entity.asInstanceOf[Page])
+			case "panel" => deriveEncoder[Panel].apply(entity.asInstanceOf[Panel])
+			case "panelslot" => deriveEncoder[PanelSlot].apply(entity.asInstanceOf[PanelSlot])
+			case "question" => deriveEncoder[Question].apply(entity.asInstanceOf[Question])
+			//case "serviceinstance" => decodeServiceInstance
+			case "task" => deriveEncoder[Task].apply(entity.asInstanceOf[Task])
+			case "video" => deriveEncoder[Video].apply(entity.asInstanceOf[Video])
+		}
+		Json.obj("type" -> entityType.asJson, "entity" -> json)
+	}
+
 	implicit val decodeInstant: Decoder[Instant] = Decoder.decodeLong.emap { long => Either.catchNonFatal(Instant.ofEpochMilli(long)).leftMap(_ => "Malformed Money")}
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money")}
 	implicit val decodePageType: Decoder[PageType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PageType](str)).leftMap(_ => "Malformed Page Type")}
 	implicit val decodePanelType: Decoder[PanelType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PanelType](str)).leftMap(_ => "Malformed Panel Type") }
+	implicit def decodeServiceInstance[A <: Service]: Decoder[ServiceInstance[A]] = deriveDecoder[ServiceInstance[A]]
+	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Malformed Service") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 	implicit val decodeUuid: Decoder[UUID] = Decoder.decodeString.emap { str => Either.catchNonFatal(UUID.fromString(str)).leftMap(_ => "Malformed UUID")}
 
@@ -149,6 +192,8 @@ object CirceCodecs {
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
 	implicit val encodePageType: Encoder[PageType] = Encoder.encodeString.contramap[PageType](_.getClass.getName)
 	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getName)
+	implicit def encodeServiceInstance[A <: Service]: Encoder[ServiceInstance[A]] = deriveEncoder[ServiceInstance[A]]
+	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
 	implicit val encodeUuid: Encoder[UUID] = Encoder.encodeString.contramap[UUID](_.toString)
 }
