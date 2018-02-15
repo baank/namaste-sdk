@@ -29,10 +29,10 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
     libraryDependencies ++= Seq(
       "org.typelevel"           %%% "squants"               % "1.3.0",
       "com.github.marklister"   %%% "base64"                % "0.2.4",
-      "io.circe"                %%% "circe-core"            % "0.9.0",
-      "io.circe"                %%% "circe-generic"         % "0.9.0",
-      "io.circe"                %%% "circe-generic-extras"  % "0.9.0",
-      "io.circe"                %%% "circe-parser"          % "0.9.0",
+      "io.circe"                %%% "circe-core"            % "0.9.1",
+      "io.circe"                %%% "circe-generic"         % "0.9.1",
+      "io.circe"                %%% "circe-generic-extras"  % "0.9.1",
+      "io.circe"                %%% "circe-parser"          % "0.9.1",
       "com.beachape"            %%% "enumeratum-circe"      % "1.5.15"
     )
   ).
@@ -42,7 +42,7 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
       "org.osgi" % "org.osgi.core" % "6.0.0",
       "commons-codec" % "commons-codec" % "1.11",
       "javax.inject" % "javax.inject" % "1",
-      "org.scala-js" %% "scalajs-stubs" % "0.6.21" % "provided"
+      "org.scala-js" %% "scalajs-stubs" % "0.6.22" % "provided"
     )
   ).
   jsSettings(

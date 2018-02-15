@@ -4,8 +4,7 @@ resolvers += Resolver.jcenterRepo
 
 addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.9.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-osgi" % "0.9.2")
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.21")
-//addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.0.0-M2")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.22")
 addSbtPlugin("org.portable-scala" % "sbt-crossproject"         % "0.3.0") 
 addSbtPlugin("org.portable-scala" % "sbt-scalajs-crossproject" % "0.3.0") 
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.6")

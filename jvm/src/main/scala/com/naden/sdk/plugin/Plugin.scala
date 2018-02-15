@@ -29,8 +29,6 @@ abstract class Plugin extends BundleActivator {
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
 
   final override def start(context: BundleContext): Unit = {
-    println(s"Starting plugin services: ${this.getClass.getSimpleName}")
-
     register[PanelType](context, classOf[PanelType], panelTypes)
     register[PageType](context, classOf[PageType], pageTypes)
     register[PageImporter](context, classOf[PageImporter], pageImporters)
@@ -60,7 +58,6 @@ abstract class Plugin extends BundleActivator {
   }
 
   final override def stop(context: BundleContext): Unit = {
-    println(s"Stopping plugin services: ${this.getClass.getSimpleName}")
     serviceRegistrations.foreach { service =>
       service._2.unregister()
       //    TODO
