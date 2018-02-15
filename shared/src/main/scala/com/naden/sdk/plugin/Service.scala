@@ -18,6 +18,6 @@ trait Service {
 
   def onAppContextChange(newContext: Map[String, _]): Unit
 
-  def onUserConfigure(newParameterValues: List[(Parameter, String)]): Unit
+  def onUserConfigure(newParameterValues: Map[Parameter, String]): Unit
 
 }

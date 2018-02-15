@@ -3,6 +3,9 @@ package com.naden.sdk.models
 import java.time.Instant
 import java.util.UUID
 
+import com.naden.sdk.models.Entity.EntityId
+import com.naden.sdk.models.Invoice.InvoiceId
+import com.naden.sdk.models.User.UserId
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 import enumeratum._
@@ -16,23 +19,25 @@ case class Invoice(title: String,
                    paymentStatus: PaymentStatus,
                    paymentMethod: PaymentMethod,
                    dueTime: Instant,
-                   createdBy: Option[UUID],
+                   createdBy: Option[UserId],
                    createdTime: Instant,
-                   updatedBy: Option[UUID],
+                   updatedBy: Option[UserId],
                    updatedTime: Instant,
-                   guid: Option[UUID],
+                   guid: Option[InvoiceId],
                    status: Status,
                    version: Long,
-                   relationships: Map[String, UUID])
+                   relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
   type EntityType = Invoice
   def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
-  def copyUpdate(newUpdatedBy: UUID, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
+  def copyUpdate(newUpdatedBy: UserId, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
   def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
 }
 
 object Invoice {
+  type InvoiceId = UUID
+
   def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
     apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
   }

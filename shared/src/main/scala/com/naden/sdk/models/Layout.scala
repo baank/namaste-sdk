@@ -1,6 +1,6 @@
 package com.naden.sdk.models
 
-import com.naden.sdk.models.ColumnOffset.findValues
+import com.naden.sdk.models.Panel.PanelSlotId
 import io.circe.generic.JsonCodec
 import enumeratum._
 
@@ -11,9 +11,10 @@ case class Layout(rows: List[Row])
 case class Row(columns: List[Column])
 
 @JsonCodec
-case class Column(contents: List[PanelSlot],
-                     width: ColumnWidth,
-                     offset: ColumnOffset = ColumnOffset.None)
+case class Column(contents: List[PanelSlotId],
+                  minimumHeights: Map[PanelSlotId, Integer],
+                  width: ColumnWidth,
+                  offset: ColumnOffset = ColumnOffset.None)
 
 sealed trait ColumnOffset extends EnumEntry
 case object ColumnOffset extends Enum[ColumnOffset] with CirceEnum[ColumnOffset] {

@@ -148,7 +148,6 @@ object CirceCodecs {
 			case "group" => deriveDecoder[Group].apply(content)
 			case "page" => deriveDecoder[Page].apply(content)
 			case "panel" => deriveDecoder[Panel].apply(content)
-			case "panelslot" => deriveDecoder[PanelSlot].apply(content)
 			case "question" => deriveDecoder[Question].apply(content)
 			//case "serviceinstance" => deriveDecoder[ServiceInstance[_]].apply(content)
 			case "task" => deriveDecoder[Task].apply(content)
@@ -170,7 +169,6 @@ object CirceCodecs {
 			case "group" => deriveEncoder[Group].apply(entity.asInstanceOf[Group])
 			case "page" => deriveEncoder[Page].apply(entity.asInstanceOf[Page])
 			case "panel" => deriveEncoder[Panel].apply(entity.asInstanceOf[Panel])
-			case "panelslot" => deriveEncoder[PanelSlot].apply(entity.asInstanceOf[PanelSlot])
 			case "question" => deriveEncoder[Question].apply(entity.asInstanceOf[Question])
 			//case "serviceinstance" => decodeServiceInstance
 			case "task" => deriveEncoder[Task].apply(entity.asInstanceOf[Task])
