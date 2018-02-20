@@ -1,5 +1,8 @@
 package com.naden.sdk.models
 
+import java.util.UUID
+
+import com.naden.sdk.models.Parameter.ParameterId
 import com.naden.sdk.models.User.UserId
 import com.naden.sdk.plugin.PanelType
 import com.naden.sdk.util.CirceCodecs
@@ -17,12 +20,13 @@ case class UserPanelType(
     override val allowUserRefresh: Boolean)
     extends PanelType {
 
-  override def layout(parameterValues: Map[Parameter, String]) = layout
+  val id = UUID.randomUUID()
+  override def layout(parameterValues: Map[ParameterId, String]) = layout
   override def layoutHasChanged: Boolean = false
 
   override def onStartup(): Unit = {}
   override def onShutdown(): Unit = {}
 
   override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-  override def onUserConfigure(newParameterValues: Map[Parameter, String]): Unit = {}
+  override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}
 }

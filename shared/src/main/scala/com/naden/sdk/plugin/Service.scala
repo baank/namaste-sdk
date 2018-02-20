@@ -1,6 +1,10 @@
 package com.naden.sdk.plugin
 
+import java.util.UUID
+
 import com.naden.sdk.models.Parameter
+import com.naden.sdk.models.Parameter.ParameterId
+import com.naden.sdk.plugin.Service.ServiceId
 
 trait Service {
 
@@ -18,6 +22,10 @@ trait Service {
 
   def onAppContextChange(newContext: Map[String, _]): Unit
 
-  def onUserConfigure(newParameterValues: Map[Parameter, String]): Unit
+  def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit
 
+}
+
+object Service {
+  type ServiceId = UUID
 }

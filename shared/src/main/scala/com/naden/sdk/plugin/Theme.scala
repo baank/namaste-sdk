@@ -1,3 +1,11 @@
 package com.naden.sdk.plugin
 
-trait Theme {}
+import java.util.UUID
+
+import com.naden.sdk.plugin.Theme.ThemeId
+
+trait Theme extends Service {}
+
+object Theme {
+	type ThemeId = UUID
+}

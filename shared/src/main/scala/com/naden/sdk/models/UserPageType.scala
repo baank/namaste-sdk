@@ -1,5 +1,8 @@
 package com.naden.sdk.models
 
+import java.util.UUID
+
+import com.naden.sdk.models.Parameter.ParameterId
 import com.naden.sdk.plugin.{PageType, PanelType}
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
@@ -15,12 +18,13 @@ case class UserPageType(
     override val linkedPanelTypes: Set[PanelType] = Set.empty)
     extends PageType {
 
-	def listLayout(parameterValues: Map[Parameter, String]) = listLayout
-    def detailLayout(parameterValues: Map[Parameter, String]) = detailLayout
+	val id = UUID.randomUUID()
+	def listLayout(parameterValues: Map[ParameterId, String]) = listLayout
+    def detailLayout(parameterValues: Map[ParameterId, String]) = detailLayout
 
     def onStartup(): Unit = {}
     def onShutdown(): Unit = {}
 
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-	override def onUserConfigure(newParameterValues: Map[Parameter, String]): Unit = {}
+	override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}
 }

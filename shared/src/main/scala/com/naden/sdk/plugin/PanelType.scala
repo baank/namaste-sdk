@@ -1,10 +1,13 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.models.{Component, Parameter}
+import java.util.UUID
+
+import com.naden.sdk.models.Parameter.ParameterId
+import com.naden.sdk.models.Component
+import com.naden.sdk.plugin.PanelType.PanelTypeId
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
-@EnableReflectiveInstantiation
 trait PanelType extends Service {
 
   def scripts: List[String] = List.empty
@@ -13,13 +16,14 @@ trait PanelType extends Service {
 
   def userEditable: Boolean = true
 
-  def layout(parameterValues: Map[Parameter, String]): List[Component]
-
-  // TODO
- // def layout(parameterValues: List[ParameterValue]): Layout[Component]
+  def layout(parameterValues: Map[ParameterId, String]): List[Component]
 
   def layoutHasChanged: Boolean
 
   def allowUserRefresh: Boolean
 
+}
+
+object PanelType {
+  type PanelTypeId = UUID
 }

@@ -1,16 +1,23 @@
 package com.naden.sdk.plugin
 
-import com.naden.sdk.models.{Layout, Parameter}
+import java.util.UUID
+
+import com.naden.sdk.models.Parameter.ParameterId
+import com.naden.sdk.models.Layout
+import com.naden.sdk.plugin.PageType.PageTypeId
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
-@EnableReflectiveInstantiation
 trait PageType extends Service {
 
-  def detailLayout(parameterValues: Map[Parameter, String]): Layout
+  def detailLayout(parameterValues: Map[ParameterId, String]): Layout
 
-  def listLayout(parameterValues: Map[Parameter, String]): Layout
+  def listLayout(parameterValues: Map[ParameterId, String]): Layout
 
   def linkedPanelTypes: Set[PanelType] = Set.empty
 
+}
+
+object PageType {
+  type PageTypeId = UUID
 }

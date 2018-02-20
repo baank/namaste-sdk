@@ -1,6 +1,9 @@
 package com.naden.sdk.plugin
 
+import java.util.UUID
+
 import com.naden.sdk.models.Event
+import com.naden.sdk.plugin.EventHandler.EventHandlerId
 import com.naden.sdk.util.ProgressObserver
 import io.circe.{Decoder, Encoder}
 
@@ -12,4 +15,8 @@ trait EventHandler extends Service {
 
   def encoder: Encoder[_ <: EventHandler]
 
+}
+
+object EventHandler {
+  type EventHandlerId = UUID
 }

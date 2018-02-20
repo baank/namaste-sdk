@@ -16,22 +16,22 @@ case class Group(title: String,
                  createdTime: Instant,
                  updatedBy: Option[UserId],
                  updatedTime: Instant,
-                 guid: Option[GroupId],
+                 id: Option[GroupId],
                  status: Status,
                  version: Long,
                  relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
 	type EntityType = Group
-	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
+	def copyId(newId: UUID) = copy(id = Some(newId))
 	def copyUpdate(newUpdatedBy: UserId, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
-    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
 }
 
 object Group {
 	type GroupId = UUID
 
 	def apply(title: String, users: Set[User], createdBy: User): Group = {
-		apply(title, users.flatMap(_.guid), createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
+		apply(title, users.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
 	}
 }

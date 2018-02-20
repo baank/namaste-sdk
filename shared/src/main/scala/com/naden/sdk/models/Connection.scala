@@ -20,22 +20,22 @@ case class Connection(ip4Address: Option[String],
                       createdTime: Instant,
                       updatedBy: Option[UserId],
                       updatedTime: Instant,
-                      guid: Option[ConnectionId],
+                      id: Option[ConnectionId],
                       status: Status,
                       version: Long,
                       relationships: Map[String, EntityId])
   extends Entity with Serializable {
 
 	type EntityType = Connection
-	def copyGuid(newGuid: UUID) = copy(guid = Some(newGuid))
+	def copyId(newId: UUID) = copy(id = Some(newId))
 	def copyUpdate(newUpdatedBy: UserId, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
-    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.guid, updatedTime = newUpdateTime)
+    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
 }
 
 object Connection {
 	type ConnectionId = UUID
 
 	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: User): Connection = {
-		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.guid, Instant.now, createdBy.guid, Instant.now, None, Status.Active, 1, Map())
+		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
 	}
 }

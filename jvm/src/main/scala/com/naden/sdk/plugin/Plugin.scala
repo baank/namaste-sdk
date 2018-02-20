@@ -1,10 +1,15 @@
 package com.naden.sdk.plugin
 
+import com.naden.sdk.plugin.Service.ServiceId
 import org.osgi.framework.{BundleActivator, BundleContext, ServiceRegistration}
 
+import scala.collection.JavaConverters._
+import scala.collection.mutable
 import scala.collection.mutable.{ListBuffer => MutableList}
 
 abstract class Plugin extends BundleActivator {
+
+  def ids: Map[Class[_ <: Service], ServiceId]
 
   def version: (Int, Int, Int)
 
@@ -40,12 +45,13 @@ abstract class Plugin extends BundleActivator {
     register[Task](context, classOf[Task], tasks)
   }
 
-  private def register[T](context: BundleContext,
+  private def register[T <: Service](context: BundleContext,
                           cls: Class[T],
                           services: Set[Class[_ <: T]]): Unit = {
     try {
       services.foreach { service =>
-        serviceRegistrations += service -> context.registerService(cls, service.newInstance(), null)
+        val map = mutable.Map("id" -> ids(cls))
+        serviceRegistrations += service -> context.registerService(cls, service.newInstance(), map.asJavaDictionary)
         //TODO
         //service.asInstanceOf[Service].onStartup()
       }

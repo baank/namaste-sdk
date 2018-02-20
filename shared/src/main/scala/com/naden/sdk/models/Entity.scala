@@ -25,14 +25,14 @@ trait Entity {
   val createdTime: Instant
   val updatedTime: Instant
   val updatedBy: Option[UserId]
-  val guid: Option[EntityId]
+  val id: Option[EntityId]
   val status: Status
   val version: Long
   val relationships: Map[String, EntityId]
 
   //def displayName: String
   //def displayDescription: String
-  def copyGuid(guid: UUID): EntityType
+  def copyId(id: UUID): EntityType
   def copyUpdate(updatedBy: UUID, updateTime: Instant): EntityType
   def copyUpdate(updatedBy: User, updateTime: Instant): EntityType
 }
