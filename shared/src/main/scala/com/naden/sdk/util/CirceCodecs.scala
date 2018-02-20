@@ -13,6 +13,7 @@ import com.naden.sdk.components.panels._
 import com.naden.sdk.components.structure._
 import com.naden.sdk.components.widgets._
 import com.naden.sdk.models._
+import com.naden.sdk.parameters._
 import com.naden.sdk.plugin.{PageType, PanelType, Service}
 import com.naden.sdk.utils.ReflectUtils
 import io.circe._
@@ -177,23 +178,83 @@ object CirceCodecs {
 		Json.obj("type" -> entityType.asJson, "entity" -> json)
 	}
 
+	implicit def decodeParameter: Decoder[Parameter] = Decoder.instance[Parameter] { c =>
+		val content = c.downField("parameter").success.get
+		c.downField("type").as[String].getOrElse(throw new Exception("Parameter type not found")).toLowerCase match {
+			case "booleanparameter" => deriveDecoder[BooleanParameter].apply(content)
+			case "colorparameter" => deriveDecoder[ColorParameter].apply(content)
+			case "connectionparameter" => deriveDecoder[ConnectionParameter].apply(content)
+			case "currencyparameter" => deriveDecoder[CurrencyParameter].apply(content)
+			case "datetimeparameter" => deriveDecoder[DateTimeParameter].apply(content)
+			case "decimalparameter" => deriveDecoder[DecimalParameter].apply(content)
+			case "decimalrangeparameter" => deriveDecoder[DecimalRangeParameter].apply(content)
+			case "emailparameter" => deriveDecoder[EmailParameter].apply(content)
+			case "fileparameter" => deriveDecoder[FileParameter].apply(content)
+			case "geoaddressparameter" => deriveDecoder[GeoAddressParameter].apply(content)
+			case "geolocationparameter" => deriveDecoder[GeoLocationParameter].apply(content)
+			case "htmlparameter" => deriveDecoder[HtmlParameter].apply(content)
+			case "imageparameter" => deriveDecoder[ImageParameter].apply(content)
+			case "integerparameter" => deriveDecoder[IntegerParameter].apply(content)
+			case "integerangeparameter" => deriveDecoder[IntegerRangeParameter].apply(content)
+			case "ipaddressparameter" => deriveDecoder[IPAddressParameter].apply(content)
+			//case "listparameter" => deriveDecoder[ListParameter].apply(content)
+			case "newpasswordparameter" => deriveDecoder[NewPasswordParameter].apply(content)
+			case "pageparameter" => deriveDecoder[PageParameter].apply(content)
+			case "passwordparameter" => deriveDecoder[PasswordParameter].apply(content)
+			case "searchqueryparameter" => deriveDecoder[SearchQueryParameter].apply(content)
+			case "stringparameter" => deriveDecoder[StringParameter].apply(content)
+			case "tabulardataparameter" => deriveDecoder[TabularDataParameter].apply(content)
+			case "tagsparameter" => deriveDecoder[TagsParameter].apply(content)
+			case "uriparameter" => deriveDecoder[URIParameter].apply(content)
+			case "userparameter" => deriveDecoder[UserParameter].apply(content)
+			case "videoparameter" => deriveDecoder[VideoParameter].apply(content)
+		}
+	}
+
+	implicit def encodeParameter: Encoder[Parameter] = Encoder.instance[Parameter] { parameter =>
+		val entityType = parameter.getClass.getSimpleName.toLowerCase
+		val json = entityType match {
+			case "booleanparameter" => deriveEncoder[BooleanParameter].apply(parameter.asInstanceOf[BooleanParameter])
+			case "colorparameter" => deriveEncoder[ColorParameter].apply(parameter.asInstanceOf[ColorParameter])
+			case "connectionparameter" => deriveEncoder[ConnectionParameter].apply(parameter.asInstanceOf[ConnectionParameter])
+			case "currencyparameter" => deriveEncoder[CurrencyParameter].apply(parameter.asInstanceOf[CurrencyParameter])
+			case "datetimeparameter" => deriveEncoder[DateTimeParameter].apply(parameter.asInstanceOf[DateTimeParameter])
+			case "decimalparameter" => deriveEncoder[DecimalParameter].apply(parameter.asInstanceOf[DecimalParameter])
+			case "decimalrangeparameter" => deriveEncoder[DecimalRangeParameter].apply(parameter.asInstanceOf[DecimalRangeParameter])
+			case "emailparameter" => deriveEncoder[EmailParameter].apply(parameter.asInstanceOf[EmailParameter])
+			case "fileparameter" => deriveEncoder[FileParameter].apply(parameter.asInstanceOf[FileParameter])
+			case "geoaddressparameter" => deriveEncoder[GeoAddressParameter].apply(parameter.asInstanceOf[GeoAddressParameter])
+			case "geolocationparameter" => deriveEncoder[GeoLocationParameter].apply(parameter.asInstanceOf[GeoLocationParameter])
+			case "htmlparameter" => deriveEncoder[HtmlParameter].apply(parameter.asInstanceOf[HtmlParameter])
+			case "imageparameter" => deriveEncoder[ImageParameter].apply(parameter.asInstanceOf[ImageParameter])
+			case "integerparameter" => deriveEncoder[IntegerParameter].apply(parameter.asInstanceOf[IntegerParameter])
+			case "integerangeparameter" => deriveEncoder[IntegerRangeParameter].apply(parameter.asInstanceOf[IntegerRangeParameter])
+			case "ipaddressparameter" => deriveEncoder[IPAddressParameter].apply(parameter.asInstanceOf[IPAddressParameter])
+			//case "listparameter" => deriveEncoder[ListParameter].apply(parameter.asInstanceOf[ListParameter])
+			case "newpasswordparameter" => deriveEncoder[NewPasswordParameter].apply(parameter.asInstanceOf[NewPasswordParameter])
+			case "pageparameter" => deriveEncoder[PageParameter].apply(parameter.asInstanceOf[PageParameter])
+			case "passwordparameter" => deriveEncoder[PasswordParameter].apply(parameter.asInstanceOf[PasswordParameter])
+			case "searchqueryparameter" => deriveEncoder[SearchQueryParameter].apply(parameter.asInstanceOf[SearchQueryParameter])
+			case "stringparameter" => deriveEncoder[StringParameter].apply(parameter.asInstanceOf[StringParameter])
+			case "tabulardataparameter" => deriveEncoder[TabularDataParameter].apply(parameter.asInstanceOf[TabularDataParameter])
+			case "tagsparameter" => deriveEncoder[TagsParameter].apply(parameter.asInstanceOf[TagsParameter])
+			case "uriparameter" => deriveEncoder[URIParameter].apply(parameter.asInstanceOf[URIParameter])
+			case "userparameter" => deriveEncoder[UserParameter].apply(parameter.asInstanceOf[UserParameter])
+			case "videoparameter" => deriveEncoder[VideoParameter].apply(parameter.asInstanceOf[VideoParameter])
+		}
+		Json.obj("type" -> entityType.asJson, "parameter" -> json)
+	}
+
+
 	implicit val decodeInstant: Decoder[Instant] = Decoder.decodeLong.emap { long => Either.catchNonFatal(Instant.ofEpochMilli(long)).leftMap(_ => "Malformed Money") }
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }
-	implicit val decodePageType: Decoder[PageType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PageType](str)).leftMap(_ => "Malformed Page Type") }
-	implicit val decodePanelType: Decoder[PanelType] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[PanelType](str)).leftMap(_ => "Malformed Panel Type") }
-	implicit val decodeParameter: KeyDecoder[Parameter] = KeyDecoder.decodeKeyString.map { str => ReflectUtils.classForName[Parameter](str) }
 	implicit def decodeServiceInstance[A <: Service]: Decoder[ServiceInstance[A]] = deriveDecoder[ServiceInstance[A]]
 	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Malformed Service") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
-	implicit val decodeUuid: Decoder[UUID] = Decoder.decodeString.emap { str => Either.catchNonFatal(UUID.fromString(str)).leftMap(_ => "Malformed UUID") }
 
 	implicit val encodeInstant: Encoder[Instant] = Encoder.encodeLong.contramap[Instant](_.toEpochMilli)
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
-	implicit val encodePageType: Encoder[PageType] = Encoder.encodeString.contramap[PageType](_.getClass.getName)
-	implicit val encodePanelType: Encoder[PanelType] = Encoder.encodeString.contramap[PanelType](_.getClass.getName)
-	implicit val encoderParameterKey: KeyEncoder[Parameter] = KeyEncoder.encodeKeyString.contramap[Parameter](_.getClass.getName)
 	implicit def encodeServiceInstance[A <: Service]: Encoder[ServiceInstance[A]] = deriveEncoder[ServiceInstance[A]]
 	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
-	implicit val encodeUuid: Encoder[UUID] = Encoder.encodeString.contramap[UUID](_.toString)
 }

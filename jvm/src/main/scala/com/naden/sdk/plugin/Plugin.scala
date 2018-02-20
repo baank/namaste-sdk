@@ -50,7 +50,8 @@ abstract class Plugin extends BundleActivator {
                           services: Set[Class[_ <: T]]): Unit = {
     try {
       services.foreach { service =>
-        val map = mutable.Map("id" -> ids(cls))
+        // TODO harden if no ids etc.
+        val map = mutable.Map("id" -> ids(service))
         serviceRegistrations += service -> context.registerService(cls, service.newInstance(), map.asJavaDictionary)
         //TODO
         //service.asInstanceOf[Service].onStartup()
