@@ -4,7 +4,7 @@ import java.util.UUID
 
 import com.naden.sdk.models.Parameter.ParameterId
 import com.naden.sdk.models.Layout
-import com.naden.sdk.plugin.PageType.PageTypeId
+import com.naden.sdk.plugin.PanelType.PanelTypeId
 
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
@@ -14,7 +14,7 @@ trait PageType extends Service {
 
   def listLayout(parameterValues: Map[ParameterId, String]): Layout
 
-  def linkedPanelTypes: Set[PanelType] = Set.empty
+  def linkedPanelTypes: Set[PanelTypeId] = Set.empty
 
 }
 

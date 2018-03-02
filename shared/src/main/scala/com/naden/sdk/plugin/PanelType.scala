@@ -4,9 +4,6 @@ import java.util.UUID
 
 import com.naden.sdk.models.Parameter.ParameterId
 import com.naden.sdk.models.Component
-import com.naden.sdk.plugin.PanelType.PanelTypeId
-
-import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
 trait PanelType extends Service {
 

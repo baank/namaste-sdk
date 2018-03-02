@@ -3,7 +3,6 @@ package com.naden.sdk.plugin
 import java.util.UUID
 
 import com.naden.sdk.models.Page
-import com.naden.sdk.plugin.PageTypeSupplier.PageTypeSupplierId
 import com.naden.sdk.util.ProgressObserver
 import io.circe.{Decoder, Encoder}
 

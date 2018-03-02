@@ -4,7 +4,6 @@ import java.util.UUID
 
 import com.naden.sdk.models.Parameter
 import com.naden.sdk.models.Parameter.ParameterId
-import com.naden.sdk.plugin.Service.ServiceId
 
 trait Service {
 

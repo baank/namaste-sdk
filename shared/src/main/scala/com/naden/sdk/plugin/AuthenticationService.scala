@@ -2,7 +2,6 @@ package com.naden.sdk.plugin
 
 import java.util.UUID
 
-import com.naden.sdk.plugin.AuthenticationService.AuthenticationServiceId
 import io.circe.{Decoder, Encoder}
 
 trait AuthenticationService extends Service {

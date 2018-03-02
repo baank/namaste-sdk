@@ -2,6 +2,7 @@ package com.naden.sdk.models
 
 import com.naden.sdk.models.Panel.PanelSlotId
 import com.naden.sdk.plugin.PanelType
+import com.naden.sdk.plugin.PanelType.PanelTypeId
 import io.circe.generic.JsonCodec
 import com.naden.sdk.util.CirceCodecs._
 import enumeratum._
@@ -19,7 +20,7 @@ case class Column(contents: List[PanelSlot],
 
 @JsonCodec
 case class PanelSlot(panelSlotId: PanelSlotId,
-                     panelType: PanelType,
+                     panelType: PanelTypeId,
                      minimumHeight: Int)
 
 sealed trait ColumnOffset extends EnumEntry

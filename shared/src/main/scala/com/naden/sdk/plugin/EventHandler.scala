@@ -3,7 +3,6 @@ package com.naden.sdk.plugin
 import java.util.UUID
 
 import com.naden.sdk.models.Event
-import com.naden.sdk.plugin.EventHandler.EventHandlerId
 import com.naden.sdk.util.ProgressObserver
 import io.circe.{Decoder, Encoder}
 
