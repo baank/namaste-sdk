@@ -1,10 +1,10 @@
 import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonSettings = Seq(
-  name := "naden-sdk",
+  name := "harana-sdk",
   version := "1.0",
   scalaVersion := "2.12.4",
-  organization := "com.naden",
+  organization := "com.harana",
   resolvers += Resolver.sonatypeRepo("releases"),
   updateOptions := updateOptions.value.withCachedResolution(true),
   //addCompilerPlugin("io.tryp" % "splain" % "0.2.7" cross CrossVersion.patch),
@@ -23,7 +23,7 @@ lazy val root = project.in(file(".")).
   ).
   enablePlugins(SbtOsgi)
 
-lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
+lazy val harana = crossProject(JSPlatform, JVMPlatform).in(file(".")).
   settings(commonSettings).
   settings(
     libraryDependencies ++= Seq(
@@ -51,5 +51,5 @@ lazy val naden = crossProject(JSPlatform, JVMPlatform).in(file(".")).
     )
   )
 
-lazy val jvm = naden.jvm
-lazy val js = naden.js
+lazy val jvm = harana.jvm
+lazy val js = harana.js

@@ -1,6 +1,6 @@
 <classpath>
   <classpathentry kind="src" path="src/main/scala"/>
-  <classpathentry output="-Developer-naden-sdk-shared-src-main-scala" kind="src" path="-Developer-naden-sdk-shared-src-main-scala"/>
+  <classpathentry output="-Developer-harana-sdk-shared-src-main-scala" kind="src" path="-Developer-harana-sdk-shared-src-main-scala"/>
   <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"></classpathentry>
   <classpathentry sourcepath="/Users/m/.ivy2/cache/org.scala-js/scalajs-library_2.12/srcs/scalajs-library_2.12-0.6.21-sources.jar" kind="lib" path="/Users/m/.ivy2/cache/org.scala-js/scalajs-library_2.12/jars/scalajs-library_2.12-0.6.21.jar">
     <attributes>

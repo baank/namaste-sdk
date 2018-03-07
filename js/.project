@@ -1,5 +1,5 @@
 <projectDescription>
-  <name>naden-sdk</name>
+  <name>harana-sdk</name>
   <buildSpec>
     <buildCommand>
       <name>org.scala-ide.sdt.core.scalabuilder</name>
@@ -11,44 +11,44 @@
   </natures>
   <linkedResources>
     <link>
-      <name>-Developer-naden-sdk-shared-src-main-scala-2.12</name>
+      <name>-Developer-harana-sdk-shared-src-main-scala-2.12</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/main/scala-2.12</location>
+      <location>/Developer/harana-sdk/shared/src/main/scala-2.12</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-main-scala-2.12</name>
+      <name>-Developer-harana-sdk-shared-src-main-scala-2.12</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/main/scala-2.12</location>
+      <location>/Developer/harana-sdk/shared/src/main/scala-2.12</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-main-scala</name>
+      <name>-Developer-harana-sdk-shared-src-main-scala</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/main/scala</location>
+      <location>/Developer/harana-sdk/shared/src/main/scala</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-main-scala</name>
+      <name>-Developer-harana-sdk-shared-src-main-scala</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/main/scala</location>
+      <location>/Developer/harana-sdk/shared/src/main/scala</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-test-scala-2.12</name>
+      <name>-Developer-harana-sdk-shared-src-test-scala-2.12</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/test/scala-2.12</location>
+      <location>/Developer/harana-sdk/shared/src/test/scala-2.12</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-test-scala-2.12</name>
+      <name>-Developer-harana-sdk-shared-src-test-scala-2.12</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/test/scala-2.12</location>
+      <location>/Developer/harana-sdk/shared/src/test/scala-2.12</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-test-scala</name>
+      <name>-Developer-harana-sdk-shared-src-test-scala</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/test/scala</location>
+      <location>/Developer/harana-sdk/shared/src/test/scala</location>
     </link>
     <link>
-      <name>-Developer-naden-sdk-shared-src-test-scala</name>
+      <name>-Developer-harana-sdk-shared-src-test-scala</name>
       <type>2</type>
-      <location>/Developer/naden-sdk/shared/src/test/scala</location>
+      <location>/Developer/harana-sdk/shared/src/test/scala</location>
     </link>
   </linkedResources>
 </projectDescription>

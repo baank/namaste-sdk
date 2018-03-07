@@ -1,6 +1,6 @@
 <classpath>
   <classpathentry kind="src" path="src/main/scala"/>
-  <classpathentry output="-Developer-naden-sdk-shared-src-main-scala" kind="src" path="-Developer-naden-sdk-shared-src-main-scala"/>
+  <classpathentry output="-Developer-harana-sdk-shared-src-main-scala" kind="src" path="-Developer-harana-sdk-shared-src-main-scala"/>
   <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"></classpathentry>
   <classpathentry sourcepath="/Users/m/.ivy2/cache/org.typelevel/squants_2.12/srcs/squants_2.12-1.3.0-sources.jar" kind="lib" path="/Users/m/.ivy2/cache/org.typelevel/squants_2.12/bundles/squants_2.12-1.3.0.jar">
     <attributes>
