@@ -6,6 +6,7 @@ import java.util.UUID
 import com.harana.sdk.models.Entity.EntityId
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
+import com.harana.sdk.models.UserPageType.UserPageTypeId
 import com.harana.sdk.plugin.PanelType.PanelTypeId
 import com.harana.sdk.plugin.PageType
 import io.circe.generic.JsonCodec
@@ -24,7 +25,7 @@ case class UserPageType(
     createdTime: Instant,
     updatedBy: Option[UserId],
     updatedTime: Instant,
-    id: Option[UserId],
+    id: Option[UserPageTypeId],
     status: Status,
     version: Long,
     relationships: Map[String, EntityId])
