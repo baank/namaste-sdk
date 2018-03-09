@@ -245,6 +245,16 @@ object CirceCodecs {
 		Json.obj("type" -> entityType.asJson, "parameter" -> json)
 	}
 
+	implicit def encodeEither[A, B](implicit encoderA: Encoder[A], encoderB: Encoder[B]): Encoder[Either[A, B]] = {
+		o: Either[A, B] => o.fold(_.asJson, _.asJson)
+	}
+
+	implicit def decodeEither[A, B](implicit decoderA: Decoder[A], decoderB: Decoder[B]): Decoder[Either[A, B]] = {
+		c: HCursor => c.as[A] match {
+			case Right(a) => Right(Left(a))
+			case _ => c.as[B].map(Right(_))
+		}
+	}
 
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeInstant: Decoder[Instant] = Decoder.decodeLong.emap { long => Either.catchNonFatal(Instant.ofEpochMilli(long)).leftMap(_ => "Malformed Money") }

@@ -8,6 +8,7 @@ import com.harana.sdk.models.Page.PageId
 import com.harana.sdk.models.Panel.{PanelId, PanelSlotId}
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
+import com.harana.sdk.models.UserPageType.UserPageTypeId
 import com.harana.sdk.plugin.PageType
 import com.harana.sdk.plugin.PageType.PageTypeId
 import com.harana.sdk.util.RandomUtils
@@ -19,7 +20,7 @@ case class Page(title: String,
                 description: String,
                 tags: Set[String],
                 category: String,
-                pageTypeId: PageTypeId,
+                pageTypeId: Either[PageTypeId, UserPageTypeId],
                 panels: Map[PanelSlotId, PanelId],
                 parameterValues: Map[ParameterId, String],
                 linkId: String,
@@ -45,11 +46,11 @@ case class Page(title: String,
 object Page {
 	type PageId = UUID
 
-	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: PageTypeId, panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], linkId: String, createdBy: User): Page = {
+	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], linkId: String, createdBy: User): Page = {
 		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
 	}
 
-	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: PageTypeId, panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], createdBy: User): Page = {
+	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], createdBy: User): Page = {
 		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, RandomUtils.id(), None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
 	}
 

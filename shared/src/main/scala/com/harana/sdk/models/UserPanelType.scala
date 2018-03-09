@@ -6,6 +6,7 @@ import java.util.UUID
 import com.harana.sdk.models.Entity.EntityId
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
+import com.harana.sdk.models.UserPanelType.UserPanelTypeId
 import com.harana.sdk.plugin.PanelType
 import com.harana.sdk.util.CirceCodecs
 
@@ -23,7 +24,7 @@ case class UserPanelType(
     createdTime: Instant,
     updatedBy: Option[UserId],
     updatedTime: Instant,
-    id: Option[UserId],
+    id: Option[UserPanelTypeId],
     status: Status,
     version: Long,
     relationships: Map[String, EntityId])
