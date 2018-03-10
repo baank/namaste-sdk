@@ -1,7 +1,7 @@
 package com.harana.sdk.models
 
 import com.harana.sdk.models.Panel.PanelSlotId
-import com.harana.sdk.plugin.PanelType
+import com.harana.sdk.models.UserPanelType.UserPanelTypeId
 import com.harana.sdk.plugin.PanelType.PanelTypeId
 import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
@@ -20,7 +20,7 @@ case class Column(contents: List[PanelSlot],
 
 @JsonCodec
 case class PanelSlot(panelSlotId: PanelSlotId,
-                     panelType: PanelTypeId,
+                     panelType: Either[PanelTypeId, UserPanelTypeId],
                      minimumHeight: Int)
 
 sealed trait ColumnOffset extends EnumEntry
