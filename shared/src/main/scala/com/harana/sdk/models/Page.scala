@@ -23,6 +23,7 @@ case class Page(title: String,
                 panels: Map[PanelSlotId, PanelId],
                 parameterValues: Map[ParameterId, String],
                 linkId: String,
+                space: String,
                 parentPage: Option[PageId],
                 subPages: List[PageId],
                 linkedPages: Map[String, List[PageId]],
@@ -45,12 +46,8 @@ case class Page(title: String,
 object Page {
 	type PageId = UUID
 
-	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], linkId: String, createdBy: User): Page = {
-		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
-	}
-
-	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], createdBy: User): Page = {
-		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, RandomUtils.id(), None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], linkId: String, space: String, createdBy: User): Page = {
+		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, space, None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
 	}
 
 	private def uuidPanels(panels: Map[PanelSlotId, Panel]) = panels.filter { p => p._2.id.isDefined }.map( p => p._1 -> p._2.id.get)
