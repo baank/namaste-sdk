@@ -3,7 +3,8 @@ package com.harana.sdk.models
 import java.time.Instant
 import java.util.UUID
 
-import com.harana.sdk.models.Entity.EntityId
+import com.harana.sdk.annotations.AtlasExcluded
+import com.harana.sdk.models.Entity.{EntityId, Excluded}
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPanelType.UserPanelTypeId
@@ -13,9 +14,9 @@ import com.harana.sdk.util.CirceCodecs
 case class UserPanelType(
     title: String,
     description: String,
-    layout: List[Component],
-    override val instanceParameters: List[Parameter],
-    override val globalParameters: List[Parameter],
+		@Excluded layout: List[Component],
+    @Excluded override val instanceParameters: List[Parameter],
+    @Excluded override val globalParameters: List[Parameter],
     override val scripts: List[String],
     override val stylesheets: List[String],
     override val userEditable: Boolean,

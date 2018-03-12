@@ -30,8 +30,6 @@ trait Entity {
   val version: Long
   val relationships: Map[String, EntityId]
 
-  //def displayName: String
-  //def displayDescription: String
   def copyId(id: UUID): EntityType
   def copyUpdate(updatedBy: UUID, updateTime: Instant): EntityType
   def copyUpdate(updatedBy: User, updateTime: Instant): EntityType
@@ -41,4 +39,5 @@ object Entity {
   type EntityId = UUID
   type Indexed = com.harana.sdk.annotations.AtlasIndexed @field
   type Unique = com.harana.sdk.annotations.AtlasUnique @field
+	type Excluded = com.harana.sdk.annotations.AtlasExcluded @field
 }

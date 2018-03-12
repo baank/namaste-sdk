@@ -3,7 +3,7 @@ package com.harana.sdk.models
 import java.time.Instant
 import java.util.UUID
 
-import com.harana.sdk.models.Entity.EntityId
+import com.harana.sdk.models.Entity.{EntityId, Unique}
 import com.harana.sdk.models.Page.PageId
 import com.harana.sdk.models.Panel.{PanelId, PanelSlotId}
 import com.harana.sdk.models.Parameter.ParameterId
@@ -22,8 +22,8 @@ case class Page(title: String,
                 pageTypeId: Either[PageTypeId, UserPageTypeId],
                 panels: Map[PanelSlotId, PanelId],
                 parameterValues: Map[ParameterId, String],
-                linkId: String,
-                space: String,
+                @Unique linkId: String,
+								@Unique space: String,
                 parentPage: Option[PageId],
                 subPages: List[PageId],
                 linkedPages: Map[String, List[PageId]],
@@ -31,7 +31,7 @@ case class Page(title: String,
                 createdTime: Instant,
                 updatedBy: Option[UserId],
                 updatedTime: Instant,
-                id: Option[PageId],
+                @Unique id: Option[PageId],
                 status: Status,
                 version: Long,
                 relationships: Map[String, EntityId])
@@ -40,7 +40,7 @@ case class Page(title: String,
 	type EntityType = Page
 	def copyId(newId: UUID) = copy(id = Some(newId))
 	def copyUpdate(newUpdatedBy: UserId, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
-    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
+	def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
 }
 
 object Page {

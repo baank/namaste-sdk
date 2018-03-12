@@ -3,7 +3,7 @@ package com.harana.sdk.models
 import java.time.Instant
 import java.util.UUID
 
-import com.harana.sdk.models.Entity.EntityId
+import com.harana.sdk.models.Entity.{EntityId, Excluded}
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPageType.UserPageTypeId
@@ -16,10 +16,10 @@ import com.harana.sdk.util.CirceCodecs._
 case class UserPageType(
     title: String,
     description: String,
-    listLayout: Layout,
-    detailLayout: Layout,
-    override val instanceParameters: List[Parameter],
-    override val globalParameters: List[Parameter],
+    @Excluded listLayout: Layout,
+		@Excluded detailLayout: Layout,
+    @Excluded override val instanceParameters: List[Parameter],
+    @Excluded override val globalParameters: List[Parameter],
     override val linkedPanelTypes: Set[PanelTypeId] = Set.empty,
     createdBy: Option[UserId],
     createdTime: Instant,
