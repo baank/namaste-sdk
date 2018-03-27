@@ -10,44 +10,41 @@ import scala.collection.mutable.{ListBuffer => MutableList}
 abstract class Plugin extends BundleActivator {
 
   def ids: Map[Class[_ <: Service], ServiceId]
-
   def version: (Int, Int, Int)
 
-  def panelTypes: Set[Class[_ <: PanelType]]
-
+	def authenticationServices: Set[Class[_ <: AuthenticationService]]
+	def backupTypes: Set[Class[_ <: BackupType]]
+	def connectionTypes: Set[Class[_ <: ConnectionType]]
+	def eventHandlers: Set[Class[_ <: EventHandler]]
+	def healthChecks: Set[Class[_ <: HealthCheck]]
+	def pageExporters: Set[Class[_ <: PageExporter]]
+	def pageImporters: Set[Class[_ <: PageImporter]]
   def pageTypes: Set[Class[_ <: PageType]]
-
-  def pageImporters: Set[Class[_ <: PageImporter]]
-
-  def pageExporters: Set[Class[_ <: PageExporter]]
-
-  def storageServices: Set[Class[_ <: StorageService]]
-
-  def authenticationServices: Set[Class[_ <: AuthenticationService]]
-
-  def eventHandlers: Set[Class[_ <: EventHandler]]
-
+	def pageTypeSuppliers: Set[Class[_ <: PageTypeSupplier]]
+	def panelTypes: Set[Class[_ <: PanelType]]
+	def storageServices: Set[Class[_ <: StorageService]]
+	def tasks: Set[Class[_ <: Task]]
   def themes: Set[Class[_ <: Theme]]
-
-  def tasks: Set[Class[_ <: Task]]
 
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
 
   final override def start(context: BundleContext): Unit = {
-    register[PanelType](context, classOf[PanelType], panelTypes)
-    register[PageType](context, classOf[PageType], pageTypes)
-    register[PageImporter](context, classOf[PageImporter], pageImporters)
-    register[PageExporter](context, classOf[PageExporter], pageExporters)
-    register[StorageService](context, classOf[StorageService], storageServices)
-    register[AuthenticationService](context, classOf[AuthenticationService], authenticationServices)
-    register[EventHandler](context, classOf[EventHandler], eventHandlers)
-    register[Theme](context, classOf[Theme], themes)
-    register[Task](context, classOf[Task], tasks)
+	  register[AuthenticationService](context, classOf[AuthenticationService], authenticationServices)
+	  register[BackupType](context, classOf[BackupType], backupTypes)
+	  register[ConnectionType](context, classOf[ConnectionType], connectionTypes)
+	  register[EventHandler](context, classOf[EventHandler], eventHandlers)
+	  register[HealthCheck](context, classOf[HealthCheck], healthChecks)
+	  register[PageExporter](context, classOf[PageExporter], pageExporters)
+	  register[PageImporter](context, classOf[PageImporter], pageImporters)
+	  register[PageType](context, classOf[PageType], pageTypes)
+	  register[PageTypeSupplier](context, classOf[PageTypeSupplier], pageTypeSuppliers)
+	  register[PanelType](context, classOf[PanelType], panelTypes)
+	  register[StorageService](context, classOf[StorageService], storageServices)
+	  register[Task](context, classOf[Task], tasks)
+	  register[Theme](context, classOf[Theme], themes)
   }
 
-  private def register[T <: Service](context: BundleContext,
-                          cls: Class[T],
-                          services: Set[Class[_ <: T]]): Unit = {
+  private def register[T <: Service](context: BundleContext, cls: Class[T], services: Set[Class[_ <: T]]): Unit = {
     try {
       services.foreach { service =>
         // TODO harden if no ids etc.
