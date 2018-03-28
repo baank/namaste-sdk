@@ -5,5 +5,5 @@ import java.util.UUID
 trait BackupType extends Service {}
 
 object BackupType {
-	type BackupType = UUID
+	type BackupTypeId = UUID
 }

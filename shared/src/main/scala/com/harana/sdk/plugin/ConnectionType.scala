@@ -5,5 +5,5 @@ import java.util.UUID
 trait ConnectionType extends Service {}
 
 object ConnectionType {
-	type ConnectionType = UUID
+	type ConnectionTypeId = UUID
 }
