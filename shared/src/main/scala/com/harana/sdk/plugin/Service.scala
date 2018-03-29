@@ -11,6 +11,10 @@ trait Service {
 
   def description: String
 
+	def vendor: String
+
+	def version: (Int, Int, Int)
+
   def instanceParameters: List[Parameter]
 
   def globalParameters: List[Parameter]
