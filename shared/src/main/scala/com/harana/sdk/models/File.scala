@@ -21,7 +21,6 @@ case class File(title: String,
                 updatedTime: Instant,
                 id: Option[FileId],
                 status: Status,
-                version: Long,
                 relationships: Map[String, EntityId])
 	extends Entity with Serializable {
 
@@ -35,6 +34,6 @@ object File {
 	type FileId = UUID
 
 	def apply(title: String, description: String, fileName: String, fileSize: Long, mimeType: String, createdBy: User): File = {
-		apply(title, description, fileName, fileSize, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(title, description, fileName, fileSize, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

@@ -16,7 +16,6 @@ case class Backup(createdBy: Option[UserId],
                   updatedTime: Instant,
                   id: Option[BackupId],
                   status: Status,
-                  version: Long,
                   relationships: Map[String, EntityId])
   extends Entity with Serializable {
 
@@ -30,6 +29,6 @@ object Backup {
 	type BackupId = UUID
 
 	def apply(createdBy: User): Backup = {
-		apply(createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

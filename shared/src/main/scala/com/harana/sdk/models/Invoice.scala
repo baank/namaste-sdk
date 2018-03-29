@@ -25,8 +25,7 @@ case class Invoice(title: String,
                    updatedTime: Instant,
                    id: Option[InvoiceId],
                    status: Status,
-                   version: Long,
-                   relationships: Map[String, EntityId])
+                     relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
   type EntityType = Invoice
@@ -39,7 +38,7 @@ object Invoice {
   type InvoiceId = UUID
 
   def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
-    apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+    apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
   }
 }
 

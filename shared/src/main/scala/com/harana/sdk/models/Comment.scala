@@ -20,8 +20,7 @@ case class Comment(comment: String,
                    updatedTime: Instant,
                    id: Option[CommentId],
                    status: Status,
-                   version: Long,
-                   relationships: Map[String, EntityId])
+                     relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
 	type EntityType = Comment
@@ -34,10 +33,10 @@ object Comment {
 	type CommentId = UUID
 
 	def apply(comment: String, votes: Int, createdBy: User): Comment = {
-		apply(comment, votes, None, List(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(comment, votes, None, List(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 
 	def apply(comment: String, votes: Int, parent: Comment, children: List[Comment], createdBy: User): Comment = {
-		apply(comment, votes, parent.id, children.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(comment, votes, parent.id, children.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

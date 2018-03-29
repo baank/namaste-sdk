@@ -22,8 +22,7 @@ case class Connection(ip4Address: Option[String],
                       updatedTime: Instant,
                       id: Option[ConnectionId],
                       status: Status,
-                      version: Long,
-                      relationships: Map[String, EntityId])
+                           relationships: Map[String, EntityId])
   extends Entity with Serializable {
 
 	type EntityType = Connection
@@ -36,6 +35,6 @@ object Connection {
 	type ConnectionId = UUID
 
 	def apply(ip4Address: Option[String], ip6Address: Option[String], port: Int, requireSSL: Boolean, username: Option[String], password: Option[String], createdBy: User): Connection = {
-		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(ip4Address, ip6Address, port, requireSSL, username, password, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

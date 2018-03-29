@@ -23,7 +23,6 @@ case class Panel(title: String,
                  updatedTime: Instant,
                  id: Option[PanelId],
                  status: Status,
-                 version: Long,
                  relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -38,6 +37,6 @@ object Panel {
 	type PanelId = UUID
 
 	def apply(title: String, description: String, panelTypeId: Either[PanelTypeId, UserPanelTypeId], parameterValues: Map[ParameterId, String], createdBy: User): Panel = {
-		apply(title, description, panelTypeId, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(title, description, panelTypeId, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

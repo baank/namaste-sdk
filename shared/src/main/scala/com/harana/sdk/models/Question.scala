@@ -20,8 +20,7 @@ case class Question(title: String,
                     updatedTime: Instant,
                     id: Option[QuestionId],
                     status: Status,
-                    version: Long,
-                    relationships: Map[String, EntityId])
+                       relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
 	type EntityType = Question
@@ -34,6 +33,6 @@ object Question {
 	type QuestionId = UUID
 
 	def apply(title: String, category: String, body: String, votes: Int, createdBy: User): Question = {
-		apply(title, category, body, votes, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(title, category, body, votes, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

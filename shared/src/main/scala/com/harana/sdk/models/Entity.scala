@@ -27,7 +27,6 @@ trait Entity {
   val updatedBy: Option[UserId]
   val id: Option[EntityId]
   val status: Status
-  val version: Long
   val relationships: Map[String, EntityId]
 
   def copyId(id: UUID): EntityType

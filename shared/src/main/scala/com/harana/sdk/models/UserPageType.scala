@@ -27,7 +27,6 @@ case class UserPageType(
     updatedTime: Instant,
     id: Option[UserPageTypeId],
     status: Status,
-    version: Long,
     relationships: Map[String, EntityId])
     extends Entity with Serializable with PageType {
 
@@ -36,6 +35,9 @@ case class UserPageType(
 
 	def onStartup(): Unit = {}
 	def onShutdown(): Unit = {}
+
+	override def vendor = "Harana"
+	override def version = (1,0,0)
 
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
 	override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}

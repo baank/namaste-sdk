@@ -18,8 +18,7 @@ case class ServiceInstance[T <: Service](names: String,
                                          updatedTime: Instant,
                                          id: Option[ServiceInstanceId],
                                          status: Status,
-                                         version: Long,
-                                         relationships: Map[String, EntityId])
+                                                                 relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
 	type EntityType = ServiceInstance[T]
@@ -32,6 +31,6 @@ object ServiceInstance {
 	type ServiceInstanceId = UUID
 
 	def apply[T <: Service](names: String, service: T, parameterValues: Map[ParameterId, String], createdBy: User): ServiceInstance[T] = {
-		apply(names, service, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(names, service, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

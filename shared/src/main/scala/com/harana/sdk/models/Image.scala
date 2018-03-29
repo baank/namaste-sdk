@@ -23,7 +23,6 @@ case class Image(title: String,
                  updatedTime: Instant,
                  id: Option[ImageId],
                  status: Status,
-                 version: Long,
                  relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -37,6 +36,6 @@ object Image {
 	type ImageId = UUID
 
 	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, mimeType: String, createdBy: User): Image = {
-		apply(title, description, fileName, fileSize, width, height, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(title, description, fileName, fileSize, width, height, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

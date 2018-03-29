@@ -22,7 +22,6 @@ case class User(firstName: String,
                 updatedTime: Instant,
                 id: Option[UserId],
                 status: Status,
-                version: Long,
                 relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -36,10 +35,10 @@ object User {
 	type UserId = UUID
 
 	def apply(firstName: String, lastName: String, preferredName: Option[String], emailAddress: String, title: Option[String], groups: Set[Group], thumbnail: Option[String]): User = {
-		apply(firstName, lastName, preferredName, emailAddress, title, groups.flatMap(_.id), thumbnail, None, Instant.now, None, Instant.now, None, Status.Active, 1, Map())
+		apply(firstName, lastName, preferredName, emailAddress, title, groups.flatMap(_.id), thumbnail, None, Instant.now, None, Instant.now, None, Status.Active, Map())
 	}
 
 	def apply(firstName: String, lastName: String, preferredName: Option[String], emailAddress: String, title: Option[String], groups: Set[Group], thumbnail: Option[String], createdBy: User): User = {
-		apply(firstName, lastName, preferredName, emailAddress, title, groups.flatMap(_.id), thumbnail, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(firstName, lastName, preferredName, emailAddress, title, groups.flatMap(_.id), thumbnail, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }

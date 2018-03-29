@@ -23,7 +23,6 @@ case class Task(title: String,
                 updatedTime: Instant,
                 id: Option[TaskId],
                 status: Status,
-                version: Long,
                 relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -36,7 +35,7 @@ object Task {
   type TaskId = UUID
 
   def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: User): Task = {
-    apply(title, description, priority, state, dueTime, assignedUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+    apply(title, description, priority, state, dueTime, assignedUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
   }
 }
 

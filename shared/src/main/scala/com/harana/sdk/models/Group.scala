@@ -18,7 +18,6 @@ case class Group(title: String,
                  updatedTime: Instant,
                  id: Option[GroupId],
                  status: Status,
-                 version: Long,
                  relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -32,6 +31,6 @@ object Group {
 	type GroupId = UUID
 
 	def apply(title: String, users: Set[User], createdBy: User): Group = {
-		apply(title, users.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1, Map())
+		apply(title, users.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
 	}
 }
