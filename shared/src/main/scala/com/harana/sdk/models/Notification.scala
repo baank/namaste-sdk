@@ -7,6 +7,7 @@ import com.harana.sdk.models.Backup.BackupId
 import com.harana.sdk.models.Entity.EntityId
 import com.harana.sdk.models.User.UserId
 import io.circe.generic.JsonCodec
+import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class Notification(createdBy: Option[UserId],
