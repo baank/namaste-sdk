@@ -17,6 +17,7 @@ abstract class Plugin extends BundleActivator {
 	def connectionTypes: Set[Class[_ <: ConnectionType]]
 	def eventHandlers: Set[Class[_ <: EventHandler]]
 	def healthChecks: Set[Class[_ <: HealthCheck]]
+	def notificationTypes: Set[Class[_ <: NotificationType]]
 	def pageExporters: Set[Class[_ <: PageExporter]]
 	def pageImporters: Set[Class[_ <: PageImporter]]
   def pageTypes: Set[Class[_ <: PageType]]
@@ -34,6 +35,7 @@ abstract class Plugin extends BundleActivator {
 	  register[ConnectionType](context, classOf[ConnectionType], connectionTypes)
 	  register[EventHandler](context, classOf[EventHandler], eventHandlers)
 	  register[HealthCheck](context, classOf[HealthCheck], healthChecks)
+	  register[NotificationType](context, classOf[NotificationType], notificationTypes)
 	  register[PageExporter](context, classOf[PageExporter], pageExporters)
 	  register[PageImporter](context, classOf[PageImporter], pageImporters)
 	  register[PageType](context, classOf[PageType], pageTypes)
