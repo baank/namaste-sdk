@@ -12,10 +12,6 @@ trait PageExporter extends Service {
 
   def exportPages(pages: Seq[Page], progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
 
-  def decoder: Decoder[_ <: PageExporter]
-
-  def encoder: Encoder[_ <: PageExporter]
-
 }
 
 object PageExporter {

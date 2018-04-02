@@ -22,6 +22,7 @@ case class Event(title: String,
                  updatedTime: Instant,
                  id: Option[EventId],
                  status: Status,
+                 version: Long,
                  relationships: Map[String, EntityId])
 	extends Entity with Serializable {
 
@@ -35,6 +36,6 @@ object Event {
 	type EventId = UUID
 
 	def apply(title: String, description: String, tags: List[String], startTime: Instant, endTime: Instant, attendingUsers: List[User], createdBy: User): Event = {
-		apply(title, description, tags, startTime, endTime, attendingUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
+		apply(title, description, tags, startTime, endTime, attendingUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

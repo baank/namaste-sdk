@@ -9,41 +9,45 @@ import scala.collection.mutable.{ListBuffer => MutableList}
 
 abstract class Plugin extends BundleActivator {
 
-  def ids: Map[Class[_ <: Service], ServiceId]
-  def version: (Int, Int, Int)
+	def name: String
+	def vendor: String
+	def version: Long
 
-	def authenticationServices: Set[Class[_ <: AuthenticationService]]
-	def backupTypes: Set[Class[_ <: BackupType]]
-	def connectionTypes: Set[Class[_ <: ConnectionType]]
+  def ids: Map[Class[_ <: Service], ServiceId]
+
+	def authenticationServices: Set[Class[_ <: AuthenticationHandler]]
+	def backupTypes: Set[Class[_ <: BackupHandler]]
+	def connectionTypes: Set[Class[_ <: Connection]]
 	def eventHandlers: Set[Class[_ <: EventHandler]]
 	def healthChecks: Set[Class[_ <: HealthCheck]]
-	def notificationTypes: Set[Class[_ <: NotificationType]]
+	def notificationTypes: Set[Class[_ <: NotificationHandler]]
 	def pageExporters: Set[Class[_ <: PageExporter]]
 	def pageImporters: Set[Class[_ <: PageImporter]]
   def pageTypes: Set[Class[_ <: PageType]]
 	def pageTypeSuppliers: Set[Class[_ <: PageTypeSupplier]]
 	def panelTypes: Set[Class[_ <: PanelType]]
-	def storageServices: Set[Class[_ <: StorageService]]
-	def tasks: Set[Class[_ <: Task]]
+	def scheduledTasks: Set[Class[_ <: ScheduledTask]]
   def themes: Set[Class[_ <: Theme]]
 
   private val serviceRegistrations = MutableList[(_, ServiceRegistration[_])]()
 
   final override def start(context: BundleContext): Unit = {
-	  register[AuthenticationService](context, classOf[AuthenticationService], authenticationServices)
-	  register[BackupType](context, classOf[BackupType], backupTypes)
-	  register[ConnectionType](context, classOf[ConnectionType], connectionTypes)
+	  register[AuthenticationHandler](context, classOf[AuthenticationHandler], authenticationServices)
+	  register[BackupHandler](context, classOf[BackupHandler], backupTypes)
+	  register[Connection](context, classOf[Connection], connectionTypes)
 	  register[EventHandler](context, classOf[EventHandler], eventHandlers)
 	  register[HealthCheck](context, classOf[HealthCheck], healthChecks)
-	  register[NotificationType](context, classOf[NotificationType], notificationTypes)
+	  register[NotificationHandler](context, classOf[NotificationHandler], notificationTypes)
 	  register[PageExporter](context, classOf[PageExporter], pageExporters)
 	  register[PageImporter](context, classOf[PageImporter], pageImporters)
 	  register[PageType](context, classOf[PageType], pageTypes)
 	  register[PageTypeSupplier](context, classOf[PageTypeSupplier], pageTypeSuppliers)
 	  register[PanelType](context, classOf[PanelType], panelTypes)
-	  register[StorageService](context, classOf[StorageService], storageServices)
-	  register[Task](context, classOf[Task], tasks)
+	  register[ScheduledTask](context, classOf[ScheduledTask], scheduledTasks)
 	  register[Theme](context, classOf[Theme], themes)
+
+	  context.getBundle.getHeaders.asScala ++=
+		  Seq("name" -> name, "vendor" -> vendor, "version" -> name)
   }
 
   private def register[T <: Service](context: BundleContext, cls: Class[T], services: Set[Class[_ <: T]]): Unit = {

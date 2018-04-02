@@ -27,6 +27,7 @@ case class UserPanelType(
     updatedTime: Instant,
     id: Option[UserPanelTypeId],
     status: Status,
+    version: Long,
     relationships: Map[String, EntityId])
 		extends Entity with Serializable with PanelType {
 
@@ -37,7 +38,6 @@ case class UserPanelType(
   override def onShutdown(): Unit = {}
 
 	override def vendor = "Harana"
-	override def version = (1,0,0)
 
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
   override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}

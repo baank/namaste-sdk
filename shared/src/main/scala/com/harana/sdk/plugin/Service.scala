@@ -13,7 +13,7 @@ trait Service {
 
 	def vendor: String
 
-	def version: (Int, Int, Int)
+	def version: Long
 
   def instanceParameters: List[Parameter]
 

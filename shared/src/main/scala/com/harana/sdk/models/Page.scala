@@ -33,6 +33,7 @@ case class Page(title: String,
                 updatedTime: Instant,
                 @Unique id: Option[PageId],
                 status: Status,
+                version: Long,
                 relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -46,7 +47,7 @@ object Page {
 	type PageId = UUID
 
 	def apply(title: String, description: String, tags: Set[String], category: String, pageTypeId: Either[PageTypeId, UserPageTypeId], panels: Map[PanelSlotId, Panel], parameterValues: Map[ParameterId, String], linkId: String, space: String, createdBy: User): Page = {
-		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, space, None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
+		apply(title, description, tags, category, pageTypeId, uuidPanels(panels), parameterValues, linkId, space, None, List(), Map(), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 
 	private def uuidPanels(panels: Map[PanelSlotId, Panel]) = panels.filter { p => p._2.id.isDefined }.map( p => p._1 -> p._2.id.get)

@@ -12,10 +12,6 @@ trait PageTypeSupplier extends Service {
 
   def getPages(pages: Seq[Page], progressObserver: ProgressObserver): Future[Seq[(Page, Boolean, String)]]
 
-  def decoder: Decoder[_ <: PageTypeSupplier]
-
-  def encoder: Encoder[_ <: PageTypeSupplier]
-
 }
 
 object PageTypeSupplier {

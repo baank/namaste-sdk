@@ -5,6 +5,7 @@ import java.util.UUID
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.{Color, Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
+import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class ColorParameter(title: String,

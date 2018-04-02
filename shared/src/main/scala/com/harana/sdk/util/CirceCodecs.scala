@@ -2,7 +2,6 @@ package com.harana.sdk.util
 
 import java.net.URI
 import java.time.Instant
-import java.util.UUID
 
 import cats.syntax.either._
 import com.harana.sdk.components.cards._
@@ -14,7 +13,7 @@ import com.harana.sdk.components.structure._
 import com.harana.sdk.components.widgets._
 import com.harana.sdk.models._
 import com.harana.sdk.parameters._
-import com.harana.sdk.plugin.{PageType, PanelType, Service}
+import com.harana.sdk.plugin.Service
 import com.harana.sdk.utils.ReflectUtils
 import io.circe._
 import io.circe.generic.semiauto._
@@ -141,7 +140,6 @@ object CirceCodecs {
 		val content = c.downField("entity").success.get
 		c.downField("type").as[String].getOrElse(throw new Exception("Entity type not found")).toLowerCase match {
 			case "comment" => deriveDecoder[Comment].apply(content)
-			case "connection" => deriveDecoder[Connection].apply(content)
 			case "event" => deriveDecoder[Event].apply(content)
 			case "file" => deriveDecoder[File].apply(content)
 			case "image" => deriveDecoder[Image].apply(content)
@@ -150,7 +148,6 @@ object CirceCodecs {
 			case "page" => deriveDecoder[Page].apply(content)
 			case "panel" => deriveDecoder[Panel].apply(content)
 			case "question" => deriveDecoder[Question].apply(content)
-			//case "serviceinstance" => deriveDecoder[ServiceInstance[_]].apply(content)
 			case "task" => deriveDecoder[Task].apply(content)
 			case "user" => deriveDecoder[User].apply(content)
 			case "video" => deriveDecoder[Video].apply(content)
@@ -162,7 +159,6 @@ object CirceCodecs {
 		val json = entityType match {
 			case "user" => deriveEncoder[User].apply(entity.asInstanceOf[User])
 			case "comment" => deriveEncoder[Comment].apply(entity.asInstanceOf[Comment])
-			case "connection" => deriveEncoder[Connection].apply(entity.asInstanceOf[Connection])
 			case "event" => deriveEncoder[Event].apply(entity.asInstanceOf[Event])
 			case "file" => deriveEncoder[File].apply(entity.asInstanceOf[File])
 			case "image" => deriveEncoder[Image].apply(entity.asInstanceOf[Image])
@@ -171,7 +167,6 @@ object CirceCodecs {
 			case "page" => deriveEncoder[Page].apply(entity.asInstanceOf[Page])
 			case "panel" => deriveEncoder[Panel].apply(entity.asInstanceOf[Panel])
 			case "question" => deriveEncoder[Question].apply(entity.asInstanceOf[Question])
-			//case "serviceinstance" => decodeServiceInstance
 			case "task" => deriveEncoder[Task].apply(entity.asInstanceOf[Task])
 			case "video" => deriveEncoder[Video].apply(entity.asInstanceOf[Video])
 		}
@@ -259,14 +254,12 @@ object CirceCodecs {
 	implicit def decodeSubEntity[A <: Entity]: Decoder[Entity] = decodeEntity
 	implicit val decodeInstant: Decoder[Instant] = Decoder.decodeLong.emap { long => Either.catchNonFatal(Instant.ofEpochMilli(long)).leftMap(_ => "Malformed Money") }
 	implicit val decodeMoney: Decoder[Money] = Decoder.decodeString.emap { str => Money(str).toEither.leftMap(_ => "Malformed Money") }
-	implicit def decodeServiceInstance[A <: Service]: Decoder[ServiceInstance[A]] = deriveDecoder[ServiceInstance[A]]
 	implicit def decodeService[A <: Service]: Decoder[A] = Decoder.decodeString.emap { str => Either.catchNonFatal(ReflectUtils.classForName[A](str)).leftMap(_ => "Malformed Service") }
 	implicit val decodeUri: Decoder[URI] = Decoder.decodeString.emap { str => Either.catchNonFatal(URI.create(str)).leftMap(_ => "Malformed URL") }
 
 	implicit def encodeSubEntity[A <: Entity]: Encoder[Entity] = encodeEntity
 	implicit val encodeInstant: Encoder[Instant] = Encoder.encodeLong.contramap[Instant](_.toEpochMilli)
 	implicit val encodeMoney: Encoder[Money] = Encoder.encodeString.contramap[Money](_.toString)
-	implicit def encodeServiceInstance[A <: Service]: Encoder[ServiceInstance[A]] = deriveEncoder[ServiceInstance[A]]
 	implicit def encodeService[A <: Service]: Encoder[A] = Encoder.encodeString.contramap[A](_.getClass.getName)
 	implicit val encodeUri: Encoder[URI] = Encoder.encodeString.contramap[URI](_.toString)
 }

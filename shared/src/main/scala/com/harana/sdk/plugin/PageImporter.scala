@@ -12,9 +12,6 @@ trait PageImporter extends Service {
 
   def requiredPageTypes[PT <: PageType]: List[PT]
 
-  def decoder: Decoder[PageImporter]
-
-  def encoder: Encoder[PageImporter]
 }
 
 object PageImporter {

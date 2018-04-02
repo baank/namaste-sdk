@@ -24,6 +24,7 @@ case class Video(title: String,
                  updatedTime: Instant,
                  id: Option[VideoId],
                  status: Status,
+                 version: Long,
                  relationships: Map[String, EntityId])
     extends Entity with Serializable {
 
@@ -37,6 +38,6 @@ object Video {
 	type VideoId = UUID
 
 	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, playTime: Long, mimeType: String, createdBy: User): Video = {
-		apply(title, description, fileName, fileSize, width, height, playTime, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, Map())
+		apply(title, description, fileName, fileSize, width, height, playTime, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }
