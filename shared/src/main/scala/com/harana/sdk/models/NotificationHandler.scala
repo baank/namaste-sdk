@@ -8,7 +8,9 @@ import com.harana.sdk.models.NotificationHandler.NotificationHandlerId
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.util.CirceCodecs._
+import io.circe.generic.JsonCodec
 
+@JsonCodec
 case class NotificationHandler(title: String,
                                description: String,
                                parameterValues: Map[ParameterId, String],
