@@ -3,14 +3,14 @@ package com.harana.sdk.models
 import java.time.Instant
 import java.util.UUID
 
-import com.harana.sdk.annotations.AtlasExcluded
 import com.harana.sdk.models.Entity.{EntityId, Excluded}
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPanelType.UserPanelTypeId
-import com.harana.sdk.plugin.PanelType
-import com.harana.sdk.util.CirceCodecs
+import io.circe.generic.JsonCodec
+import com.harana.sdk.util.CirceCodecs._
 
+@JsonCodec
 case class UserPanelType(
     title: String,
     description: String,
@@ -29,7 +29,7 @@ case class UserPanelType(
     status: Status,
     version: Long,
     relationships: Map[String, EntityId])
-		extends Entity with Serializable with PanelType {
+		extends Entity with Serializable with com.harana.sdk.plugin.PanelType {
 
   override def layout(parameterValues: Map[ParameterId, String]) = layout
   override def layoutHasChanged: Boolean = false

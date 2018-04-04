@@ -1,6 +1,6 @@
 package com.harana.sdk.models
 
-import io.circe.generic.JsonCodec
+import com.harana.sdk.util.CirceCodecs._
 import enumeratum._
 
 sealed trait Color extends EnumEntry

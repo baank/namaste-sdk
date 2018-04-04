@@ -4,8 +4,8 @@ import com.harana.sdk.models.Panel.PanelSlotId
 import com.harana.sdk.models.UserPanelType.UserPanelTypeId
 import com.harana.sdk.plugin.PanelType.PanelTypeId
 import io.circe.generic.JsonCodec
-import com.harana.sdk.util.CirceCodecs._
 import enumeratum._
+import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class Layout(rows: List[Row])

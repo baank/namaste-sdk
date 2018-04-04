@@ -2,6 +2,7 @@ package com.harana.sdk.models
 
 import io.circe.generic.JsonCodec
 import enumeratum._
+import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class TabularData(columnTypes: List[DataType],

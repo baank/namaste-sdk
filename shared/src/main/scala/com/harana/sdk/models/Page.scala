@@ -10,7 +10,6 @@ import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPageType.UserPageTypeId
 import com.harana.sdk.plugin.PageType.PageTypeId
-import com.harana.sdk.util.RandomUtils
 import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 

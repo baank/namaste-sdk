@@ -1,13 +1,13 @@
-package com.harana.sdk.models.plugin
+package com.harana.sdk.models
 
 import java.time.Instant
 import java.util.UUID
 
 import com.harana.sdk.models.Entity.EntityId
+import com.harana.sdk.models.NotificationHandler.NotificationHandlerId
 import com.harana.sdk.models.Parameter.ParameterId
-import com.harana.sdk.models.{Entity, Status, User}
 import com.harana.sdk.models.User.UserId
-import com.harana.sdk.models.plugin.NotificationHandler.NotificationHandlerId
+import com.harana.sdk.util.CirceCodecs._
 
 case class NotificationHandler(title: String,
                                description: String,

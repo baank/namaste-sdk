@@ -8,7 +8,6 @@ import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPageType.UserPageTypeId
 import com.harana.sdk.plugin.PanelType.PanelTypeId
-import com.harana.sdk.plugin.PageType
 import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
@@ -29,7 +28,7 @@ case class UserPageType(
     status: Status,
     version: Long,
     relationships: Map[String, EntityId])
-    extends Entity with Serializable with PageType {
+    extends Entity with Serializable with com.harana.sdk.plugin.PageType {
 
 	def listLayout(parameterValues: Map[ParameterId, String]) = listLayout
 	def detailLayout(parameterValues: Map[ParameterId, String]) = detailLayout

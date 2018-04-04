@@ -1,14 +1,16 @@
-package com.harana.sdk.models.plugin
+package com.harana.sdk.models
 
 import java.time.Instant
 import java.util.UUID
 
 import com.harana.sdk.models.Entity.EntityId
+import com.harana.sdk.models.PanelType.PanelTypeId
 import com.harana.sdk.models.Parameter.ParameterId
-import com.harana.sdk.models.{Entity, Status, User}
 import com.harana.sdk.models.User.UserId
-import com.harana.sdk.models.plugin.PanelType.PanelTypeId
+import io.circe.generic.JsonCodec
+import com.harana.sdk.util.CirceCodecs._
 
+@JsonCodec
 case class PanelType(title: String,
                      description: String,
                      parameterValues: Map[ParameterId, String],
