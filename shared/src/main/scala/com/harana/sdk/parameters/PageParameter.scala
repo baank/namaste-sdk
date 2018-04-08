@@ -7,10 +7,10 @@ import com.harana.sdk.models.{Page, Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class PageParameter(title: String,
+case class PageParameter(name: String,
                          description: String,
                          group: Option[String],
                          default: Option[Page] = None,
                          required: Boolean,
-                         validators: List[ParameterValidator],
+                         validators: List[ParameterValidator] = List(),
                          id: ParameterId = UUID.randomUUID()) extends Parameter with Serializable

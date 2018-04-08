@@ -10,7 +10,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Question(title: String,
+case class Question(name: String,
                     category: String,
                     body: String,
                     votes: Int,
@@ -33,7 +33,7 @@ case class Question(title: String,
 object Question {
 	type QuestionId = UUID
 
-	def apply(title: String, category: String, body: String, votes: Int, createdBy: User): Question = {
-		apply(title, category, body, votes, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, category: String, body: String, votes: Int, createdBy: User): Question = {
+		apply(name, category, body, votes, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

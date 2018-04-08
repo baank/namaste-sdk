@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class PasswordParameter(title: String,
+case class PasswordParameter(name: String,
                              description: String,
                              group: Option[String],
                              required: Boolean,

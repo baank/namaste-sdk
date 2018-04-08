@@ -7,7 +7,7 @@ import com.harana.sdk.models.{File, Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class FileParameter(title: String,
+case class FileParameter(name: String,
                          description: String,
                          group: Option[String],
                          default: Option[File] = None,

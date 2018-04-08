@@ -12,7 +12,7 @@ import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class UserPanelType(
-    title: String,
+    name: String,
     description: String,
 		@Excluded layout: List[Component],
     @Excluded override val instanceParameters: List[Parameter],
@@ -31,16 +31,14 @@ case class UserPanelType(
     relationships: Map[String, EntityId])
 		extends Entity with Serializable with com.harana.sdk.plugin.PanelType {
 
-  override def layout(parameterValues: Map[ParameterId, String]) = layout
+  override def layout(parameterValues: Map[ParameterId, ParameterValue]) = layout
   override def layoutHasChanged: Boolean = false
 
   override def onStartup(): Unit = {}
   override def onShutdown(): Unit = {}
 
-	override def vendor = "Harana"
-
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-  override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}
+  override def onUserConfigure(newParameterValues: Map[ParameterId, ParameterValue]): Unit = {}
 
 	type EntityType = UserPanelType
 	def copyId(newId: UUID) = copy(id = Some(newId))

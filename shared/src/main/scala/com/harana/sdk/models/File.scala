@@ -10,7 +10,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class File(title: String,
+case class File(name: String,
                 description: String,
                 fileName: String,
                 fileSize: Long,
@@ -28,13 +28,13 @@ case class File(title: String,
 	type EntityType = File
 	def copyId(newId: UUID) = copy(id = Some(newId))
 	def copyUpdate(newUpdatedBy: UserId, newUpdateTime: Instant) = copy(updatedBy = Some(newUpdatedBy), updatedTime = newUpdateTime)
-    def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
+	def copyUpdate(newUpdatedBy: User, newUpdateTime: Instant) = copy(updatedBy = newUpdatedBy.id, updatedTime = newUpdateTime)
 }
 
 object File {
 	type FileId = UUID
 
-	def apply(title: String, description: String, fileName: String, fileSize: Long, mimeType: String, createdBy: User): File = {
-		apply(title, description, fileName, fileSize, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, fileName: String, fileSize: Long, mimeType: String, createdBy: User): File = {
+		apply(name, description, fileName, fileSize, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

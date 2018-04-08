@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class TagsParameter(title: String,
+case class TagsParameter(name: String,
                          description: String,
                          group: Option[String],
                          default: Option[String] = None,

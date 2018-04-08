@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class ImageParameter(title: String,
+case class ImageParameter(name: String,
                           description: String,
                           group: Option[String],
                           default: Option[String] = None,

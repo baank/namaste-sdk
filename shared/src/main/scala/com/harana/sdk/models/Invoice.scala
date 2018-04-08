@@ -12,7 +12,7 @@ import enumeratum._
 import squants.Money
 
 @JsonCodec
-case class Invoice(title: String,
+case class Invoice(name: String,
                    description: String,
                    amount: Money,
                    recipient: String,
@@ -38,8 +38,8 @@ case class Invoice(title: String,
 object Invoice {
   type InvoiceId = UUID
 
-  def apply(title: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
-    apply(title, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+  def apply(name: String, description: String, amount: Money, recipient: String, paymentStatus: PaymentStatus, paymentMethod: PaymentMethod, dueTime: Instant, createdBy: User): Invoice = {
+    apply(name, description, amount, recipient, paymentStatus, paymentMethod, dueTime, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
   }
 }
 

@@ -11,7 +11,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class PageTypeSupplier(title: String,
+case class PageTypeSupplier(name: String,
                             description: String,
                             parameterValues: Map[ParameterId, String],
                             createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class PageTypeSupplier(title: String,
 object PageTypeSupplier {
 	type PageTypeSupplierId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): PageTypeSupplier = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): PageTypeSupplier = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

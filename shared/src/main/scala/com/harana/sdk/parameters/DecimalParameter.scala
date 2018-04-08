@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class DecimalParameter(title: String,
+case class DecimalParameter(name: String,
                             description: String,
                             group: Option[String],
                             default: Option[BigDecimal] = None,

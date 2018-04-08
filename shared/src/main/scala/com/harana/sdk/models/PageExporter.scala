@@ -11,7 +11,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class PageExporter(title: String,
+case class PageExporter(name: String,
                         description: String,
                         parameterValues: Map[ParameterId, String],
                         createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class PageExporter(title: String,
 object PageExporter {
 	type PageExporterId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): PageExporter = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): PageExporter = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

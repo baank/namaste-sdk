@@ -9,7 +9,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class DateTimeParameter(title: String,
+case class DateTimeParameter(name: String,
                              description: String,
                              group: Option[String],
                              default: Option[Instant] = None,

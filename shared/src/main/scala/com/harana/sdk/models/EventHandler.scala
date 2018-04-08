@@ -11,7 +11,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class EventHandler(title: String,
+case class EventHandler(name: String,
                         description: String,
                         parameterValues: Map[ParameterId, String],
                         createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class EventHandler(title: String,
 object EventHandler {
 	type EventHandlerId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): EventHandler = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): EventHandler = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

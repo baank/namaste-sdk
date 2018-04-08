@@ -1,10 +1,10 @@
 package com.harana.sdk.models
 
 import java.util.UUID
+
 import com.harana.sdk.models.Parameter.ParameterId
 import com.harana.sdk.util.CirceCodecs._
 import enumeratum._
-
 import scala.scalajs.reflect.annotation.EnableReflectiveInstantiation
 
 sealed trait DateTimeStyle extends EnumEntry
@@ -19,7 +19,7 @@ case object DateTimeStyle extends Enum[DateTimeStyle] with CirceEnum[DateTimeSty
 
 @EnableReflectiveInstantiation
 trait Parameter {
-  def title: String
+  def name: String
   def description: String
   def group: Option[String]
   def required: Boolean

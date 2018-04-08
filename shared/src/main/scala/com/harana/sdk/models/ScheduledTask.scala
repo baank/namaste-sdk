@@ -11,7 +11,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class ScheduledTask(title: String,
+case class ScheduledTask(name: String,
                          description: String,
                          parameterValues: Map[ParameterId, String],
                          createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class ScheduledTask(title: String,
 object ScheduledTask {
 	type ScheduledTaskId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): ScheduledTask = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): ScheduledTask = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

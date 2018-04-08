@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class IntegerParameter(title: String,
+case class IntegerParameter(name: String,
                             description: String,
                             group: Option[String],
                             default: Option[Integer] = None,

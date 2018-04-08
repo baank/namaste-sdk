@@ -11,7 +11,7 @@ import com.harana.sdk.util.CirceCodecs._
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class NotificationHandler(title: String,
+case class NotificationHandler(name: String,
                                description: String,
                                parameterValues: Map[ParameterId, String],
                                createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class NotificationHandler(title: String,
 object NotificationHandler {
 	type NotificationHandlerId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): NotificationHandler = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): NotificationHandler = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

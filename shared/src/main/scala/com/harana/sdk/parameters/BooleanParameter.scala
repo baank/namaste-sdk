@@ -8,7 +8,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class BooleanParameter(title: String,
+case class BooleanParameter(name: String,
                             description: String,
                             group: Option[String],
                             default: Option[String] = None,

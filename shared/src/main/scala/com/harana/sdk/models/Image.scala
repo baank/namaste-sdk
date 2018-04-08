@@ -10,7 +10,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Image(title: String,
+case class Image(name: String,
                  description: String,
                  fileName: String,
                  fileSize: Long,
@@ -36,7 +36,7 @@ case class Image(title: String,
 object Image {
 	type ImageId = UUID
 
-	def apply(title: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, mimeType: String, createdBy: User): Image = {
-		apply(title, description, fileName, fileSize, width, height, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, fileName: String, fileSize: Long, width: Int, height: Int, mimeType: String, createdBy: User): Image = {
+		apply(name, description, fileName, fileSize, width, height, mimeType, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

@@ -10,7 +10,7 @@ import com.harana.sdk.util.CirceCodecs._
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Event(title: String,
+case class Event(name: String,
                  description: String,
                  tags: List[String],
                  startTime: Instant,
@@ -35,7 +35,7 @@ case class Event(title: String,
 object Event {
 	type EventId = UUID
 
-	def apply(title: String, description: String, tags: List[String], startTime: Instant, endTime: Instant, attendingUsers: List[User], createdBy: User): Event = {
-		apply(title, description, tags, startTime, endTime, attendingUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, tags: List[String], startTime: Instant, endTime: Instant, attendingUsers: List[User], createdBy: User): Event = {
+		apply(name, description, tags, startTime, endTime, attendingUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

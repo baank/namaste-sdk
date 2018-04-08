@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class GeoAddressParameter(title: String,
+case class GeoAddressParameter(name: String,
                                description: String,
                                group: Option[String],
                                default: Option[String] = None,

@@ -11,7 +11,7 @@ import com.harana.sdk.util.CirceCodecs._
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class Connection(title: String,
+case class Connection(name: String,
                       description: String,
                       parameterValues: Map[ParameterId, String],
                       createdBy: Option[UserId],
@@ -33,7 +33,7 @@ case class Connection(title: String,
 object Connection {
 	type ConnectionId = UUID
 
-	def apply(title: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): Connection = {
-		apply(title, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): Connection = {
+		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

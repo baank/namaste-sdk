@@ -7,7 +7,7 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class HtmlParameter(title: String,
+case class HtmlParameter(name: String,
                          description: String,
                          group: Option[String],
                          default: Option[String] = None,

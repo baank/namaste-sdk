@@ -45,16 +45,13 @@ abstract class Plugin extends BundleActivator {
 	  register[PanelType](context, classOf[PanelType], panelTypes)
 	  register[ScheduledTask](context, classOf[ScheduledTask], scheduledTasks)
 	  register[Theme](context, classOf[Theme], themes)
-
-	  context.getBundle.getHeaders.asScala ++=
-		  Seq("name" -> name, "vendor" -> vendor, "version" -> name)
-  }
+	}
 
   private def register[T <: Service](context: BundleContext, cls: Class[T], services: Set[Class[_ <: T]]): Unit = {
     try {
       services.foreach { service =>
         // TODO harden if no ids etc.
-        val map = mutable.Map("id" -> ids(service))
+        val map = mutable.Map("id" -> ids(service), "pluginName" -> name, "pluginVersion" -> version, "pluginVendor" -> vendor)
         serviceRegistrations += service -> context.registerService(cls, service.newInstance(), map.asJavaDictionary)
         //TODO
         //service.asInstanceOf[Service].onStartup()

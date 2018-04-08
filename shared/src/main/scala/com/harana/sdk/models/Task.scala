@@ -11,7 +11,7 @@ import com.harana.sdk.util.CirceCodecs._
 import enumeratum._
 
 @JsonCodec
-case class Task(title: String,
+case class Task(name: String,
                 description: String,
                 taskPriority: TaskPriority,
                 taskState: TaskState,
@@ -35,8 +35,8 @@ case class Task(title: String,
 object Task {
   type TaskId = UUID
 
-  def apply(title: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: User): Task = {
-    apply(title, description, priority, state, dueTime, assignedUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+  def apply(name: String, description: String, priority: TaskPriority, state: TaskState, dueTime: Instant, assignedUsers: List[User], createdBy: User): Task = {
+    apply(name, description, priority, state, dueTime, assignedUsers.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
   }
 }
 

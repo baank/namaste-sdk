@@ -1,10 +1,8 @@
 package com.harana.sdk.plugin
 
 import java.util.UUID
-
 import com.harana.sdk.models.Page
 import com.harana.sdk.util.ProgressObserver
-import io.circe.{Decoder, Encoder}
 
 trait PageImporter extends Service {
 

@@ -13,7 +13,7 @@ import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class UserPageType(
-    title: String,
+    name: String,
     description: String,
     @Excluded listLayout: Layout,
 		@Excluded detailLayout: Layout,
@@ -30,16 +30,14 @@ case class UserPageType(
     relationships: Map[String, EntityId])
     extends Entity with Serializable with com.harana.sdk.plugin.PageType {
 
-	def listLayout(parameterValues: Map[ParameterId, String]) = listLayout
-	def detailLayout(parameterValues: Map[ParameterId, String]) = detailLayout
+	def listLayout(parameterValues: Map[ParameterId, ParameterValue]) = listLayout
+	def detailLayout(parameterValues: Map[ParameterId, ParameterValue]) = detailLayout
 
 	def onStartup(): Unit = {}
 	def onShutdown(): Unit = {}
 
-	override def vendor = "Harana"
-
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-	override def onUserConfigure(newParameterValues: Map[ParameterId, String]): Unit = {}
+	override def onUserConfigure(newParameterValues: Map[ParameterId, ParameterValue]): Unit = {}
 
 	type EntityType = UserPageType
 	def copyId(newId: UUID) = copy(id = Some(newId))

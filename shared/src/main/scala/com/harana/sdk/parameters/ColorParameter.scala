@@ -8,7 +8,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class ColorParameter(title: String,
+case class ColorParameter(name: String,
                           description: String,
                           group: Option[String],
                           default: Option[Color] = None,

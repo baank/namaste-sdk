@@ -7,10 +7,10 @@ import com.harana.sdk.models.{Parameter, ParameterValidator}
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class GeoLocationParameter(title: String,
+case class GeoLocationParameter(name: String,
                                 description: String,
                                 group: Option[String],
-                                default: Option[String] = None,
+                                default: Option[(Double, Double)] = None,
                                 required: Boolean,
                                 validators: List[ParameterValidator] = List(),
                                 id: ParameterId = UUID.randomUUID()) extends Parameter with Serializable

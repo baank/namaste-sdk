@@ -10,7 +10,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Group(title: String,
+case class Group(name: String,
                  users: Set[UserId],
                  createdBy: Option[UserId],
                  createdTime: Instant,
@@ -31,7 +31,7 @@ case class Group(title: String,
 object Group {
 	type GroupId = UUID
 
-	def apply(title: String, users: Set[User], createdBy: User): Group = {
-		apply(title, users.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, users: Set[User], createdBy: User): Group = {
+		apply(name, users.flatMap(_.id), createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

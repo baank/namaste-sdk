@@ -10,7 +10,7 @@ import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
-case class Workflow(title: String,
+case class Workflow(name: String,
 	                  createdBy: Option[UserId],
 	                  createdTime: Instant,
 	                  updatedBy: Option[UserId],
@@ -30,7 +30,7 @@ case class Workflow(title: String,
 object Workflow {
 	type WorkflowId = UUID
 
-	def apply(title: String, createdBy: User): Workflow = {
-		apply(title, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, createdBy: User): Workflow = {
+		apply(name, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }
