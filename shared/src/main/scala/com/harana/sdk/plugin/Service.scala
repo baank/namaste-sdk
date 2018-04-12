@@ -3,11 +3,13 @@ package com.harana.sdk.plugin
 import java.util.UUID
 
 import com.harana.sdk.models.{Parameter, ParameterValue}
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 
 trait Service {
 
   def name: String
+
+	def label: String
 
   def description: String
 
@@ -21,10 +23,10 @@ trait Service {
 
   def onAppContextChange(newContext: Map[String, _]): Unit
 
-  def onUserConfigure(newParameterValues: Map[ParameterId, ParameterValue]): Unit
+  def onUserConfigure(newParameterValues: Map[ParameterName, ParameterValue]): Unit
 
 }
 
 object Service {
-  type ServiceId = UUID
+	type ServiceId = UUID
 }

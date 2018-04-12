@@ -2,7 +2,7 @@ package com.harana.sdk.plugin
 
 import java.util.UUID
 
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 import com.harana.sdk.models.{Component, ParameterValue}
 
 trait PanelType extends Service {
@@ -13,7 +13,7 @@ trait PanelType extends Service {
 
   def userEditable: Boolean = true
 
-  def layout(parameterValues: Map[ParameterId, ParameterValue]): List[Component]
+  def layout(parameterValues: Map[ParameterName, ParameterValue]): List[Component]
 
   def layoutHasChanged: Boolean
 

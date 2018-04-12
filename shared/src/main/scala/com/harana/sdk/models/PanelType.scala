@@ -5,7 +5,7 @@ import java.util.UUID
 
 import com.harana.sdk.models.Entity.EntityId
 import com.harana.sdk.models.PanelType.PanelTypeId
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 import com.harana.sdk.models.User.UserId
 import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
@@ -13,7 +13,7 @@ import com.harana.sdk.util.CirceCodecs._
 @JsonCodec
 case class PanelType(name: String,
                      description: String,
-                     parameterValues: Map[ParameterId, String],
+                     parameterValues: Map[ParameterName, String],
                      createdBy: Option[UserId],
                      createdTime: Instant,
                      updatedBy: Option[UserId],
@@ -33,7 +33,7 @@ case class PanelType(name: String,
 object PanelType {
 	type PanelTypeId = UUID
 
-	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): PanelType = {
+	def apply(name: String, description: String, parameterValues: Map[ParameterName, String], createdBy: User): PanelType = {
 		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

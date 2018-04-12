@@ -5,7 +5,7 @@ import java.util.UUID
 
 import com.harana.sdk.models.Entity.EntityId
 import com.harana.sdk.models.NotificationHandler.NotificationHandlerId
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.util.CirceCodecs._
 import io.circe.generic.JsonCodec
@@ -13,7 +13,7 @@ import io.circe.generic.JsonCodec
 @JsonCodec
 case class NotificationHandler(name: String,
                                description: String,
-                               parameterValues: Map[ParameterId, String],
+                               parameterValues: Map[ParameterName, String],
                                createdBy: Option[UserId],
                                createdTime: Instant,
                                updatedBy: Option[UserId],
@@ -33,7 +33,7 @@ case class NotificationHandler(name: String,
 object NotificationHandler {
 	type NotificationHandlerId = UUID
 
-	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): NotificationHandler = {
+	def apply(name: String, description: String, parameterValues: Map[ParameterName, String], createdBy: User): NotificationHandler = {
 		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

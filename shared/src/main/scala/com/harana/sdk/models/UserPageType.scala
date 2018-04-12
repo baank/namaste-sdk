@@ -4,7 +4,7 @@ import java.time.Instant
 import java.util.UUID
 
 import com.harana.sdk.models.Entity.{EntityId, Excluded}
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 import com.harana.sdk.models.User.UserId
 import com.harana.sdk.models.UserPageType.UserPageTypeId
 import com.harana.sdk.plugin.PanelType.PanelTypeId
@@ -14,6 +14,7 @@ import com.harana.sdk.util.CirceCodecs._
 @JsonCodec
 case class UserPageType(
     name: String,
+    label: String,
     description: String,
     @Excluded listLayout: Layout,
 		@Excluded detailLayout: Layout,
@@ -30,14 +31,14 @@ case class UserPageType(
     relationships: Map[String, EntityId])
     extends Entity with Serializable with com.harana.sdk.plugin.PageType {
 
-	def listLayout(parameterValues: Map[ParameterId, ParameterValue]) = listLayout
-	def detailLayout(parameterValues: Map[ParameterId, ParameterValue]) = detailLayout
+	def listLayout(parameterValues: Map[ParameterName, ParameterValue]) = listLayout
+	def detailLayout(parameterValues: Map[ParameterName, ParameterValue]) = detailLayout
 
 	def onStartup(): Unit = {}
 	def onShutdown(): Unit = {}
 
 	override def onAppContextChange(newContext: Map[String, _]): Unit = {}
-	override def onUserConfigure(newParameterValues: Map[ParameterId, ParameterValue]): Unit = {}
+	override def onUserConfigure(newParameterValues: Map[ParameterName, ParameterValue]): Unit = {}
 
 	type EntityType = UserPageType
 	def copyId(newId: UUID) = copy(id = Some(newId))

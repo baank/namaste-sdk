@@ -9,10 +9,6 @@ import scala.collection.mutable.{ListBuffer => MutableList}
 
 abstract class Plugin extends BundleActivator {
 
-	def name: String
-	def vendor: String
-	def version: Long
-
   def ids: Map[Class[_ <: Service], ServiceId]
 
 	def authenticationServices: Set[Class[_ <: AuthenticationHandler]]
@@ -51,7 +47,7 @@ abstract class Plugin extends BundleActivator {
     try {
       services.foreach { service =>
         // TODO harden if no ids etc.
-        val map = mutable.Map("id" -> ids(service), "pluginName" -> name, "pluginVersion" -> version, "pluginVendor" -> vendor)
+        val map = mutable.Map("id" -> ids(service))
         serviceRegistrations += service -> context.registerService(cls, service.newInstance(), map.asJavaDictionary)
         //TODO
         //service.asInstanceOf[Service].onStartup()

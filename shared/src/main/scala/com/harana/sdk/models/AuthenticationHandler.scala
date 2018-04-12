@@ -5,7 +5,7 @@ import java.util.UUID
 
 import com.harana.sdk.models.AuthenticationHandler.AuthenticationHandlerId
 import com.harana.sdk.models.Entity.EntityId
-import com.harana.sdk.models.Parameter.ParameterId
+import com.harana.sdk.models.Parameter.ParameterName
 import com.harana.sdk.models.User.UserId
 import io.circe.generic.JsonCodec
 import com.harana.sdk.util.CirceCodecs._
@@ -13,7 +13,7 @@ import com.harana.sdk.util.CirceCodecs._
 @JsonCodec
 case class AuthenticationHandler(name: String,
                                  description: String,
-                                 parameterValues: Map[ParameterId, String],
+                                 parameterValues: Map[ParameterName, String],
                                  createdBy: Option[UserId],
                                  createdTime: Instant,
                                  updatedBy: Option[UserId],
@@ -33,7 +33,7 @@ case class AuthenticationHandler(name: String,
 object AuthenticationHandler {
 	type AuthenticationHandlerId = UUID
 
-	def apply(name: String, description: String, parameterValues: Map[ParameterId, String], createdBy: User): AuthenticationHandler = {
+	def apply(name: String, description: String, parameterValues: Map[ParameterName, String], createdBy: User): AuthenticationHandler = {
 		apply(name, description, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }
