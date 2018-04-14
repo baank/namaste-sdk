@@ -6,7 +6,7 @@ import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class ConnectionParameter(name: String,
-                               label: String,
+                               title: String,
                                description: String,
                                group: Option[String],
                                default: Option[Connection] = None,

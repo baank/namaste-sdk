@@ -14,7 +14,7 @@ import com.harana.sdk.util.CirceCodecs._
 @JsonCodec
 case class UserPageType(
     name: String,
-    label: String,
+    title: String,
     description: String,
     @Excluded listLayout: Layout,
 		@Excluded detailLayout: Layout,

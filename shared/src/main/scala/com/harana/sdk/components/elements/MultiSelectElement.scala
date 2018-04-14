@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class MultiSelectElement(name: String,
-            label: String,
+            title: String,
             optionGroups: List[MultiSelectOptionGroup],
             options: List[MultiSelectOption],
             numberDisplayed: Int,
@@ -16,12 +16,12 @@ case class MultiSelectElement(name: String,
             disableIfEmpty: Boolean = true) extends Component
 
 @JsonCodec
-case class MultiSelectOption(label: String,
+case class MultiSelectOption(title: String,
                              value: String,
                              selected: Boolean,
                              disabled: Boolean = false,
                              icon: String = "")
 @JsonCodec
-case class MultiSelectOptionGroup(label: String,
+case class MultiSelectOptionGroup(title: String,
                                   options: List[MultiSelectOption],
                                   disabled: Boolean = false)

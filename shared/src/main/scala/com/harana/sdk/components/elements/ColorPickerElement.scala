@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class ColorPickerElement(name: String,
-                              label: String,
+                              title: String,
                               allowEmpty: Boolean = false,
                               disabled: Boolean = false,
                               flat: Boolean = false,

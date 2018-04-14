@@ -14,6 +14,7 @@ import com.harana.sdk.util.CirceCodecs._
 
 @JsonCodec
 case class Panel(name: String,
+                 title: String,
                  description: String,
                  panelTypeId: Either[PanelTypeId, UserPanelTypeId],
                  parameterValues: Map[ParameterName, ParameterValue],
@@ -37,7 +38,7 @@ object Panel {
 	type PanelSlotId = UUID
 	type PanelId = UUID
 
-	def apply(name: String, description: String, panelTypeId: Either[PanelTypeId, UserPanelTypeId], parameterValues: Map[ParameterName, ParameterValue], createdBy: User): Panel = {
-		apply(name, description, panelTypeId, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
+	def apply(name: String, title: String, description: String, panelTypeId: Either[PanelTypeId, UserPanelTypeId], parameterValues: Map[ParameterName, ParameterValue], createdBy: User): Panel = {
+		apply(name, title, description, panelTypeId, parameterValues, createdBy.id, Instant.now, createdBy.id, Instant.now, None, Status.Active, 1L, Map())
 	}
 }

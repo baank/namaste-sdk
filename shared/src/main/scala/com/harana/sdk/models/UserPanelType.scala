@@ -13,7 +13,7 @@ import com.harana.sdk.util.CirceCodecs._
 @JsonCodec
 case class UserPanelType(
     name: String,
-    label: String,
+    title: String,
     description: String,
 		@Excluded layout: List[Component],
     @Excluded override val instanceParameters: List[Parameter],

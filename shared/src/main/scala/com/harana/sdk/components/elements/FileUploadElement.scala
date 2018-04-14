@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class FileUploadElement(name: String,
-            label: String,
+            title: String,
             caption: String,
             restrictedFileTypes: List[String] = List(),
             alwaysDisplayPreview: Boolean = true) extends Component

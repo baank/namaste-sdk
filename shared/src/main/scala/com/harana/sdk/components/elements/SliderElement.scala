@@ -6,7 +6,7 @@ import enumeratum._
 
 @JsonCodec
 case class SliderElement(name: String,
-                          label: String,
+                          title: String,
                           style: SliderStyle,
                           minimum: Option[Int],
                           maximum: Option[Int],

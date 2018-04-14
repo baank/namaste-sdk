@@ -5,5 +5,5 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class CheckboxElement(name: String,
-            label: String,
+            title: String,
             checked: Boolean = false) extends Component

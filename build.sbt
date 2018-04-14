@@ -2,7 +2,7 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonSettings = Seq(
   name := "harana-sdk",
-  version := "126.0",
+  version := "134.0",
   scalaVersion := "2.12.5",
   organization := "com.harana",
   resolvers += Resolver.sonatypeRepo("releases"),

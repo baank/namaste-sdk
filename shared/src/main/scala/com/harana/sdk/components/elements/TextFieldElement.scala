@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class TextFieldElement(name: String,
-            label: String,
+            title: String,
             idealLength: Option[(Int, Int)] = None,
             maxLength: Option[Int] = None,
             inputFormat: Option[String] = None,

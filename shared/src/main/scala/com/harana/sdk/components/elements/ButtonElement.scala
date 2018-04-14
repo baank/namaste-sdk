@@ -6,7 +6,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class ButtonElement(name: String,
-            label: String,
+            title: String,
             size: IconSize = IconSize.Default,
             color: Color = Color.Default,
             colorAccent: ColorAccent = ColorAccent.Default,

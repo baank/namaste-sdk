@@ -5,7 +5,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class TagsParameter(name: String,
-                         label: String,
+                         title: String,
                          description: String,
                          group: Option[String],
                          default: Option[String] = None,

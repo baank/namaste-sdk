@@ -17,7 +17,7 @@ case object DateTimeStyle extends Enum[DateTimeStyle] with CirceEnum[DateTimeSty
 @EnableReflectiveInstantiation
 trait Parameter {
   def name: String
-	def label: String
+	def title: String
   def description: String
   def group: Option[String]
   def required: Boolean

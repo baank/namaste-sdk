@@ -9,7 +9,7 @@ trait Service {
 
   def name: String
 
-	def label: String
+	def title: String
 
   def description: String
 

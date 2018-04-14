@@ -6,7 +6,7 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class UserParameter(name: String,
-                         label: String,
+                         title: String,
                          description: String,
                          group: Option[String],
                          default: Option[UserId] = None,

@@ -5,5 +5,5 @@ import io.circe.generic.JsonCodec
 
 @JsonCodec
 case class PasswordGeneratorElement(name: String,
-            label: String,
+            title: String,
             checked: Boolean) extends Component
